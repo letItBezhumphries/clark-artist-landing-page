@@ -1,0 +1,69 @@
+/*
+COLORS
+*/
+
+
+
+
+
+
+:root {
+  --color-black-dark: black;
+  --color-black-light: #474e58;
+  
+  --color-primary: #212396;
+  --color-primary-light: #354885;
+  --color-primary-dark: #0c0755;
+
+  --color-grey-light-1: #faf9f9;
+  --color-grey-light-2: #f4f2f2;
+  --color-grey-light-3: #f0eeee;
+  --color-grey-light-4: #ccc;
+  --color-grey-dark-1: #333;
+  --color-grey-dark-2: #777;
+  --color-grey-dark-3: #999;
+
+  --shadow-light: 0 2rem 5rem rgba(0, 0, 0, .06);
+  --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, .3);
+
+  --line: 1px solid var(--color-grey-light-1);
+}
+
+//can't use or set media queries with css variables but can use sass variables like so below
+//rememeber using em for queries?
+
+$bp-largest: 75em; //1200px / 16 = 75em
+$bp-large: 68.75em; //1100px / 16 = 
+$bp-medium: 56.25em; //900px / 16 = 
+$bp-small: 37.5em; //600px / 16 = 
+$bp-smallest: 32.25em; //500px / 16
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+
+
+}
+
+
+body {
+  font-family: 'Open Sans',
+    sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  // background-color: var(--color-black-light);
+  padding: 2rem 2rem;
+  // min-height: 100vh;
+  
+}

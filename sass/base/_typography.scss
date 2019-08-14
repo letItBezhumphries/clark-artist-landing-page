@@ -1,0 +1,10 @@
+%heading {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 400;
+}
+
+.heading-4 {
+  @extend %heading;
+  font-size: 1.6rem;
+  color: var(--color-dark-blue-primary);
+}
