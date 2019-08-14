@@ -1,0 +1,189 @@
+/*
+COLORS
+*/
+:root {
+  --color-black-dark: black;
+  --color-black-light: #474e58;
+  --color-primary: #212396;
+  --color-primary-light: #354885;
+  --color-primary-dark: #0c0755;
+  --color-grey-light-1: #faf9f9;
+  --color-grey-light-2: #f4f2f2;
+  --color-grey-light-3: #f0eeee;
+  --color-grey-light-4: #ccc;
+  --color-grey-dark-1: #333;
+  --color-grey-dark-2: #777;
+  --color-grey-dark-3: #999;
+  --shadow-light: 0 2rem 5rem rgba(0, 0, 0, .06);
+  --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, .3);
+  --line: 1px solid var(--color-grey-light-1); }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit; }
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  padding: 2rem 2rem; }
+
+.container {
+  padding: 0 1rem;
+  width: 100%;
+  height: 120rem;
+  color: black;
+  display: flex;
+  flex-direction: column; }
+
+.content {
+  display: grid;
+  grid-template-rows: repeat(4, min-content); }
+
+.portfolio {
+  background-color: green; }
+
+.news {
+  background-color: beige; }
+
+.store {
+  background-color: purple; }
+
+.navbar {
+  padding: 0rem 0rem;
+  flex: 0 0 10%;
+  height: 10rem;
+  width: 100%;
+  overflow: hidden;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px black solid; }
+  .navbar__artist {
+    flex: 0 0 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; }
+  .navbar__links {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    overflow: hidden;
+    padding-bottom: 1rem; }
+  .navbar__link:link, .navbar__link:visited, .navbar__dropbtn {
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    line-height: 2; }
+    .navbar__link:link:hover, .navbar__link:visited:hover, .navbar__dropbtn:hover {
+      color: blue; }
+
+.name-first {
+  font-size: 3.5rem;
+  color: black;
+  z-index: 2;
+  text-decoration: underline black; }
+
+.name-last {
+  font-size: 9.5rem;
+  padding-top: 3rem;
+  clip-path: polygon(0% 0%, 0 100%, 25% 100%, 0 57%, 100% 57%, 100% 60%, 0 59%, 25% 100%, 100% 100%, 100% 0);
+  color: black;
+  z-index: 2; }
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 16rem;
+  min-height: 20rem;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1; }
+  .dropdown-content__link {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; }
+    .dropdown-content__link:hover {
+      color: blue;
+      padding: .5rem 0; }
+
+.dropdown-content a {
+  color: black;
+  text-decoration: none;
+  width: 100%;
+  font-size: 1rem;
+  text-transform: uppercase; }
+
+.dropdown-content a:hover {
+  flex: 0 0 100%;
+  background-color: #ddd;
+  color: blue;
+  height: 1.5rem; }
+  .dropdown-content a:hover__link {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; }
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  transform: translateY(0.5%) translateX(-25%); }
+  .dropdown:hover .dropdown-content__link:hover {
+    align-self: center;
+    text-transform: uppercase;
+    font-size: 1rem; }
+
+.section-background {
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  align-self: center;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center; }
+
+.custom-bg {
+  margin-top: 2.5rem;
+  background-image: url("/css/images/chicagoLtrain.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  background-position: center;
+  height: 95%;
+  width: 95%; }
+
+.story {
+  height: 55vh;
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: [full-start] 1fr [image-start] 50% [image-end bio-start] 40% [bio-end] 1fr [full-end];
+  background-image: linear-gradient(rgba(87, 102, 153, 0.55), rgba(74, 93, 153, 0.55)), url("/css/images/aerial2.jpg");
+  background-size: cover;
+  background-position: center; }
+
+.artist-img {
+  grid-column: image-start / image-end; }
+
+.artist-biography {
+  grid-column: bio-start / bio-end;
+  background-color: pink; }
