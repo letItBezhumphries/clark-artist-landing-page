@@ -11,29 +11,40 @@
 // }
 
 .story {
-  height: 55vh;
+  height: 25vh;
   margin-top: 2rem;
+  grid-row: row-start 1 / row-end 1;
+  
   
   display: grid;
   grid-template-columns: [full-start] 1fr [image-start] 50% [image-end bio-start] 40% [bio-end] 1fr [full-end];
-  background-image: linear-gradient(rgba(#576699, .55), rgba(#4a5d99, .55)),
-  url('/css/images/aerial2.jpg');
-  background-size: cover;
-  background-position: center;
-}
 
-.artist-img {
 
-  grid-column: image-start / image-end;
-  // background-image: linear-gradient(rgba(#576699, .55), rgba(#4a5d99, .55)),
-  // url('/css/images/aerial2.jpg');
+  &__artist-pics {
+    grid-column: full-start / image-end;
+    background-image: linear-gradient(rgba(#576699, .55), rgba(#4a5d99, .55)),
+    url('/css/images/aerial2.jpg');
+    background-size: cover;
+    background-position: center;
+    // z-index: 1;
 
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+
+  }
+
+  &__img-1 {
+    width: 100%;
+  }
+
+  &__img-2 {
+    width: 100%;
+  }
+
+  &__artist-bio {
+      grid-column: bio-start / full-end;
+      background-color: pink;
+  }
   
-   
-  
-}
-
-.artist-biography {
-  grid-column: bio-start / bio-end;
-  background-color: pink;
 }

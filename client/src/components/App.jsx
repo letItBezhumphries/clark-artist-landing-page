@@ -10,28 +10,14 @@ import Story from './Story.jsx';
 export default class App extends Component {
   render() {
     return (
-      <div className="container">    
-        <Navbar />
-        {/* <Switch>
+      <div className="container"> 
+        <GalleryBackground /> 
+        <Navbar />  
+        {/* <Navbar />
+        <Switch>
           <Route path="/" exact component={GalleryBackground} />        
           <Route path="/story" component={Story} />
         </Switch> */}
-        <main className="content">
-          <Story />
-
-          <section className="porfolio">
-            Portfolio
-          </section>
-
-          <section className="news">
-            News
-          </section>
-
-          <section className="store">
-            Store
-          </section>
-        </main>
-
       </div>
     )}
 }

@@ -2,15 +2,20 @@
 
 .navbar {
   padding: 0rem 0rem;
-  flex: 0 0 10%;
-  height: 10rem;
+  // flex: 0 0 10%;
+  // height: 10rem;
+  grid-row: full-start / header-start;
+  grid-column: 1 / -1;
+  height: 50%;
   width: 100%;
-  overflow: hidden;
-  background-color: white;
+  // overflow: hidden;
+  background-color: transparent;
+  z-index: 1;
+  
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: 1px black solid;
+  // border-bottom: 1px black solid;
 
   &__artist {
     // background-color: blue;
@@ -30,9 +35,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    align-items: flex-end;
+    align-items: center;
     overflow: hidden;
-    padding-bottom: 1rem;
+    // padding-bottom: 1rem;
   }
 
   &__link:link,
@@ -40,9 +45,10 @@
   &__dropbtn {
     color: black;
     cursor: pointer;
+    font-weight: 200;
     text-decoration: none;
-    font-size: 1rem;
-    text-transform: uppercase;
+    font-size: 2rem;
+    text-transform: lowercase;
     letter-spacing: 1.5px;
     line-height: 2;
 
