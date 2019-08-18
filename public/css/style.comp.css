@@ -146,14 +146,52 @@ body {
     text-transform: uppercase;
     font-size: 1rem; }
 
-.background__img {
+.bg-carousel {
   grid-row: full-start / -1;
   grid-column: 1 / -1;
-  background-image: url("/css/images/cubagirl.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
   z-index: 0; }
+  .bg-carousel__img-slide {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr); }
+
+.chevron-left {
+  grid-row: 2 / span 1;
+  grid-column: 1 / span 1;
+  justify-self: center;
+  align-self: center;
+  background-color: yellowgreen;
+  z-index: 1; }
+
+.chevron-right {
+  grid-row: 2 / span 1;
+  grid-column: 4 / span 1;
+  justify-self: center;
+  align-self: center;
+  background-color: purple;
+  z-index: 1; }
+
+.img-details {
+  background-color: var(--color-black-light);
+  color: white;
+  z-index: 1;
+  padding: 1rem 1rem;
+  grid-row: 3 / -1;
+  grid-column: 1 / span 2;
+  align-self: end;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .5rem;
+  font-size: 1.5rem; }
+  .img-details__header {
+    color: grey; }
+  .img-details__portfolio-title {
+    color: white; }
 
 .story {
   height: 25vh;
