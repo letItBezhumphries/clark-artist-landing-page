@@ -4,7 +4,9 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, './public')))
+app.use(express.static(path.join(__dirname, './public')));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, './public/index.html'))

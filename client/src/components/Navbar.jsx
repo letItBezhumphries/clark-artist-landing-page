@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 import DropdownList from './DropdownList.jsx';
 
-function Navbar() {
+function Navbar(props) {
+  console.log('from navbar;', props);
   return (
     <header className="navbar">
       <div className="navbar__artist">
@@ -13,14 +14,14 @@ function Navbar() {
         {/* </Link> */}
       </div>
       <div className="navbar__links">
-        <Link to="/story" className="navbar__link">story</Link>
+        <NavLink to="/story" className="navbar__link">story</NavLink>
         <DropdownList/>
-        <Link to="/events" className="navbar__link">events</Link>
-        <Link to="/store" className="navbar__link">store</Link>
-        <Link to="/login" className="navbar__link">join/login</Link>
+        <NavLink to="/events" className="navbar__link">events</NavLink>
+        <NavLink to="/store" className="navbar__link">store</NavLink>
+        <NavLink to="/login" className="navbar__link">join/login</NavLink>
       </div>
     </header>
   )
 }
 
-export default Navbar;
+export default withRouter(Navbar);

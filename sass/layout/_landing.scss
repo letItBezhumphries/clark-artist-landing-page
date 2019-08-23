@@ -11,7 +11,7 @@
   // background-position: center;
 
   display: grid;
-  grid-template-rows: [full-start] 1fr [header-start] 20vh [header-end content-start] min-content [content-end] 1fr [full-end];
+  grid-template-rows: [full-start] 15rem [header-start] 20vh [header-end content-start] min-content [content-end] 1fr [full-end];
   grid-template-columns: repeat(8, [col-start] minmax(min-content, 20rem) [col-end]);
 
 }

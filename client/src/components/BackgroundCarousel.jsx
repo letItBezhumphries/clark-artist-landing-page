@@ -43,9 +43,6 @@ export class BackgroundCarousel extends Component {
     ), 5000);
   }
 
-  
-
-
 
   render() {
     console.log('this is the currentIndex', currentIndex);
@@ -65,30 +62,3 @@ export class BackgroundCarousel extends Component {
 }
 
 export default BackgroundCarousel;
-
-
-// import React from 'react';
-// import { Background, Parallax } from 'react-parallax';
-
-// const BackgroundCarousel = (props) => {
-//   // return (
-//   //   <div className="section-background">
-//   //     <Background className="custom-bg">
-//   //       <div className="chevron-left"></div>
-//   //       <div className="chevron-right"></div>
-//   //     </Background> 
-//   //   </div>
-//   // )
-//   return (
-//     <div className="background__img">
-//       <div className="chevron-left">O</div>
-//       <div className="chevron-right">O</div>
-//       <div className="img-details">
-//         <span className="img-details__header">Portfolio / </span>
-//         <span className="img-details__portfolio-title">people & places</span>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default BackgroundCarousel;
