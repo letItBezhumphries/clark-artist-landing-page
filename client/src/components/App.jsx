@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
-import Navbar from './Navbar.jsx';
+import React, { Component, Fragment } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Navbar from './layout/Navbar.jsx';
+import BackgroundCarousel from './layout/BackgroundCarousel.jsx';
+import Alert from './layout/Alert.jsx';
+import Story from './layout/Story.jsx';
 
-import { Switch, Route } from 'react-router-dom';
-import BackgroundCarousel from './BackgroundCarousel.jsx';
-
-import Story from './Story.jsx';
+//Redux 
+import { Provider } from 'react-redux';
+import store from './store.js';
 
 
 export default class App extends Component {
@@ -55,21 +58,28 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className = "container">
-        {/* <BackgroundCarousel bgImgs={this.state.bgImgs} currentIndex={this.state.currentGalleryIndex}/>   */}
-        {/* <Navbar/>  */}
-        {/* <Switch>
-          <Route path="/" exact component={App} />        
-          <Route path="/story" component={Story} />
-        </Switch>  */}
-        {/* <Switch>
-          <Route path="/" exact component={App} />        
-          
-        </Switch> */}
-        {/* <Route path="/" exact component={BackgroundCarousel bgImgs={this.state.bgImgs} currentIndex={this.state.currentGalleryIndex} } /> */}
-        <Route path="/" component={Navbar} />
-        <Route path="/story" component={Story} />
-      </div>
+      <Provider store={store}>
+        <Router>
+          <Fragment>
+            <div className = "container">
+            <Alert />
+                {/* <BackgroundCarousel bgImgs={this.state.bgImgs} currentIndex={this.state.currentGalleryIndex}/>   */}
+                {/* <Navbar/>  */}
+                {/* <Switch>
+                  <Route path="/" exact component={App} />        
+                  <Route path="/story" component={Story} />
+                </Switch>  */}
+                {/* <Switch>
+                  <Route path="/" exact component={App} />        
+                  
+                </Switch> */}
+                {/* <Route path="/" exact component={BackgroundCarousel bgImgs={this.state.bgImgs} currentIndex={this.state.currentGalleryIndex} } /> */}
+                <Route path="/" component={Navbar} />
+                <Route path="/story" component={Story} />
+              </div>
+          </Fragment>
+        </Router>
+      </Provider>
     )
   }
 }

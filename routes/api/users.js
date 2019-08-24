@@ -1,7 +1,6 @@
 //for registering a user
 const express = require('express');
 const router = express.Router();
-const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -43,18 +42,17 @@ router.post('/', [
         });
       }
 
-      //get users gravatar
-      const avatar = gravatar.url(email, {
-        s: '200',
-        r: 'pg',
-        d: 'mm'
-      });
+      // //get users gravatar
+      // const avatar = gravatar.url(email, {
+      //   s: '200',
+      //   r: 'pg',
+      //   d: 'mm'
+      // });
 
       //create new instance of User model
       user = new User({
         name,
         email,
-        avatar,
         password
       });
 

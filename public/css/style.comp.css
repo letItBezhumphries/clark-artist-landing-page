@@ -49,14 +49,14 @@ body {
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-rows: [full-start] 1fr [header-start] 20vh [header-end content-start] min-content [content-end] 1fr [full-end];
+  grid-template-rows: [full-start] 15rem [header-start] 20vh [header-end content-start] min-content [content-end] 1fr [full-end];
   grid-template-columns: repeat(8, [col-start] minmax(min-content, 20rem) [col-end]); }
 
 .navbar {
   padding: 0rem 0rem;
   grid-row: full-start / header-start;
   grid-column: 1 / -1;
-  height: 50%;
+  height: 25%;
   width: 100%;
   background-color: transparent;
   z-index: 1;
@@ -220,12 +220,13 @@ body {
 .story {
   height: 25vh;
   margin-top: 2rem;
-  grid-row: row-start 1 / row-end 1;
+  grid-row: full-start / full-end;
+  grid-column: 1 / -1;
   display: grid;
   grid-template-columns: [full-start] 1fr [image-start] 50% [image-end bio-start] 40% [bio-end] 1fr [full-end]; }
   .story__artist-pics {
     grid-column: full-start / image-end;
-    background-image: linear-gradient(rgba(87, 102, 153, 0.55), rgba(74, 93, 153, 0.55)), url("/css/images/aerial2.jpg");
+    background-image: linear-gradient(rgba(87, 102, 153, 0.55), rgba(74, 93, 153, 0.55)), url("/css/images/aerial5d960x639.jpg");
     background-size: cover;
     background-position: center;
     display: grid;
