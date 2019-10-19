@@ -5,7 +5,7 @@ const Story = (props) => {
     <section className="story">
         <div className="story__artist-pics">
           <img src="/css/images/cubagirl.jpg" alt="artist " className="story__img-1"/>
-          <img src="/css/images/about_me.jpg" alt="artist self portrait" className="story__img-2"/>
+          <img src="/css/images/toddC.jpg" alt="artist self portrait" className="story__img-2"/>
           
         </div>
         <div className="story__artist-bio">

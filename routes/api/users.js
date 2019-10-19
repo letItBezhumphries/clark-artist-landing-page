@@ -27,7 +27,7 @@ router.post('/', [
         errors: errors.array()
       });
     }
-
+    console.log('register user', req.body);
     //check if user exists
     const { name, email, password } = req.body;
 
@@ -42,19 +42,29 @@ router.post('/', [
         });
       }
 
-      // //get users gravatar
-      // const avatar = gravatar.url(email, {
-      //   s: '200',
-      //   r: 'pg',
-      //   d: 'mm'
-      // });
-
-      //create new instance of User model
-      user = new User({
-        name,
-        email,
-        password
-      });
+      //check username and password to see if they match the admin username and password
+      if ((name === process.env.ADMIN_ID) && (password === process.env.ADMIN_PSWORD)) {
+        user = new User({
+          name: name,
+          email: email,
+          password: password,
+          isAdmin: true
+        })
+      } else {
+        user = new User({
+          name: name,
+          email: email,
+          password: password,
+          isAdmin: false
+        })
+      }
+        //create new instance of User model
+        // user = new User({
+        //   name,
+        //   email,
+        //   password,
+        //   isAdmin
+        // });
 
       //ecrypt password
       const salt = await bcrypt.genSalt(10);
@@ -66,12 +76,13 @@ router.post('/', [
 
       const payload = {
         user: {
-          id: user.id
+          id: user.id,
+          isAdmin: user.isAdmin
         }
       };
 
       jwt.sign(payload, 
-        JWT_SECRET,
+        process.env.JWT_SECRET,
         { expiresIn: 36000 }, 
         (err, token) => {
           if (err) throw err;

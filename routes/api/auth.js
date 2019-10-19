@@ -28,7 +28,7 @@ router.get('/', auth, async (req, res) => {
 
 
 // @route = POST api/auth
-// @desc Authenticate user & get token 
+// @desc Authenticate user & get a token 
 // @access Public
 router.post('/',
   [
@@ -51,6 +51,8 @@ router.post('/',
         email
       });
 
+      console.log('inside auth:', user);
+      
       if (!user) {
         return res.status(400).json({
           errors: [{
@@ -77,7 +79,7 @@ router.post('/',
       };
 
       jwt.sign(payload,
-        JWT_SECRET, {
+        process.env.JWT_SECRET, {
           expiresIn: 36000
         },
         (err, token) => {

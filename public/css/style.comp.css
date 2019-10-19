@@ -52,6 +52,32 @@ body {
   grid-template-rows: [full-start] 15rem [header-start] 20vh [header-end content-start] min-content [content-end] 1fr [full-end];
   grid-template-columns: repeat(8, [col-start] minmax(min-content, 20rem) [col-end]); }
 
+.image-form {
+  background-color: orangered;
+  grid-row: content-start / content-end;
+  grid-column: 2 / span 4;
+  z-index: 0; }
+
+.portfolio-form {
+  background-color: olivedrab;
+  grid-row: content-start / content-end;
+  grid-column: 1 / -1;
+  z-index: 0; }
+
+.upload-form {
+  background-color: olivedrab;
+  grid-row: content-start / content-end;
+  grid-column: 1 / -1;
+  z-index: 0; }
+
+.login-form {
+  grid-row: content-start / content-end;
+  grid-column: 1 / -1; }
+
+.register-form {
+  grid-row: content-start / content-end;
+  grid-column: 1 / -1; }
+
 .navbar {
   padding: 0rem 0rem;
   grid-row: full-start / header-start;
@@ -88,31 +114,29 @@ body {
     font-size: 2rem;
     text-transform: lowercase;
     letter-spacing: 1.5px;
-    line-height: 2;
-    background-color: var(--color-grey-dark-1); }
+    line-height: 2; }
     .navbar__link:link:hover, .navbar__link:visited:hover, .navbar__dropbtn:hover {
       color: blue; }
 
 .name-first {
   font-size: 3.5rem;
-  color: white;
-  text-shadow: 1.5px -4px black;
+  color: black;
   z-index: 2;
-  text-decoration: underline white; }
+  text-decoration: underline black; }
 
 .name-last {
   font-size: 9.5rem;
   padding-top: 3rem;
-  color: white;
-  text-shadow: 3px -8px black;
+  color: black;
   clip-path: polygon(0% 0%, 0 100%, 25% 100%, 0 57%, 100% 57%, 100% 60%, 0 59%, 25% 100%, 100% 100%, 100% 0);
   z-index: 2; }
 
 .dropdown-content {
   display: none;
+  flex-direction: column;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 16rem;
+  min-width: 30rem;
   min-height: 20rem;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1; }
@@ -124,11 +148,12 @@ body {
       color: blue; }
 
 .dropdown-content a {
-  color: black;
+  color: white;
   text-decoration: none;
   width: 100%;
   font-size: 1rem;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  padding: 2rem 0rem; }
 
 .dropdown-content a:hover {
   flex: 0 0 100%;
@@ -143,8 +168,10 @@ body {
 .dropdown:hover .dropdown-content {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  transform: translateY(0.5%) translateX(-25%); }
+  flex-wrap: wrap;
+  transform: translateY(-0.5%) translateX(-25%);
+  background-color: black;
+  color: white; }
   .dropdown:hover .dropdown-content__link:hover {
     align-self: center;
     text-transform: uppercase;

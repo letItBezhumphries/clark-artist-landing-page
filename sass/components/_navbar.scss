@@ -54,7 +54,7 @@
     text-transform: lowercase;
     letter-spacing: 1.5px;
     line-height: 2;
-    background-color: var(--color-grey-dark-1);
+    // background-color: var(--color-grey-dark-1);
 
     &:hover {
       color: blue;
@@ -64,22 +64,22 @@
 
 .name-first {
   font-size: 3.5rem;
-  color: white;
-  text-shadow: 1.5px -4px black;
+  color: black;
+  // text-shadow: 1.5px -4px black;
   // color: black;
   // color: white;
   // transform: translateX(-650%);
   // background-color: yellow;
   z-index: 2;
   // text-decoration: underline black;
-  text-decoration: underline white;
+  text-decoration: underline black;
 }
 
 .name-last {
   font-size: 9.5rem;
   padding-top: 3rem;
-  color: white;
-  text-shadow: 3px -8px black;
+  color: black;
+  // text-shadow: 3px -8px black;
   // transform: translateX(-224%);
   // background-color: purple;
   clip-path: polygon(0% 0%, 0 100%, 25% 100%, 0 57%, 100% 57%, 100% 60%, 0 59%, 25% 100%, 100% 100%, 100% 0);
