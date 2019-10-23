@@ -2,9 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import { Redirect } from 'react-router-dom';
-// import Story from './Story.jsx';
 import AdminDashboard from '../admin/AdminDashboard';
-// import BackgroundCarousel from './BackgroundCarousel.jsx';
 import BackgroundCarousel from './gallery/BackgroundCarousel';
 import { getImage, loadGallery } from '../../actions/admin';
 
@@ -22,11 +20,11 @@ const Landing = ({
 
 
 
-  // useEffect(() => {
-  //   console.log('[Landing.jsx], useEffect');
-  //   loadGallery();
+  useEffect(() => {
+    console.log('[Landing.jsx], useEffect');
+    loadGallery();
  
-  // }, [loadGallery]);
+  }, [loadGallery]);
 
 
   return (

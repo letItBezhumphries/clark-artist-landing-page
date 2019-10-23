@@ -15,7 +15,7 @@ import {
 //@desc loads the gallery of background images 
 export const loadGallery = () => async dispatch => {
   try {
-    const res = await axios.get('/admin/upload/gallery');
+    const res = await axios.get('/api/images/gallery');
     // const portfolios = await axios.get('/portfolios');
     // const images = await axios.get('/images');
    
@@ -30,7 +30,7 @@ export const loadGallery = () => async dispatch => {
 
 export const loadImages = () => async dispatch => {
   try {
-    const res = await axios.get('/admin/upload/images');
+    const res = await axios.get('/api/images');
 
     console.log('loadImages in admin.js', res.data);
 
@@ -45,7 +45,7 @@ export const loadImages = () => async dispatch => {
 
 export const getImage = (filename) => async dispatch => {
   try {
-    const res = await axios.get(`/admin/upload/images/${filename}`);
+    const res = await axios.get(`/api/images/${filename}`);
 
     console.log('IN GET IMAGE', res.data);
  
@@ -109,32 +109,34 @@ export const addImage = ({ title, fileName, description, imageUrl, portfolio, is
 //     }
 // }
 
+export const addPortfolio = ({ title, description }) => async dispatch => {
+  const config = { 
+    headers: {
+      'Content-Type': 'application/json'
+    } 
+  }
+
+  const body = JSON.stringify({ title, description }); 
+  
+  try {
+    const res = await axios.post('http://localhost:3003/admin/upload/portfolio', body, config);
+
+    console.log("new Portfolio", res.data);
+
+    dispatch({
+      type: ADD_PORTFOLIO,
+      payload: res.data
+    });
 
 
-// export const loadStore = () => async dispatch => {
-//   try {
-//     const portfolios = await axios.get('/admin/upload/portfolios');
-//     const images = await axios.get('/admin/upload/images');
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+    }
+    dispatch({
+      type: PORTFOLIO_ERROR
+    });
+  }
 
-//     dispatch({
-//       type: LOAD_PORTFOLIOS,
-//       payload: portfolios.data
-//     });
-//     dispatch({
-//       type: LOAD_IMAGES,
-//       payload: images.data
-//     });
-//     // dispatch({
-//     //   type: LOAD_GALLERY,
-//     //   payload: 
-//     // });
-
-//   } catch (err) {
-//     dispatch({
-//       type: PORTFOLIO_ERROR
-//     });
-//     dispatch({
-//       type: IMAGE_ERROR
-//     });
-//   }
-// }
+}

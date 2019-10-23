@@ -18,38 +18,19 @@ const portfolioSchema = new mongoose.Schema({
         type: String,
         required: true
       },
-      src: {
+      fileName: {
+        type: String,
+        required: true
+      },
+      imageUrl: {
         type: String,
         required: true
       },
       description: {
         type: String
       },
-      medium: {
-        type: String,
-        required: true
-      },
-      materials: {
-        type: String,
-        required: true
-      },
-      dimensions: {
-        height: {
-          type: Number,
-          required: true
-        },
-        width: {
-          type: Number,
-          required: true
-        }
-      },
-      dateOfCreation: {
-        type: String,
-        required: true
-      },
-      subject: {
-        type: String,
-        required: true
+      isGallery: {
+        type: Boolean
       }
     }
   ]

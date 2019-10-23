@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { connect } from 'react-redux';
-import PropTypes from "prop-types";
-import { loadGallery } from '../../../actions/admin';
 import ImageSlide from './ImageSlide';
 
 
@@ -33,8 +30,6 @@ const BackgroundCarousel = (props) => {
       clearInterval(backgroundTimer);
     }
   }, [currentIndex])
-
-  console.log('after useEffect', currentIndex);
     
   const gallery = backgroundImgs.map((image, index) => {
     return <ImageSlide key={index} 
@@ -51,8 +46,5 @@ const BackgroundCarousel = (props) => {
     </div>
   )
 }
-
-BackgroundCarousel.propTypes = {}
-
 
 export default BackgroundCarousel;

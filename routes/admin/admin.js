@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 require("dotenv").config();
-const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 const multer = require("multer");
@@ -84,15 +83,12 @@ router.post("/image", [
       await newImage
       .save()
       .then(response => {
-        console.log(response);
         res.json({ msg: "success creating a new image", file: req.file, data: response });
       })
       .catch(err => {
-        console.error(err.message);
         res.json({ msg: "Server error adding new image", errMessage: err.message });
       });
   } catch (err) {
-    console.error(err.message);
     res.status(500).send("Server error");
   }
 });
@@ -102,6 +98,7 @@ router.post("/image", [
 router.get("/images", async (req, res) => {
   try {
     const images = await Image.find();
+    console.log('GET images routes/api/admin', typeof images)
     res.json(images);
   } catch (err) {
     console.error(err.message);
@@ -184,29 +181,34 @@ router.get("/gallery", async (req, res) => {
 
 // @route POST /upload/portfolio
 // @desc creates a Portfolio collection
-// router.post("/portfolio", async (req, res) => {
-//   console.log("this is the request", req.body);
-//   const { title, description } = req.body;
+router.post("/portfolio", async (req, res) => {
+  console.log("this is the request", req.body);
+  const { title, description } = req.body;
 
-//   const newPortfolio = new Portfolio({
-//     title: title,
-//     description: description
-//   });
+  const images = await Image.find({ portfolio: title });
 
-//   await newPortfolio
-//     .save()
-//     .then(response => {
-//       console.log("this is the new portfolio", response);
-//       res.json({ msg: "Successfully created a new portfolio", data: response });
-//     })
-//     .catch(err => {
-//       console.error(err.message);
-//       res.status(500).send("Server error");
-//     });
-// });
+  console.log(`these are the images for the portfolio: ${title}`, images);
+
+  const newPortfolio = new Portfolio({
+    title: title,
+    description: description,
+    // images: images
+  });
+
+  await newPortfolio
+    .save()
+    .then(response => {
+      console.log("this is the new portfolio", response);
+      res.json({ msg: "Successfully created a new portfolio", data: response });
+    })
+    .catch(err => {
+      console.error(err.message);
+      res.status(500).send("Server error");
+    });
+});
 
 
-// @route GET admin/upload/images/:portfolio-title
+// @route GET admin/upload/images/:portfolio
 // @desc loads a Portfolio of images
 router.get('/images/:portfolio', async (req, res) => {
   try {
@@ -219,6 +221,38 @@ router.get('/images/:portfolio', async (req, res) => {
     res.status(500).send("Server error");
   }
 })
+
+// @route PUT admin/update/images/:filename
+// @desc updates an Image by filename
+router.put('/:filename', async (req, res) => {
+  // try {
+    
+  // } catch (err) {
+    
+  // }
+}); 
+
+
+// @route PUT admin/update/images/gallery
+// @desc updates an Image by filename
+router.put('/gallery', async (req, res) => {
+  // try {
+    
+  // } catch (err) {
+    
+  // }
+}); 
+
+// @route PUT admin/update/images/:filename
+// @desc updates an Image by filename
+router.put('/', async (req, res) => {
+  // try {
+    
+  // } catch (err) {
+    
+  // }
+}); 
+
 
 
 
