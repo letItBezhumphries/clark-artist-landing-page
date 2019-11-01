@@ -1,15 +1,16 @@
 import React from 'react';
+import Navbar from '../../navigation/Navbar';
 
 const ImageSlide = ({ image, prev, next, curIdx }) => {
   const styles = { backgroundImage: `url(${image.imageUrl})`};
 
-  console.log('ImageSlide1:', image);
   const { fileName, imageUrl, title, description, portfolio } = image;
 
   console.log('ImageSlide2:', fileName, title, portfolio, imageUrl, description);
 
   return (
     <div className="bg-carousel__img-slide" style={styles}>
+      <Navbar/>
       <div className="iconbox--left" onClick={() => prev(curIdx)}>
         <svg className="icon--left">
           <use xlinkHref="/css/icons/sprites.svg#icon-chevron-thin-left"></use>

@@ -1,50 +1,46 @@
+.about-artist {
+  background-color: rgba(0, 0, 0, .9);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
 
-// .artist-image {
-//   // background-image: url('/css/images/trees.jpg');
-//   background-color: orangered;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   position: relative;
-//   background-position: center;
-//   height: 95%;
-//   width: 95%;
-// }
+  &__portrait {
+    flex: 0 0 40%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: outset;
+    
+  }
 
-.story {
-  height: 25vh;
-  margin-top: 2rem;
-  grid-row: full-start / full-end;
-  grid-column: 1 / -1;
-  
-  display: grid;
-  grid-template-columns: [full-start] 1fr [image-start] 50% [image-end bio-start] 40% [bio-end] 1fr [full-end];
-
-
-  &__artist-pics {
-    grid-column: full-start / image-end;
-    background-image: linear-gradient(rgba(#576699, .55), rgba(#4a5d99, .55)),
-    url('/css/images/aerial5d960x639.jpg');
+  &__image {
+    width: 80%;
+    height: 80%;
     background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
-    // z-index: 1;
+  }
 
-    display: grid;
-    grid-template-rows: repeat(6, 1fr);
-    grid-template-columns: repeat(6, 1fr);
+  &__bio {
+    background-color: orangered;
+    text-align: center;
+    color: grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 
   }
 
-  &__img-1 {
-    width: 100%;
+  &__contact-info {
+    background-color: green;
   }
+ }
 
-  &__img-2 {
-    width: 100%;
-  }
-
-  &__artist-bio {
-      grid-column: bio-start / full-end;
-      background-color: pink;
-  }
-  
-}
+ .bio__text {
+   background-color: purple;
+   top: 50%;
+   left: 50%;
+ }

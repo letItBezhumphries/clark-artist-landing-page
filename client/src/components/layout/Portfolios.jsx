@@ -1,11 +1,15 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
+import ImageCard from '../UI/ImageCard';
 
-const Portfolios = () => {
-  return (
-    <section className="portfolios">
-      <button className="see-more">See more</button>
-    </section>
-  )
-}
+const Portfolios = ({ getPortfolio }) => (
+  <Fragment>
+    This section will contain a gallery of
+    <ImageCard />
+    <ImageCard />
+    <ImageCard />
+    <ImageCard />
+    <ImageCard />
+  </Fragment>
+);
 
 export default Portfolios;

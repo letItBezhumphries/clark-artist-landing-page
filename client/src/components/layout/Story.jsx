@@ -2,17 +2,21 @@ import React from 'react';
 
 const Story = (props) => {
   return (
-    <section className="story">
-        <div className="story__artist-pics">
-          <img src="/css/images/cubagirl.jpg" alt="artist " className="story__img-1"/>
-          <img src="/css/images/toddC.jpg" alt="artist self portrait" className="story__img-2"/>
-          
+    <section className="about-artist">
+        <div className="about-artist__portrait">
+          <img src="/uploads/toddpainting.jpg" className="about-artist__image" alt="artist painting on canvas"/>
         </div>
-        <div className="story__artist-bio">
-          <h3 className="heading-3">About Me </h3>
-          <p className="story__text">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem, magnam consequatur reiciendis sunt sapiente dolorum suscipit, corrupti ipsum obcaecati unde neque rem ducimus quaerat eveniet esse aspernatur. Laudantium, cumque ea!
+        <div className="about-artist__bio">
+          <h3 className="heading-3">A little bit about me...</h3>
+          <p className="bio__text">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+            Quidem, magnam consequatur reiciendis sunt sapiente dolorum suscipit, 
+            corrupti ipsum obcaecati unde neque rem ducimus 
+            quaerat eveniet esse aspernatur. Laudantium, cumque ea!
           </p>
+          <div className="about-artist__contact-info">
+            All questions/interest in my artwork can contact me at: &rarr
+          </div>
         </div>
       
     </section>

@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import ImageSlide from './ImageSlide';
-
+import Navbar from '../../navigation/Navbar';
 
 const BackgroundCarousel = (props) => {
   const { backgroundImgs } = props;
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevSlide = (currentIndex) => {
-    console.log('1', currentIndex)
     if (currentIndex === 0) {
       return setCurrentIndex(backgroundImgs.length - 1);
     }
@@ -25,7 +24,7 @@ const BackgroundCarousel = (props) => {
     console.log('inside useEffect', currentIndex);
     const backgroundTimer = setInterval(() => {
       nextSlide(currentIndex);
-    }, 5000);
+    }, 10000);
     return () => {
       clearInterval(backgroundTimer);
     }
@@ -42,9 +41,15 @@ const BackgroundCarousel = (props) => {
   
   return (
     <div className="bg-carousel">
+    <Navbar/>
       {gallery[currentIndex]}
     </div>
-  )
+  );
+  // return (
+  //   <Fragment>
+  //     {gallery[currentIndex]}
+  //   </Fragment>
+  // );
 }
 
 export default BackgroundCarousel;

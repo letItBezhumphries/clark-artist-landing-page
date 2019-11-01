@@ -1,9 +1,11 @@
 import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Navbar from './layout/Navbar';
+import Navbar from './navigation/Navbar';
 import Landing from './layout/Landing';
+import Story from './layout/Story';
+import Shop from './layout/Shop';
 import AdminDashboard from './admin/AdminDashboard';
-import Alert from './layout/Alert';
+import Alert from './UI/Alert';
 import Register from './auth/Register';
 import Login from './auth/Login';
 import PrivateRoute from './routing/PrivateRoute';
@@ -30,19 +32,18 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
-          <Navbar />
-  
+   
+
           <Route exact path="/" component={Landing} />
-          <section className="container">
+    
             <Alert />
             <Switch>
               <PrivateRoute exact path="/admin/upload" component={AdminDashboard} />
-
+              <Route exact path="/story" component={Story} />
+              <Route exact path="/shop" component={Shop} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
             </Switch>
-          </section>
-          {/* <Landing bgImgs={this.state.bgImgs} currentIndex={this.state.currentGalleryIndex}/> */}
         </Fragment>
       </Router>
     </Provider>

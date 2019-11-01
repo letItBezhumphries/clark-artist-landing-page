@@ -7,6 +7,7 @@ import BackgroundCarousel from './gallery/BackgroundCarousel';
 import { getImage, loadGallery } from '../../actions/admin';
 
 
+
 const Landing = ({ 
   auth: { isAdmin, loading }, 
   gallery, getImage, loadGallery }) => {
@@ -15,23 +16,21 @@ const Landing = ({
     return <Redirect to="/admin/upload" />
   }
   
-
-
-
-
-
   useEffect(() => {
     console.log('[Landing.jsx], useEffect');
     loadGallery();
  
   }, [loadGallery]);
 
-
   return (
     <Fragment>
-      { !loading && isAdmin ? <AdminDashboard /> : <BackgroundCarousel backgroundImgs={gallery}/> }
+      {!loading && isAdmin ? (
+        <AdminDashboard />
+      ) : (
+        <BackgroundCarousel backgroundImgs={gallery} />
+      )}
     </Fragment>
-  )
+  );
 };
 
 
