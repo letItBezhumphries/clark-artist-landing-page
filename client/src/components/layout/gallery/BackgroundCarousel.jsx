@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from "react";
 import ImageSlide from './ImageSlide';
-import Navbar from '../../navigation/Navbar';
+
 
 const BackgroundCarousel = (props) => {
   const { backgroundImgs } = props;
@@ -41,7 +41,7 @@ const BackgroundCarousel = (props) => {
   
   return (
     <div className="bg-carousel">
-    <Navbar/>
+  
       {gallery[currentIndex]}
     </div>
   );

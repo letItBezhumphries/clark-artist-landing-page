@@ -3,7 +3,7 @@
   flex: 0 0 10%;
   width: 100%;
   // overflow: hidden; having this set was causing my dropdown menu to be cut off unable to show the remaining links
-  padding: 0 0;
+  padding: 0 2rem;
   display: flex;
   flex-direction: row;
   position: fixed;
@@ -12,9 +12,9 @@
   opacity: 1;
   
   &__logo {
-    flex: 0 0 40%;
+    flex: 0 0 20%;
     height: 12rem;
-    padding: 0 0;
+    padding: 0 4rem;
     text-decoration: none;
     display: flex;
     flex-direction: row;
@@ -30,7 +30,7 @@
       margin: auto;
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
+      justify-content: space-evenly;
       align-items: flex-end;
       padding: 0 0;
       border-bottom: 1px black solid;
@@ -43,6 +43,7 @@
       align-items: center;
       text-align: center;
       height: 6rem;
+      // width: 6rem;
     }
 
     &__link:link,
@@ -94,7 +95,7 @@
       align-items: center;
       min-width: 20rem;
       min-height: 30rem;
-      transform: translateY(-5%) translateX(-38%);
+      transform: translateY(-6%) translateX(-30%);
       clip-path: polygon(0 5%, 45% 5%, 50% 0%, 50% 0%, 55% 5%, 100% 5%, 
         100% 85%, 100% 100%, 85% 100%, 15% 100%, 0 100%, 0% 85%);
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -118,11 +119,21 @@
       &:hover {
         // background-color: lighten(black, 15px);
         // width: 100%;
-        text-align: center;
         background-color: blueviolet;
         color: white;
+        text-decoration: none;
       }
     }
+
+    &__icon {
+      height: 2rem;
+      width: 2rem;
+
+      &:hover {
+        fill: blue;
+      }
+    }
+
 }
 
 .name-first {

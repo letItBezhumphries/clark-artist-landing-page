@@ -37,7 +37,7 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout }) => {
         shop
       </Link>
       <Link to="/cart" className="navbar__link">
-        <Icon iconType="icon-shopping-cart1" />
+        <Icon iconType="icon-shopping-cart1" className="navbar__icon" class="navbar__icon" />
       </Link>
       <Link to="/profile" className="navbar__link">
         orders
@@ -64,7 +64,7 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout }) => {
         sign up
       </Link>
       <Link to="/cart" className="navbar__link">
-        <Icon iconType="icon-shopping-cart1" className="navbar__icon"/>
+        <Icon iconType="icon-shopping-cart1" className="navbar__icon" class="navbar__icon" />
       </Link>
     </div>
   );

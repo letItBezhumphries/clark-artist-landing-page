@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../../navigation/Navbar';
+// import Navbar from '../../navigation/Navbar';
 
 const ImageSlide = ({ image, prev, next, curIdx }) => {
   const styles = { backgroundImage: `url(${image.imageUrl})`};
@@ -10,7 +10,6 @@ const ImageSlide = ({ image, prev, next, curIdx }) => {
 
   return (
     <div className="bg-carousel__img-slide" style={styles}>
-      <Navbar/>
       <div className="iconbox--left" onClick={() => prev(curIdx)}>
         <svg className="icon--left">
           <use xlinkHref="/css/icons/sprites.svg#icon-chevron-thin-left"></use>

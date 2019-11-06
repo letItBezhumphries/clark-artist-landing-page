@@ -31,7 +31,48 @@ html,
 body {
   box-sizing: border-box;
   font-size: 62.5%;
-  height: 100%; }
+  height: 100%;
+  width: 100%; }
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: repeat(10, 10vh);
+  grid-template-columns: repeat(10, 10vw);
+  transform: translateX(-7.5%); }
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+    /*rotate(0deg);*/ }
+  /* 60% {
+    transform: rotate(180deg)
+  } */
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
 
 .heading-4 {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -40,6 +81,44 @@ body {
 .heading-4 {
   font-size: 1.6rem;
   color: var(--color-dark-blue-primary); }
+
+.heading-primary {
+  color: white;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  margin-bottom: 6rem; }
+  .heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out; }
+  .heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    animation: moveInRight 1s ease-out; }
+
+.u-center-text {
+  text-align: center !important; }
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem !important; }
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem !important; }
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem !important; }
+
+.u-margin-top-big {
+  margin-top: 8rem !important; }
+
+.u-margin-top-huge {
+  margin-top: 10rem !important; }
 
 .image-form {
   background-color: orangered;
@@ -59,18 +138,31 @@ body {
   grid-column: 1 / -1;
   z-index: 0; }
 
-.Login-form {
-  grid-row: content-start / content-end;
-  grid-column: 1 / -1; }
+.login-form {
+  background-color: var(--color-grey-light-3);
+  grid-row: 4 / span 4;
+  grid-column: 4 / span 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 15rem;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15); }
 
-.Register-form {
+.form {
+  padding: 3rem 0;
+  background-color: purple; }
+
+.form-group {
+  margin-top: 1rem; }
+
+.register-form {
   grid-row: content-start / content-end;
   grid-column: 1 / -1; }
 
 .navbar {
   flex: 0 0 10%;
   width: 100%;
-  padding: 0 0;
+  padding: 0 2rem;
   display: flex;
   flex-direction: row;
   position: fixed;
@@ -78,9 +170,9 @@ body {
   align-items: center;
   opacity: 1; }
   .navbar__logo {
-    flex: 0 0 40%;
+    flex: 0 0 20%;
     height: 12rem;
-    padding: 0 0;
+    padding: 0 4rem;
     text-decoration: none;
     display: flex;
     flex-direction: row;
@@ -92,7 +184,7 @@ body {
     margin: auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: flex-end;
     padding: 0 0;
     border-bottom: 1px black solid; }
@@ -134,9 +226,9 @@ body {
     text-transform: uppercase;
     justify-content: space-evenly;
     align-items: center;
-    min-width: 25rem;
+    min-width: 20rem;
     min-height: 30rem;
-    transform: translateY(-5%) translateX(-38%);
+    transform: translateY(-6%) translateX(-30%);
     clip-path: polygon(0 5%, 45% 5%, 50% 0%, 50% 0%, 55% 5%, 100% 5%, 100% 85%, 100% 100%, 85% 100%, 15% 100%, 0 100%, 0% 85%);
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 2; }
@@ -148,10 +240,17 @@ body {
     text-decoration: none;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     padding: 1rem 3rem; }
     .navbar__portfolio-link:hover {
-      background-color: #262626;
-      color: white; }
+      background-color: blueviolet;
+      color: white;
+      text-decoration: none; }
+  .navbar__icon {
+    height: 2rem;
+    width: 2rem; }
+    .navbar__icon:hover {
+      fill: blue; }
 
 .name-first {
   flex: 0 0 10%;
@@ -170,11 +269,15 @@ body {
   transform: translateY(4px); }
 
 .bg-carousel {
-  display: flex;
-  flex-direction: column; }
+  grid-row: 1 / -1;
+  grid-column: 1 / -1;
+  height: 100%;
+  width: 100%; }
   .bg-carousel__img-slide {
     height: 100%;
     width: 100%;
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -192,11 +295,14 @@ body {
     grid-column: 2 / span 1;
     justify-self: center;
     align-self: center;
-    background-color: var(--color-grey-light-4);
+    background-color: inherit;
+    border-radius: 360px;
     transform: translateX(-10rem);
     display: flex;
     justify-content: center;
     align-items: center; }
+    .iconbox--left:hover {
+      background-color: white; }
   .iconbox--right {
     height: 5rem;
     width: 5rem;
@@ -205,11 +311,14 @@ body {
     grid-column: 9 / span 1;
     justify-self: center;
     align-self: center;
-    background-color: var(--color-grey-light-4);
+    background-color: inherit;
     transform: translateX(10rem);
+    border-radius: 360px;
     display: flex;
     justify-content: center;
     align-items: center; }
+    .iconbox--right:hover {
+      background-color: white; }
 
 .icon--left {
   height: 2rem;
@@ -236,37 +345,7 @@ body {
   .img-details__portfolio-title {
     color: white; }
 
-.about-artist {
-  background-color: rgba(0, 0, 0, 0.9);
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: row; }
-  .about-artist__portrait {
-    flex: 0 0 40%;
-    background-color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: outset; }
-  .about-artist__image {
-    width: 80%;
-    height: 80%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center; }
-  .about-artist__bio {
-    background-color: orangered;
-    text-align: center;
-    color: grey;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around; }
-  .about-artist__contact-info {
-    background-color: green; }
-
-.bio__text {
-  background-color: purple;
-  top: 50%;
-  left: 50%; }
+.artist-story {
+  grid-row: 3 / -1;
+  grid-column: 3 / span 4;
+  background-color: brown; }

@@ -1,36 +1,14 @@
 // .container {
-// //   // padding: 0 1rem;
+
 //   width: 100vw;
 //   height: 100vh;
-// //   // color: black;
-// //   // display: flex;
-// //   // flex-direction: column;
-// //   // background-image: url('/css/images/cubagirl.jpg');
-// //   // background-size: cover;
-// //   // background-repeat: no-repeat;
-// //   // background-position: center;
+
 
 //   display: grid;
-//   grid-template-rows: [full-start] 15rem [header-start] 20vh [header-end content-start] min-content [content-end] 1fr [full-end];
-//   grid-template-columns: repeat(8, [col-start] minmax(min-content, 20rem) [col-end]);
-
+//   grid-template-rows: [full-start nav-start carousel-start] 15vh [nav-end] 85vh [carousel-end content-start] 85vh [content-end footer-start] 15vh [footer-end full-end];
+//   grid-template-columns: repeat(10, [col-start] minmax(min-content, 10vw) [col-end]);
 // }
 
-
-// .container {
-//   width: 100%;
-//   height: 100rem;
-//   display: flex;
-//   flex-direction: column;
-// }
-
-// .bg {
-//   background-image: url("http://localhost:3003/api/images/image/8e822402ef1a679f577b87861d8cdf75.jpg");
-//   height: 100%;
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-// }
 
 
 

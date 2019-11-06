@@ -1,26 +1,44 @@
 import React from 'react';
+import Button from '../UI/Button';
 
 const Story = (props) => {
   return (
-    <section className="about-artist">
-        <div className="about-artist__portrait">
-          <img src="/uploads/toddpainting.jpg" className="about-artist__image" alt="artist painting on canvas"/>
-        </div>
-        <div className="about-artist__bio">
-          <h3 className="heading-3">A little bit about me...</h3>
-          <p className="bio__text">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-            Quidem, magnam consequatur reiciendis sunt sapiente dolorum suscipit, 
-            corrupti ipsum obcaecati unde neque rem ducimus 
-            quaerat eveniet esse aspernatur. Laudantium, cumque ea!
-          </p>
-          <div className="about-artist__contact-info">
-            All questions/interest in my artwork can contact me at: &rarr
-          </div>
-        </div>
+    <section className="artist-story">
+      <h1 className="heading-1 u-margin-top-">about the artist</h1>
+      <div className="artist-story__bio">
+        <p className="artist-story__text">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem,
+          magnam consequatur reiciendis sunt sapiente dolorum suscipit, corrupti
+          ipsum obcaecati unde neque rem ducimus quaerat eveniet esse
+          aspernatur. Laudantium, cumque ea! Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Quidem, magnam consequatur reiciendis
+          sunt sapiente dolorum suscipit, corrupti ipsum obcaecati unde neque
+          rem ducimus quaerat eveniet esse aspernatur. Laudantium, cumque ea!
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem,
+          magnam consequatur reiciendis sunt sapiente dolorum suscipit, corrupti
+          ipsum obcaecati unde neque rem ducimus quaerat eveniet esse
+          aspernatur. Laudantium, cumque ea! Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Quidem, magnam consequatur reiciendis
+          sunt sapiente dolorum suscipit, corrupti ipsum obcaecati unde neque
+          rem ducimus quaerat eveniet esse aspernatur. Laudantium, cumque ea!
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem,
+          magnam consequatur reiciendis sunt sapiente dolorum suscipit, corrupti
+          ipsum obcaecati unde neque rem ducimus quaerat eveniet esse
+          aspernatur. Laudantium, cumque ea!
+        </p>
+        <img
+          className="artist-story__img"
+          src="/uploads/soloTodd.jpg"
+          alt="photo 1"
+        />
+      </div>
       
+      <div className="artist-story__contact-info">
+        Questions/interest in artwork: 
+        <Button>Contact artist &rarr;</Button>
+      </div>
     </section>
-  )
+  );
 }
 
 export default Story;

@@ -32,18 +32,23 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
-   
+          <main className="container">
+            <Navbar />
+            <Route exact path="/" component={Landing} />
 
-          <Route exact path="/" component={Landing} />
-    
             <Alert />
             <Switch>
-              <PrivateRoute exact path="/admin/upload" component={AdminDashboard} />
+              <PrivateRoute
+                exact
+                path="/admin/upload"
+                component={AdminDashboard}
+              />
               <Route exact path="/story" component={Story} />
               <Route exact path="/shop" component={Shop} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
             </Switch>
+          </main>
         </Fragment>
       </Router>
     </Provider>
