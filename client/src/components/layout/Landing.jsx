@@ -4,13 +4,13 @@ import PropTypes from "prop-types";
 import { Redirect } from 'react-router-dom';
 import AdminDashboard from '../admin/AdminDashboard';
 import BackgroundCarousel from './gallery/BackgroundCarousel';
-import { getImage, loadGallery } from '../../actions/admin';
+import { loadGallery } from '../../actions/store';
 
 
 
 const Landing = ({ 
   auth: { isAdmin, loading }, 
-  gallery, getImage, loadGallery }) => {
+  gallery, loadGallery }) => {
 
   if (isAdmin) {
     return <Redirect to="/admin/upload" />
@@ -47,4 +47,4 @@ const mapStateToProps = state => ({
   
 });
 
-export default connect(mapStateToProps, { getImage, loadGallery })(Landing);
+export default connect(mapStateToProps, { loadGallery })(Landing);

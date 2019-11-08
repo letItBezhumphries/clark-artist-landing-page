@@ -11,14 +11,14 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout }) => {
 
   const adminLinks = (
     <div className="navbar__links">
-      <Link to="admin/bio" className="navbar__link">
+      <Link to="/admin/bio" className="navbar__link">
         bio
       </Link>
       <DropdownList />
-      <Link to="admin/shop" className="navbar__link">
+      <Link to="/admin/shop" className="navbar__link">
         shop
       </Link>
-      <Link to="admin/upload" className="navbar__link">
+      <Link to="/admin/upload" className="navbar__link">
         artwork
       </Link>
       <Link to="/logout" className="navbar__link" onClick={logout}>

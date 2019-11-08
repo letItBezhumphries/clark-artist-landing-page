@@ -10,9 +10,8 @@ const GridFsStorage = require("multer-gridfs-storage");
 const Grid = require("gridfs-stream");
 
 // models
-const Image = require("../.././models/Image");
-const Portfolio = require("../.././models/Portfolio");
-const auth = require("../../middleware/auth");
+const Image = require("../../models/Image");
+const Portfolio = require("../../models/Portfolio");
 
 //Mongo Uri
 const mongoURI = process.env.MONGODB_URI;
@@ -64,7 +63,7 @@ router.get("/gallery", async (req, res) => {
     
     console.log("List of Gallery images:", galleryList);
 
-    res.json(galleryList);
+    res.status(200).json(galleryList);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
@@ -73,20 +72,36 @@ router.get("/gallery", async (req, res) => {
 
 
 // @route GET api/images/portfolio/:title
-// @desc loads a Portfolio of images
+// @desc get images from a specified portfolio by title
 router.get('/portfolio/:title', async (req, res) => {
   // console.log('in GET PORTFOLIO api/images', req.params.title);
   try {
     const portfolio = await Image.find({ portfolio: req.params.title })
     console.log('portfolio', portfolio);
-    res.json(portfolio);
+    res.status(200).json(portfolio);
 
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
   }
-  // res.send(`Inside the GET PORTFOLIO: ${req.params.title}`)
 });
+
+
+// @route GET api/images/portfolios
+// @desc get all portfolios from db
+router.get('/portfolios', async (req, res) => {
+  try {
+    const portfolios = await Portfolio.find();
+    res.status(200).json(portfolios);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+})
+
+
+
+
 
 
 // //in order to display the image need to use createReadStream
@@ -129,12 +144,12 @@ router.get("/image/:filename", async (req, res) => {
 
 
 
-// @route GET /api/images
-// @desc Display all files in JSON
+// @route GET /api/images/store
+// @desc Display all images in JSON
 router.get("/store", async (req, res) => {
   try {
     const images = await Image.find();
-    res.json(images);
+    res.status(200).json(images);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");

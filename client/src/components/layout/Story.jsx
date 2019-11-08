@@ -34,8 +34,7 @@ const Story = (props) => {
       </div>
       
       <div className="artist-story__contact-info">
-        Questions/interest in artwork: 
-        <Button>Contact artist &rarr;</Button>
+        <button className="btn-inline">contact artist &rarr;</button>
       </div>
     </section>
   );

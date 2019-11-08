@@ -4,13 +4,15 @@ import Navbar from './navigation/Navbar';
 import Landing from './layout/Landing';
 import Story from './layout/Story';
 import Shop from './layout/Shop';
+import Portfolios from './layout/portfolios/Portfolios';
 import AdminDashboard from './admin/AdminDashboard';
 import Alert from './UI/Alert';
 import Register from './auth/Register';
 import Login from './auth/Login';
 import PrivateRoute from './routing/PrivateRoute';
 import { loadUser } from '../actions/auth';
-import { loadGallery, loadImages } from '../actions/admin'; 
+import { loadGallery, loadImages, loadPortfolios } from '../actions/store'; 
+//import { setAlert } from '../actions/alert';
 import setAuthToken from "../utils/setAuthToken";
 //Redux 
 import { Provider } from 'react-redux';
@@ -26,7 +28,8 @@ const App = () => {
     store.dispatch(loadUser());
     store.dispatch(loadGallery());
     store.dispatch(loadImages());
-  }, []);
+    store.dispatch(loadPortfolios())
+  }, [loadUser, loadGallery, loadImages, loadPortfolios]);
 
   return (
     <Provider store={store}>
@@ -43,6 +46,7 @@ const App = () => {
                 path="/admin/upload"
                 component={AdminDashboard}
               />
+              <Route exact path="/portfolios" component={Portfolios} />
               <Route exact path="/story" component={Story} />
               <Route exact path="/shop" component={Shop} />
               <Route exact path="/register" component={Register} />

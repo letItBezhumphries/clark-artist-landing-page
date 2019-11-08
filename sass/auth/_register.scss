@@ -1,4 +1,23 @@
 .register-form {
-  grid-row: content-start / content-end;
-  grid-column: 1 / -1;
+  background-color: var(--color-grey-light-1);
+  grid-row: 4 / -1;
+  grid-column: 4 / span 4;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 2rem 15rem;
+  box-shadow: 0 1.5rem 4rem rgba(black, .15);
+}
+
+
+
+.form {
+  padding: 3rem 0;
+  background-color: purple;
+}
+
+.form-group {
+  margin-top: 1rem;
 }

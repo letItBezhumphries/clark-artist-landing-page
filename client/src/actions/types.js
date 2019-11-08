@@ -14,14 +14,17 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = "LOGOUT";
 export const CLEAR_PROFILE = "CLEAR_PROFILE";
 
+//admin actions
 export const ADD_PORTFOLIO = 'ADD_PORTFOLIO';
 export const ADD_IMAGE = 'ADD_IMAGE';
 export const PORTFOLIO_ERROR = 'PORTFOLIO_ERROR';
 export const IMAGE_ERROR = 'IMAGE_ERROR';
 
+//store actions
 export const LOAD_IMAGES = 'LOAD_IMAGES';
 export const LOAD_GALLERY = 'LOAD_GALLERY';
+export const LOAD_PORTFOLIOS = 'LOAD_PORTFOLIOS';
 export const GET_IMAGE = "GET_IMAGE";
-
+export const GET_PORTFOLIO = "GET_PORTFOLIO";
 
 export const REQUEST_ERROR = "REQUEST_ERROR";

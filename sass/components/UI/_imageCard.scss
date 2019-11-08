@@ -1,0 +1,33 @@
+.imageCard {
+  // background-color: green;
+  position: relative;
+  text-align: center;
+  color: white;
+  display: flex;
+  
+  &:hover {
+    filter: brightness(1.1);
+    color: yellow;
+  }
+}
+
+.portfolio-link {
+  display: block;
+  // height: 40rem;
+  height: 100%;
+  width: 30rem;
+  text-align: center;
+
+
+  &__title {
+    @include absCenter;
+    font-size: 3rem;
+    text-transform: capitalize;
+    text-decoration: none;
+    letter-spacing: 1.7rem;
+    &:hover {
+      filter: brightness(1.1);
+    }
+  }
+
+}

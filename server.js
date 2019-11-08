@@ -56,7 +56,7 @@ app.use(express.static(path.join(__dirname, "./public/uploads")));
 //Routes
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
-app.use('/api/images', require('./routes/api/images'));
+app.use('/api/images', require('./routes/api/store'));
 app.use("/admin/upload", require("./routes/admin/uploads"));
 
 

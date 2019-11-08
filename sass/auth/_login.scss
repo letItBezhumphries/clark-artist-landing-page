@@ -1,6 +1,6 @@
 .login-form {
-  background-color: var(--color-grey-light-3);
-  grid-row: 4 / span 4 ;
+  background-color: var(--color-grey-light-1);
+  grid-row: 4 / span 6 ;
   grid-column: 4 / span 4;
 
   display: flex;
@@ -14,10 +14,18 @@
 
 
 .form {
-  padding: 3rem 0;
   background-color: purple;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .form-group {
-  margin-top: 1rem;
+  // margin-top: 1rem;
+  padding: .5rem 2rem;
+  
+  input {
+    height: 4rem;
+    width: 100%;
+  }
 }

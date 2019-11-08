@@ -1,13 +1,11 @@
 import {
-  ADD_PORTFOLIO,
-  ADD_IMAGE,
   REQUEST_ERROR,
   PORTFOLIO_ERROR,
   IMAGE_ERROR,
   LOAD_IMAGES,
   LOAD_GALLERY,
   LOAD_PORTFOLIOS,
-  GET_IMAGE
+  GET_PORTFOLIO
 } from "../actions/types";
 
 const initialState = {
@@ -15,7 +13,6 @@ const initialState = {
   portfolios: [],
   images: [],
   gallery: [],
-  currentImage: null,
   currentPortfolio: null,
   error: {}
 };
@@ -24,19 +21,7 @@ export default function(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case ADD_PORTFOLIO:
-      return {
-        ...state,
-        portfolios: [payload, ...state.portfolios],
-        loading: false
-      };
-    case ADD_IMAGE:
-      return {
-        ...state,
-        images: [...state.images, payload],
-        loading: false
-      };
-    case LOAD_GALLERY: 
+    case LOAD_GALLERY:
       return {
         ...state,
         gallery: payload,
@@ -48,18 +33,18 @@ export default function(state = initialState, action) {
         images: payload,
         loading: false
       };
-    case LOAD_PORTFOLIOS: 
-      return {
-        ...state, 
-        portfolios: payload,
-        loading: false
-      }
-    case GET_IMAGE: 
+    case LOAD_PORTFOLIOS:
       return {
         ...state,
-        loading: false,
-        currentImage: payload 
-      }
+        portfolios: payload,
+        loading: false
+      };
+    case GET_PORTFOLIO: 
+      return {
+        ...state,
+        currentPortfolio: payload,
+        loading: false
+      };
     case PORTFOLIO_ERROR:
     case IMAGE_ERROR:
     case REQUEST_ERROR:

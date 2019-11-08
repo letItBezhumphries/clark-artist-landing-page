@@ -1,11 +1,13 @@
 .artist-story {
   // padding-top: 4rem;
   margin: 8rem auto;
-  padding: 4rem 4rem 8rem 4rem;
-  grid-row: 2 / span 8;
-  grid-column: 4 / span 6;
+  padding: 6rem 4rem 4rem 4rem;
+  min-height: 90rem;
+  grid-row: 2 / -1;
+  grid-column: 3 / span 6;
   background-color: var(--color-grey-light-1);
   // padding-bottom: 8rem;
+  box-shadow: 0 1.5rem 4rem rgba(black, .15);
 
   &__bio {
     margin-top: 3rem;
@@ -29,5 +31,14 @@
     font-weight: 500;
     font-size: 1.5rem;
     padding: 2rem 2rem;
+    display: flex;
+    justify-content: space-around;
+
+    .btn-inline {
+      background-color: purple;
+      flex: 0 0 60%;
+      height: 6rem;
+      border-radius: 12rem;
+    }
   }
 }

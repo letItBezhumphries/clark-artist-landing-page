@@ -64,8 +64,7 @@ router.post("/image", [upload.single("file"), auth], async (req, res) => {
       //error handle and set error message
     }
     console.log("file", image);
-    const imageUrl = `http://localhost:3003/admin/upload/image/${image.filename}`;
-    console.log("imageUrl", imageUrl);
+    const imageUrl = `http://localhost:3003/api/images/image/${image.filename}`;
 
     const newImage = new Image({
       title: title,

@@ -7,6 +7,7 @@ import {
   IMAGE_ERROR,
   LOAD_IMAGES,
   LOAD_GALLERY,
+  LOAD_PORTFOLIOS,
   REQUEST_ERROR
 } from './types';
 
@@ -30,7 +31,7 @@ export const loadGallery = () => async dispatch => {
 
 export const loadImages = () => async dispatch => {
   try {
-    const res = await axios.get('/api/images');
+    const res = await axios.get('/api/images/store');
 
     console.log('loadImages in admin.js', res.data);
 
@@ -128,7 +129,6 @@ export const addPortfolio = ({ title, description }) => async dispatch => {
       payload: res.data
     });
 
-
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
@@ -138,5 +138,10 @@ export const addPortfolio = ({ title, description }) => async dispatch => {
       type: PORTFOLIO_ERROR
     });
   }
-
 }
+
+
+//export const editImage, editStore, editPortfolio, editGallery, editArtistDetails?
+
+
+//export const deleteImage, deleteStore, deletePortfolio, deleteImages, deleteGallery, 

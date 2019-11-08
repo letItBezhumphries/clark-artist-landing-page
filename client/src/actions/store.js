@@ -1,13 +1,12 @@
 import axios from "axios";
 import {
   GET_IMAGE,
-  ADD_PORTFOLIO,
-  ADD_IMAGE,
+  GET_PORTFOLIO,
   PORTFOLIO_ERROR,
   IMAGE_ERROR,
   LOAD_IMAGES,
-  // LOAD_PORTFOLIO_IMAGES,
   LOAD_GALLERY,
+  LOAD_PORTFOLIOS,
   REQUEST_ERROR
 } from "./types";
 
@@ -16,13 +15,9 @@ import {
 export const loadGallery = () => async dispatch => {
   try {
     const res = await axios.get('/api/images/gallery');
-    // const portfolios = await axios.get('/portfolios');
-    // const images = await axios.get('/images');
-   
 
     dispatch({ type: LOAD_GALLERY, payload: res.data });
     
-
   } catch (err) {
     dispatch({ type: REQUEST_ERROR });
   }
@@ -32,7 +27,7 @@ export const loadImages = () => async dispatch => {
   try {
     const res = await axios.get('/api/images/store');
 
-    console.log('loadImages in admin.js', res.data);
+    console.log('loadImages in images.js', res.data);
 
     dispatch({ type: LOAD_IMAGES, payload: res.data });
 
@@ -56,7 +51,7 @@ export const getImage = (filename) => async dispatch => {
 }
 
 
-export const loadPortfolioImages = (title) => async dispatch => {
+export const getPortfolioImages = (title) => async dispatch => {
   try {
     const res = await axios.get(`/api/images/portfolio/${title}`);
 
@@ -68,3 +63,26 @@ export const loadPortfolioImages = (title) => async dispatch => {
     dispatch({ type: PORTFOLIO_ERROR });
   }
 }
+
+export const loadPortfolios = () => async dispatch => {
+  try {
+    
+    const res = await axios.get('/api/images/portfolios');
+
+    console.log('IN LOADPORTFOLIOS', res.data);
+
+    dispatch({ type: LOAD_PORTFOLIOS, payload: res.data })
+  } catch (err) {
+    dispatch({ type: PORTFOLIO_ERROR });
+  }
+}
+
+// export const loadStore = () => async dispatch => {
+//   try {
+//     loadGallery();
+//     loadImages();
+//     loadStore();
+//   } catch (err) {
+//     dispatch({ type: REQUEST_ERROR });
+//   }
+// }
