@@ -33,18 +33,14 @@ const Landing = ({
   );
 };
 
-
 Landing.propTypes = {
   isAdmin: PropTypes.bool,
-  getImage: PropTypes.func.isRequired,
   loadGallery: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  gallery: state.admin.gallery,
-  currentImage: state.admin.currentImage
-  
+  gallery: state.store.gallery
 });
 
 export default connect(mapStateToProps, { loadGallery })(Landing);

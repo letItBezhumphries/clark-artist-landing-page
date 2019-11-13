@@ -71,12 +71,12 @@ router.get("/gallery", async (req, res) => {
 });
 
 
-// @route GET api/images/portfolio/:title
-// @desc get images from a specified portfolio by title
-router.get('/portfolio/:title', async (req, res) => {
+// @route GET api/images/portfolios/:title
+// @desc get a portfolio by title
+router.get('/portfolios/:title', async (req, res) => {
   // console.log('in GET PORTFOLIO api/images', req.params.title);
   try {
-    const portfolio = await Image.find({ portfolio: req.params.title })
+    const portfolio = await Portfolio.find({ title: req.params.title })
     console.log('portfolio', portfolio);
     res.status(200).json(portfolio);
 

@@ -51,13 +51,13 @@ export const getImage = (filename) => async dispatch => {
 }
 
 
-export const getPortfolioImages = (title) => async dispatch => {
+export const getPortfolio = (title) => async dispatch => {
   try {
-    const res = await axios.get(`/api/images/portfolio/${title}`);
+    const res = await axios.get(`/api/images/portfolios/${title}`);
 
-    console.log('IN GET PORTFOLIO', res.data);
+    console.log('IN GET PORTFOLIO', res.data[0]);
 
-    dispatch({ type: GET_PORTFOLIO, payload: res.data });
+    dispatch({ type: GET_PORTFOLIO, payload: res.data[0] });
 
   } catch(err) {
     dispatch({ type: PORTFOLIO_ERROR });
@@ -69,9 +69,11 @@ export const loadPortfolios = () => async dispatch => {
     
     const res = await axios.get('/api/images/portfolios');
 
-    console.log('IN LOADPORTFOLIOS', res.data);
+    console.log('IN LOADPORTFOLIOS', res.data[0]);
 
-    dispatch({ type: LOAD_PORTFOLIOS, payload: res.data })
+    dispatch({ type: LOAD_PORTFOLIOS, payload: res.data });
+    dispatch({ type: GET_PORTFOLIO, payload: res.data[0] });
+
   } catch (err) {
     dispatch({ type: PORTFOLIO_ERROR });
   }

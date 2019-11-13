@@ -39,8 +39,8 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout }) => {
       <Link to="/cart" className="navbar__link">
         <Icon iconType="icon-shopping-cart1" className="navbar__icon" class="navbar__icon" />
       </Link>
-      <Link to="/profile" className="navbar__link">
-        orders
+      <Link to="/account" className="navbar__link">
+        account
       </Link>
       <Link to="/logout" className="navbar__link" onClick={logout}>
         logout

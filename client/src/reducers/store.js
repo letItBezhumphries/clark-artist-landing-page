@@ -11,9 +11,10 @@ import {
 const initialState = {
   loading: true,
   portfolios: [],
+  portfolio: null,
   images: [],
+  image: null,
   gallery: [],
-  currentPortfolio: null,
   error: {}
 };
 
@@ -39,10 +40,16 @@ export default function(state = initialState, action) {
         portfolios: payload,
         loading: false
       };
-    case GET_PORTFOLIO: 
+    case GET_PORTFOLIO:
       return {
         ...state,
-        currentPortfolio: payload,
+        portfolio: {
+          ...state.portfolio, 
+          title: payload.title,
+          description: payload.description,
+          _id: payload._id,
+          videos: payload.videos
+        },
         loading: false
       };
     case PORTFOLIO_ERROR:

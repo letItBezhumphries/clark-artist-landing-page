@@ -1,33 +1,54 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import PortfoliosList from './PortfoliosList';
-import { getPortfolioImages } from '../../../actions/store';
+import PortfoliosList from "./PortfoliosList";
+import PortfolioBoard from "./PortfolioBoard";
+import Spinner from "../../UI/Spinner";
+import { getPortfolio } from "../../../actions/store";
 
+//portfolios is an array where each element is a portfolio object
 
+const Portfolios = ({
+  store: { portfolios, portfolio, loading },
+  getPortfolio,
+  ...props
+}) => {
+  useEffect(() => {
+    getPortfolio(props.match.url.split("/")[1]);
+  }, [getPortfolio]);
 
-const Portfolios = ({ portfolios, getPortfolioImages }) => {
-  
-  return (
+  console.log("props in Portfolios", props.match.url);
+
+  return loading ? (
+    <Spinner />
+  ) : (
     <Fragment>
       <section className="portfolios">
-        <h1 className="heading-primary--main u-margin-top-medium">
-          View my Collections &dArr;
-        </h1>
-        <PortfoliosList portfolios={portfolios} />
+        {portfolio !== null ? (
+          <Fragment>
+            <PortfolioBoard portfolio={portfolio} />
+            <PortfoliosList portfolios={portfolios} />
+          </Fragment>
+        ) : (
+          <Fragment>
+            <PortfoliosList portfolios={portfolios} />
+          </Fragment>
+        )}
       </section>
     </Fragment>
   );
-}
+};
 
 Portfolios.propTypes = {
-  portfolios: PropTypes.array.isRequired,
-  getPortfolioImages: PropTypes.func.isRequired,
-}
+  store: PropTypes.object.isRequired,
+  getPortfolioImages: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
-  portfolios: state.store.portfolios,
-  currentPortfolio: state.store.currentPortfolio
+  store: state.store
 });
 
-export default connect(mapStateToProps, { getPortfolioImages })(Portfolios);
+export default connect(
+  mapStateToProps,
+  { getPortfolio }
+)(Portfolios);

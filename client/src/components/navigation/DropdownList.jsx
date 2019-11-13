@@ -1,25 +1,34 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-const DropdownList = props => (
-  <div className="navbar__dropdown">
-    <Link to="/portfolios" className="navbar__link navbar__dropbtn">+ portfolios</Link>
+const DropdownList = ({ portfolios }) => {
+  const portfolioLinks = portfolios.map(portfolio => 
+    <Link key={portfolio._id} to={"/portfolios/" + portfolio.title} className="navbar__portfolio-link">
+      {portfolio.title.split("_").join(" ")}
+    </Link>
+    )
 
-    <div className="navbar__dropdown-list">
-      <Link to="/portfolios/early-works" className="navbar__portfolio-link">
-        early works
-      </Link>
-      <Link to="/portfolios/montages" className="navbar__portfolio-link">
-        montages
-      </Link>
-      <Link to="/portfolios/people-and-places" className="navbar__portfolio-link">
-        people & places
-      </Link>
-      <Link to="/portfolios/aerials" className="navbar__portfolio-link">
-        aerials
-      </Link>
+  return (
+    <div className="navbar__dropdown">
+      <Link to="/portfolios" className="navbar__link navbar__dropbtn">+ portfolios</Link>
+
+      <div className="navbar__dropdown-list">
+        {portfolioLinks}
+      </div>
     </div>
-  </div>
-);
+    
+  )
+}
 
-export default DropdownList;
+DropdownList.propTypes = {
+  portfolios: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = state => ({
+  portfolios: state.store.portfolios
+});
+
+
+export default connect(mapStateToProps)(DropdownList);

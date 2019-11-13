@@ -28,7 +28,7 @@ const App = () => {
     store.dispatch(loadUser());
     store.dispatch(loadGallery());
     store.dispatch(loadImages());
-    store.dispatch(loadPortfolios())
+    store.dispatch(loadPortfolios());
   }, [loadUser, loadGallery, loadImages, loadPortfolios]);
 
   return (
@@ -46,11 +46,13 @@ const App = () => {
                 path="/admin/upload"
                 component={AdminDashboard}
               />
-              <Route exact path="/portfolios" component={Portfolios} />
               <Route exact path="/story" component={Story} />
               <Route exact path="/shop" component={Shop} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+
+              {/* <Route exact path="/portfolios/:title" component={Portfolios} /> */}
+              <Route exact path="/portfolios" component={Portfolios} />
             </Switch>
           </main>
         </Fragment>

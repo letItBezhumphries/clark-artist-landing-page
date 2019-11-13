@@ -15,8 +15,8 @@ const initialState = {
   portfolios: [],
   images: [],
   gallery: [],
-  currentImage: null,
-  currentPortfolio: null,
+  image: null,
+  portfolio: null,
   error: {}
 };
 
@@ -58,7 +58,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        currentImage: payload 
+        image: payload 
       }
     case PORTFOLIO_ERROR:
     case IMAGE_ERROR:
