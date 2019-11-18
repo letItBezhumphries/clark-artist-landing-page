@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from "react";
+import { useParams } from 'react-router-dom';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import PortfoliosList from "./PortfoliosList";
@@ -13,21 +14,22 @@ const Portfolios = ({
   getPortfolio,
   ...props
 }) => {
-  useEffect(() => {
-    getPortfolio(props.match.url.split("/")[1]);
-  }, [getPortfolio]);
+  const { title } = useParams();
 
-  console.log("props in Portfolios", props.match.url);
+  useEffect(() => {
+    getPortfolio(title.slice(1));
+  }, [getPortfolio, title]);
+
 
   return loading ? (
     <Spinner />
   ) : (
     <Fragment>
-      <section className="portfolios">
+      <section className="portfolio">
         {portfolio !== null ? (
           <Fragment>
             <PortfolioBoard portfolio={portfolio} />
-            <PortfoliosList portfolios={portfolios} />
+            {/* <PortfoliosList portfolios={portfolios} /> */}
           </Fragment>
         ) : (
           <Fragment>
@@ -41,7 +43,7 @@ const Portfolios = ({
 
 Portfolios.propTypes = {
   store: PropTypes.object.isRequired,
-  getPortfolioImages: PropTypes.func.isRequired
+  getPortfolio: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

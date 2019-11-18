@@ -45,11 +45,7 @@ const BackgroundCarousel = (props) => {
       {gallery[currentIndex]}
     </div>
   );
-  // return (
-  //   <Fragment>
-  //     {gallery[currentIndex]}
-  //   </Fragment>
-  // );
+
 }
 
 export default BackgroundCarousel;

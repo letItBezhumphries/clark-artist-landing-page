@@ -5,8 +5,7 @@ const ImageSlide = ({ image, prev, next, curIdx }) => {
   const styles = { backgroundImage: `url(${image.imageUrl})`};
 
   const { fileName, imageUrl, title, description, portfolio } = image;
-
-  console.log('ImageSlide2:', fileName, title, portfolio, imageUrl, description);
+  const titleCaption = portfolio.split("_").join(" ");
 
   return (
     <div className="bg-carousel__img-slide" style={styles}>
@@ -23,7 +22,7 @@ const ImageSlide = ({ image, prev, next, curIdx }) => {
 
       <div className="img-details">
         <span className="img-details__header">Portfolio / </span>
-        <span className="img-details__portfolio-title">{portfolio}</span>
+        <span className="img-details__portfolio-title">{titleCaption}</span>
       </div>
     </div>
   )

@@ -1,40 +1,42 @@
 import React from 'react';
-import Button from '../UI/Button';
+
 
 const Story = (props) => {
   return (
-    <section className="artist-story">
+    <section className="artist-view">
       <h1 className="heading-1 u-margin-top-">about the artist</h1>
-      <div className="artist-story__bio">
-        <p className="artist-story__text">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem,
-          magnam consequatur reiciendis sunt sapiente dolorum suscipit, corrupti
-          ipsum obcaecati unde neque rem ducimus quaerat eveniet esse
-          aspernatur. Laudantium, cumque ea! Lorem ipsum dolor sit, amet
-          consectetur adipisicing elit. Quidem, magnam consequatur reiciendis
-          sunt sapiente dolorum suscipit, corrupti ipsum obcaecati unde neque
-          rem ducimus quaerat eveniet esse aspernatur. Laudantium, cumque ea!
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem,
-          magnam consequatur reiciendis sunt sapiente dolorum suscipit, corrupti
-          ipsum obcaecati unde neque rem ducimus quaerat eveniet esse
-          aspernatur. Laudantium, cumque ea! Lorem ipsum dolor sit, amet
-          consectetur adipisicing elit. Quidem, magnam consequatur reiciendis
-          sunt sapiente dolorum suscipit, corrupti ipsum obcaecati unde neque
-          rem ducimus quaerat eveniet esse aspernatur. Laudantium, cumque ea!
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem,
-          magnam consequatur reiciendis sunt sapiente dolorum suscipit, corrupti
-          ipsum obcaecati unde neque rem ducimus quaerat eveniet esse
-          aspernatur. Laudantium, cumque ea!
-        </p>
+
+      <blockquote className="artist-view__bio">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem,
+        magnam consequatur reiciendis sunt sapiente dolorum suscipit, corrupti
+        ipsum obcaecati unde neque rem ducimus quaerat eveniet esse
+        aspernatur. Laudantium, cumque ea! Lorem ipsum dolor sit, amet
+        consectetur adipisicing elit. Quidem, magnam consequatur reiciendis
+        sunt sapiente dolorum suscipit, corrupti ipsum obcaecati unde neque
+        rem ducimus quaerat eveniet esse aspernatur. Laudantium, cumque ea!
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem,
+        magnam consequatur reiciendis sunt sapiente dolorum suscipit, corrupti
+        ipsum obcaecati unde neque rem ducimus quaerat eveniet esse
+        aspernatur. Laudantium, cumque ea! Lorem ipsum dolor sit, amet
+        consectetur adipisicing elit. Quidem, magnam consequatur reiciendis
+        sunt sapiente dolorum suscipit, corrupti ipsum obcaecati unde neque
+        rem ducimus quaerat eveniet esse aspernatur. Laudantium, cumque ea!
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem,
+        magnam consequatur reiciendis sunt sapiente dolorum suscipit, corrupti
+        ipsum obcaecati unde neque rem ducimus quaerat eveniet esse
+        aspernatur. Laudantium, cumque ea!
+      </blockquote>
+
+      <div className="artist-view__photo-box">
         <img
-          className="artist-story__img"
+          className="artist-view__img"
           src="/uploads/soloTodd.jpg"
           alt="photo 1"
         />
       </div>
-      
-      <div className="artist-story__contact-info">
-        <button className="btn-inline">contact artist &rarr;</button>
+
+      <div className="artist-view__contact-btn-box">
+        <button className="btn-inline">contact artist &dArr;</button>
       </div>
     </section>
   );

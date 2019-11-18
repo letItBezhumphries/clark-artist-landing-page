@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { setAlert } from './alert';
+
 import {
   GET_IMAGE, 
   ADD_PORTFOLIO, 
@@ -57,7 +59,7 @@ export const getImage = (filename) => async dispatch => {
   }
 }
 
-
+//(formData, history, edit = false)
 export const addImage = ({ title, fileName, description, imageUrl, portfolio, isGallery }) => async dispatch => {
   const config = {
     headers: {
@@ -74,11 +76,15 @@ export const addImage = ({ title, fileName, description, imageUrl, portfolio, is
     const res = await axios.post('http://localhost:3003/admin/upload/image', body, config);
     
     console.log('new addImage', res.data);
-
+    
     dispatch({ 
       type: ADD_IMAGE,
       payload: res.data
     });
+
+    dispatch(setAlert(edit ? 'Image Updated': 'Image Created', 'success'));
+
+    //if (!edit) { history.push('admindashboard')}
 
   } catch (err) {
     const errors = err.response.data.errors;

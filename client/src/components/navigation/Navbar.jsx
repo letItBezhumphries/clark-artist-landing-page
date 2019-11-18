@@ -7,7 +7,7 @@ import Logo from './Logo';
 import { logout } from '../../actions/auth';
 import Icon from '../UI/Icon';
 
-const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout }) => {
+const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, portfolios }) => {
 
   const adminLinks = (
     <div className="navbar__links">
@@ -15,6 +15,9 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout }) => {
         bio
       </Link>
       <DropdownList />
+      <Link to="/exhibitions" className="navbar__link">
+        exhibitions
+      </Link>
       <Link to="/admin/shop" className="navbar__link">
         shop
       </Link>
@@ -33,11 +36,18 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout }) => {
         story
       </Link>
       <DropdownList />
+      <Link to="/exhibitions" className="navbar__link">
+        exhibitions
+      </Link>
       <Link to="/shop" className="navbar__link">
         shop
       </Link>
       <Link to="/cart" className="navbar__link">
-        <Icon iconType="icon-shopping-cart1" className="navbar__icon" class="navbar__icon" />
+        <Icon
+          iconType="icon-shopping-cart1"
+          className="navbar__icon"
+          class="navbar__icon"
+        />
       </Link>
       <Link to="/account" className="navbar__link">
         account
@@ -54,6 +64,9 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout }) => {
         story
       </Link>
       <DropdownList />
+      <Link to="/exhibitions" className="navbar__link">
+        exhibitions
+      </Link>
       <Link to="/shop" className="navbar__link">
         shop
       </Link>
@@ -64,7 +77,11 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout }) => {
         sign up
       </Link>
       <Link to="/cart" className="navbar__link">
-        <Icon iconType="icon-shopping-cart1" className="navbar__icon" class="navbar__icon" />
+        <Icon
+          iconType="icon-shopping-cart1"
+          className="navbar__icon"
+          class="navbar__icon"
+        />
       </Link>
     </div>
   );
@@ -83,11 +100,13 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout }) => {
 
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  portfolios: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  portfolios: state.store.portfolios
 });
 
 export default connect(

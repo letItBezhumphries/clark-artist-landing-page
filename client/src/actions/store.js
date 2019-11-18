@@ -69,10 +69,10 @@ export const loadPortfolios = () => async dispatch => {
     
     const res = await axios.get('/api/images/portfolios');
 
-    console.log('IN LOADPORTFOLIOS', res.data[0]);
+    console.log('IN LOADPORTFOLIOS', res.data);
 
     dispatch({ type: LOAD_PORTFOLIOS, payload: res.data });
-    dispatch({ type: GET_PORTFOLIO, payload: res.data[0] });
+    // dispatch({ type: GET_PORTFOLIO, payload: res.data[0] });
 
   } catch (err) {
     dispatch({ type: PORTFOLIO_ERROR });

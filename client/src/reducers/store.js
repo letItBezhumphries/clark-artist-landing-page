@@ -48,7 +48,7 @@ export default function(state = initialState, action) {
           title: payload.title,
           description: payload.description,
           _id: payload._id,
-          videos: payload.videos
+          images: payload.images
         },
         loading: false
       };

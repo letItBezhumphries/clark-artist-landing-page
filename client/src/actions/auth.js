@@ -60,7 +60,7 @@ export const register = ({ name, email, password }) => async dispatch => {
       payload: res.data
     });
     dispatch(loadUser());
-    dispatch(setAlert())
+
 
   } catch (err) {
     const errors = err.response.data.errors;  

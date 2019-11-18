@@ -5,7 +5,7 @@ const ImageCard = (props) => {
   const titleText = props.title.split("_").join(" ");
   // console.log('Props inside imageCard', props);
   return (
-    <Link className="imageCard" to={"/portfolios/" + props.title}>
+    <Link className="imageCard" to={`/portfolios/:${props.title}`}>
       <img
         src={props.image.imageUrl}
         alt="Photo Portfolio 1"

@@ -1,11 +1,14 @@
 import React from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 const DropdownList = ({ portfolios }) => {
+
   const portfolioLinks = portfolios.map(portfolio => 
-    <Link key={portfolio._id} to={"/portfolios/" + portfolio.title} className="navbar__portfolio-link">
+    <Link key={portfolio._id} 
+          to={`/portfolios/:${portfolio.title}`} 
+          className="navbar__portfolio-link">
       {portfolio.title.split("_").join(" ")}
     </Link>
     )

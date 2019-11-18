@@ -2,11 +2,16 @@
 COLORS
 */
 
-
 :root {
+  --primary-color: #17a2b8;
+  --dark-color: #343a40;
+  --light-color: #f4f4f4;
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+
   --color-black-dark: black;
   --color-black-light: #474e58;
-  
+
   --color-primary: #212396;
   --color-primary-light: #354885;
   --color-primary-dark: #0c0755;
@@ -19,9 +24,9 @@ COLORS
   --color-grey-dark-2: #777;
   --color-grey-dark-3: #999;
 
-  --shadow-light: 0 2rem 5rem rgba(0, 0, 0, .06);
-  --shadow-medium: 0 1.5rem 4rem rgba(black, .15);
-  --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, .3);
+  --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
+  --shadow-medium: 0 1.5rem 4rem rgba(black, 0.15);
+  --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
 
   --line: 1px solid var(--color-grey-light-1);
 }
@@ -30,48 +35,45 @@ COLORS
 //rememeber using em for queries?
 
 $bp-largest: 75em; //1200px / 16 = 75em
-$bp-large: 68.75em; //1100px / 16 = 
-$bp-medium: 56.25em; //900px / 16 = 
-$bp-small: 37.5em; //600px / 16 = 
+$bp-large: 68.75em; //1100px / 16 =
+$bp-medium: 56.25em; //900px / 16 =
+$bp-small: 37.5em; //600px / 16 =
 $bp-smallest: 32.25em; //500px / 16
-
-
-* {
-  margin: 0;
-  padding: 0;
-}
 
 *,
 *::before,
 *::after {
+  margin: 0;
+  padding: 0;
   box-sizing: inherit;
 }
 
-html, 
+*,
+html,
 body {
   box-sizing: border-box;
   font-size: 62.5%;
-
-  height: 100%;
-  width: 100%;
-  // width: 100vw;
-  // display: grid;
-  // grid-template-rows: repeat(10, 10vh);
-  // grid-template-columns: repeat(10, 10vw);
-  // display: flex;
+  margin: 0;
+  padding: 0;
 }
 
+html,
+body {
+  height: 100%;
+}
 
 .container {
-
-  // min-height: 120rem;
-  height: 100%;
-  width: 100%;
+  margin: auto;
+  max-width: 110rem;
+  overflow: hidden;
+  padding: 0 2rem;
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+  min-height: 95vh;
 
   display: grid;
-  grid-template-rows: repeat(10, 10vh);
-  grid-template-columns: repeat(10, 10vw);
-  transform: translateX(-7.5%);
-  // z-index: 1999;
+  grid-template-rows: 2rem 1fr repeat(6, 10vh) 1fr;
+  grid-template-columns: 1fr repeat(8, minmax(min-content, 10rem)) 1fr;
+  grid-gap: 0.5rem;
+  grid-auto-flow: column;
 }
-

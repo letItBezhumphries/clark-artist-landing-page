@@ -1,43 +1,64 @@
-.artist-story {
-  // padding-top: 4rem;
-  margin: 8rem auto;
-  padding: 6rem 4rem 4rem 4rem;
-  min-height: 90rem;
+.artist-view {
+  margin-top: 3rem;
+  padding: 4rem 4rem;
+  max-height: 80rem;
+  min-width: 60rem;
   grid-row: 2 / -1;
-  grid-column: 3 / span 6;
+  grid-column: 2 / 10;
   background-color: var(--color-grey-light-1);
-  // padding-bottom: 8rem;
-  box-shadow: 0 1.5rem 4rem rgba(black, .15);
+  box-shadow: 0 1.5rem 4rem rgba(black, 0.2);
+
+  display: grid;
+  grid-template-areas: 
+    "head head"
+    "bio img"
+    "bio img"
+    "btn img"
+  ;
+  // flex-direction: column;
+  // justify-content: flex-start;
+  .heading-1 {
+    grid-area: head;
+  }
 
   &__bio {
-    margin-top: 3rem;
+    grid-area: bio;
+    // margin-top: 3rem;
+    padding: 2rem 2rem;
     display: flex;
   }
 
-  &__text {
-    flex: 1 0 48%;
-    padding: 2rem 2rem;
+  // &__text {
+  //   background-color: yellow;
+  //   flex: 1 0 48%;
+  //   padding: 2rem 2rem;
+  // }
+
+  &__photo-box {
+    // background-color: green;
+    grid-area: img;
   }
 
   &__img {
-    flex: 0 0 52%;
+    // flex: 0 0 52%;
     display: block;
- 
-    width: 8rem;
-    padding: 4rem 2rem;
+
+    width: 100%;
+    padding: 2rem 2rem;
   }
 
-  &__contact-info {
+  &__contact-btn-box {
+    grid-area: btn;
     font-weight: 500;
     font-size: 1.5rem;
-    padding: 2rem 2rem;
+    padding: 0rem 2rem;
     display: flex;
     justify-content: space-around;
 
     .btn-inline {
       background-color: purple;
-      flex: 0 0 60%;
-      height: 6rem;
+      flex: 1;
+      height: 5rem;
       border-radius: 12rem;
     }
   }
