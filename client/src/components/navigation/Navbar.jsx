@@ -33,19 +33,18 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, portfolio
   const shopAuthLinks = (
     <div className="navbar__links">
       <Link to="/story" className="navbar__link">
-        story
+        about
       </Link>
       <DropdownList />
       <Link to="/exhibitions" className="navbar__link">
         exhibitions
       </Link>
       <Link to="/shop" className="navbar__link">
-        shop
+        inventory
       </Link>
       <Link to="/cart" className="navbar__link">
         <Icon
           iconType="icon-shopping-cart1"
-          className="navbar__icon"
           class="navbar__icon"
         />
       </Link>
@@ -61,14 +60,14 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, portfolio
   const unAuthorizedLinks = (
     <div className="navbar__links">
       <Link to="/story" className="navbar__link">
-        story
+        about
       </Link>
       <DropdownList />
       <Link to="/exhibitions" className="navbar__link">
         exhibitions
       </Link>
       <Link to="/shop" className="navbar__link">
-        shop
+        inventory
       </Link>
       <Link to="/login" className="navbar__link">
         login
@@ -79,7 +78,6 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, portfolio
       <Link to="/cart" className="navbar__link">
         <Icon
           iconType="icon-shopping-cart1"
-          className="navbar__icon"
           class="navbar__icon"
         />
       </Link>

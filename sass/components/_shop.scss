@@ -1,0 +1,111 @@
+.shop {
+  // background-color: brown;
+  font-family: 'Cormorant Garamond';
+  margin-top: 3rem;
+  padding: 4rem 4rem;
+  height: 100rem;
+  width: 100%;
+  grid-row: 2 / -1;
+  grid-column: 1 / -1;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  align-items: flex-start;
+  
+
+  &__heading {
+    font-size: 5.5rem;
+    text-transform: uppercase;
+    // background-color: brown;
+    margin-bottom: 5rem;;
+  }
+
+  &__search-box {
+    font-size: 5rem;
+    text-transform: uppercase;
+    min-width: 60rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 1rem;  
+  }
+
+  &__search-heading {
+    align-self: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  &__search {
+    align-self: flex-start;
+    width: 100%;
+    display: flex;
+    
+  }
+
+  .search__input {
+    font-size: inherit;
+    color: inherit;
+    background-color: var(--color-grey-light-2);
+    border: none;
+    padding: .7rem 2rem;
+    border-radius: 100px;
+    width: 80%;
+    transition: all .2s;
+
+    &:focus {
+      outline: none;
+      width: 100%;
+      background-color: var(--color-grey-light-3);
+    }
+  }
+
+  .search__input:focus + .search__button {
+    background-color: var(--color-grey-light-3);
+  } 
+
+  .search__button {
+    background-color: var(--color-grey-light-2);
+    width: 5rem;
+    height: 5rem;
+    align-self: center;
+    border: none;
+    transform: translateX(-6.5rem);
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .search__icon {
+    height: 80%;
+    width: 80%;
+    fill: var(--color-grey-dark-3);
+  }
+
+  &__featured-collections {
+    background-color: palevioletred;
+    min-height: 52rem;
+    min-width: 110rem;
+    margin-top: 5rem;
+    margin-left: 1rem;
+  }
+
+  &__featured-exhibitions {
+    background-color: rebeccapurple;
+    margin-top: 5rem;
+    margin-left: 1rem;
+  }
+
+  &__prints {
+    background-color: bisque;
+    margin-top: 5rem;
+    margin-left: 1rem;
+
+  }
+}
+
+
+
+

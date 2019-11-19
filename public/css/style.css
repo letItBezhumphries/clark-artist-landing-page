@@ -90,7 +90,7 @@ body {
     transform: translate(0); } }
 
 .heading-1 {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Cormorant Garamond', Arial, sans-serif;
   font-weight: 400; }
 
 .heading-1 {
@@ -118,6 +118,21 @@ body {
     letter-spacing: 1.75rem;
     animation: moveInRight 1s ease-out; }
 
+/* Text Styles*/
+.x-large {
+  font-size: 4rem;
+  line-height: 1.2;
+  margin-bottom: 1rem; }
+
+.large {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 1rem; }
+
+.lead {
+  font-size: 1.5rem;
+  margin-bottom: 1rem; }
+
 .u-center-text {
   text-align: center !important; }
 
@@ -141,69 +156,6 @@ body {
 
 .u-margin-top-huge {
   margin-top: 10rem !important; }
-
-.footer {
-  grid-row: 8 / -1;
-  grid-column: 1 / -1;
-  background-color: green; }
-
-.image-form {
-  background-color: orangered;
-  grid-row: content-start / content-end;
-  grid-column: 2 / span 4;
-  z-index: 0; }
-
-.portfolio-form {
-  background-color: olivedrab;
-  grid-row: content-start / content-end;
-  grid-column: 1 / -1;
-  z-index: 0; }
-
-.upload-form {
-  background-color: olivedrab;
-  grid-row: content-start / content-end;
-  grid-column: 1 / -1;
-  z-index: 0; }
-
-.login-form {
-  background-color: var(--color-grey-light-1);
-  grid-row: 4 / span 6;
-  grid-column: 4 / span 4;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 3rem 15rem;
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15); }
-
-.form {
-  background-color: purple;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; }
-
-.form-group {
-  padding: .5rem 2rem; }
-  .form-group input {
-    height: 4rem;
-    width: 100%; }
-
-.register-form {
-  background-color: var(--color-grey-light-1);
-  grid-row: 4 / -1;
-  grid-column: 4 / span 4;
-  margin-bottom: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2rem 15rem;
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15); }
-
-.form {
-  padding: 3rem 0;
-  background-color: purple; }
-
-.form-group {
-  margin-top: 1rem; }
 
 .navbar {
   grid-column: 1 / -1;
@@ -232,9 +184,11 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    align-items: flex-end;
     padding: 0 0;
-    border-bottom: 1px black solid; }
+    border-bottom: 1px black solid;
+    background-color: var(--primary-color);
+    box-shadow: var(--shadow-dark);
+    opacity: .7; }
   .navbar__link {
     display: flex;
     flex-direction: row;
@@ -319,6 +273,70 @@ body {
   color: black;
   z-index: 2;
   transform: translateY(4px); }
+
+.image-form {
+  background-color: orangered;
+  grid-row: content-start / content-end;
+  grid-column: 2 / span 4;
+  z-index: 0; }
+
+.portfolio-form {
+  background-color: olivedrab;
+  grid-row: content-start / content-end;
+  grid-column: 1 / -1;
+  z-index: 0; }
+
+.upload-form {
+  background-color: olivedrab;
+  grid-row: content-start / content-end;
+  grid-column: 1 / -1;
+  z-index: 0; }
+
+.login-form {
+  margin-top: 3rem;
+  padding: 4rem 4rem;
+  max-height: 60rem;
+  min-width: 60rem;
+  grid-row: 2 / -1;
+  grid-column: 2 / 10;
+  background-color: var(--color-grey-light-1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15); }
+
+.form {
+  background-color: purple;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+
+.form-group {
+  padding: .5rem 2rem; }
+  .form-group input {
+    height: 4rem;
+    width: 100%; }
+
+.register-form {
+  margin-top: 3rem;
+  padding: 4rem 4rem;
+  max-height: 80rem;
+  min-width: 60rem;
+  grid-row: 2 / -1;
+  grid-column: 2 / 10;
+  background-color: var(--color-grey-light-1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 15rem;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15); }
+
+.form {
+  padding: 3rem 0;
+  background-color: purple; }
+
+.form-group {
+  margin-top: 1rem; }
 
 .bg-carousel {
   grid-row: 1 / -1;
@@ -460,6 +478,80 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between; }
+
+.shop {
+  font-family: 'Cormorant Garamond';
+  margin-top: 3rem;
+  padding: 4rem 4rem;
+  height: 100rem;
+  width: 100%;
+  grid-row: 2 / -1;
+  grid-column: 1 / -1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; }
+  .shop__heading {
+    font-size: 5.5rem;
+    text-transform: uppercase;
+    margin-bottom: 5rem; }
+  .shop__search-box {
+    font-size: 5rem;
+    text-transform: uppercase;
+    min-width: 60rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 1rem; }
+  .shop__search-heading {
+    align-self: flex-start;
+    margin-bottom: 1rem; }
+  .shop__search {
+    align-self: flex-start;
+    width: 100%;
+    display: flex; }
+  .shop .search__input {
+    font-size: inherit;
+    color: inherit;
+    background-color: var(--color-grey-light-2);
+    border: none;
+    padding: .7rem 2rem;
+    border-radius: 100px;
+    width: 80%;
+    transition: all .2s; }
+    .shop .search__input:focus {
+      outline: none;
+      width: 100%;
+      background-color: var(--color-grey-light-3); }
+  .shop .search__input:focus + .search__button {
+    background-color: var(--color-grey-light-3); }
+  .shop .search__button {
+    background-color: var(--color-grey-light-2);
+    width: 5rem;
+    height: 5rem;
+    align-self: center;
+    border: none;
+    transform: translateX(-6.5rem); }
+    .shop .search__button:focus {
+      outline: none; }
+  .shop .search__icon {
+    height: 80%;
+    width: 80%;
+    fill: var(--color-grey-dark-3); }
+  .shop__featured-collections {
+    background-color: palevioletred;
+    min-height: 52rem;
+    min-width: 110rem;
+    margin-top: 5rem;
+    margin-left: 1rem; }
+  .shop__featured-exhibitions {
+    background-color: rebeccapurple;
+    margin-top: 5rem;
+    margin-left: 1rem; }
+  .shop__prints {
+    background-color: bisque;
+    margin-top: 5rem;
+    margin-left: 1rem; }
 
 .imageCard {
   position: relative;

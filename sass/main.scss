@@ -7,7 +7,7 @@
 @import "base/utilities";
 
 @import "layout/landing";
-@import "layout/footer";
+@import "layout/navbar";
 
 @import "admin/addImageForm";
 @import "admin/addPortfolioForm";
@@ -16,10 +16,12 @@
 @import "auth/login";
 @import "auth/register";
 
-@import "components/navbar";
+//pages
 @import "components/backgroundCarousel";
 @import "components/story";
 @import "components/portfolios";
+@import "components/shop";
+
 
 @import "components/UI/imageCard";
 @import "components/UI/spinner";
