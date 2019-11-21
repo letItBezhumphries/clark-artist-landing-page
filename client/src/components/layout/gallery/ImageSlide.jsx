@@ -1,11 +1,10 @@
 import React from 'react';
-// import Navbar from '../../navigation/Navbar';
 
 const ImageSlide = ({ image, prev, next, curIdx }) => {
   const styles = { backgroundImage: `url(${image.imageUrl})`};
 
   const { fileName, imageUrl, title, description, portfolio } = image;
-  const titleCaption = portfolio.split("_").join(" ");
+  const portfolioTitle = portfolio.split("_").join(" ");
 
   return (
     <div className="bg-carousel__img-slide" style={styles}>
@@ -22,7 +21,7 @@ const ImageSlide = ({ image, prev, next, curIdx }) => {
 
       <div className="img-details">
         <span className="img-details__header">Portfolio / </span>
-        <span className="img-details__portfolio-title">{titleCaption}</span>
+        <span className="img-details__portfolio-title">{portfolioTitle}</span>
       </div>
     </div>
   )

@@ -352,51 +352,66 @@ body {
     background-position: center;
     display: grid;
     grid-template-rows: repeat(10, 10vh);
-    grid-template-columns: repeat(10, 10vw);
-    box-shadow: var(--shadow-dark); }
+    grid-template-columns: repeat(10, 10vw); }
 
 .iconbox {
   z-index: 1;
+  position: relative;
   transition: all 0.2s; }
   .iconbox--left {
-    height: 5rem;
-    width: 5rem;
     grid-row: 5 / span 1;
-    grid-column: 2 / span 1;
-    justify-self: center;
-    align-self: center;
-    background-color: inherit;
-    border-radius: 360px;
-    transform: translateX(-10rem);
-    display: flex;
-    justify-content: center;
-    align-items: center; }
-    .iconbox--left:hover {
-      background-color: white; }
+    grid-column: 2 / span 1; }
   .iconbox--right {
-    height: 5rem;
-    width: 5rem;
-    margin-right: 8rem;
     grid-row: 5 / span 1;
-    grid-column: 9 / span 1;
+    grid-column: 9 / span 1; }
+  .iconbox--left, .iconbox--right {
+    min-width: 7rem;
+    min-height: 7rem;
     justify-self: center;
     align-self: center;
-    background-color: inherit;
-    transform: translateX(10rem);
-    border-radius: 360px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    overflow: hidden;
+    color: white;
+    position: relative;
     display: flex;
     justify-content: center;
-    align-items: center; }
-    .iconbox--right:hover {
-      background-color: white; }
+    align-items: center;
+    transition: all .2s; }
+  .iconbox--left:hover, .iconbox--right:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+    .iconbox--left:hover::after, .iconbox--right:hover::after {
+      height: 100%;
+      width: 100%;
+      opacity: .65; }
+  .iconbox--left:active, .iconbox--right:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); }
+  .iconbox--left::after, .iconbox--right::after {
+    content: "";
+    display: block;
+    height: 1%;
+    width: 1%;
+    border-radius: 50%;
+    background-color: #363636;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0;
+    transition: all .2s; }
 
 .icon--left {
   height: 2rem;
-  width: 2rem; }
+  width: 2rem;
+  fill: white; }
 
 .icon--right {
   height: 2rem;
-  width: 2rem; }
+  width: 2rem;
+  fill: white; }
 
 .img-details {
   background-color: var(--color-black-light);
