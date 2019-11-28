@@ -23,11 +23,9 @@ const Login = ({ login, isAuthenticated, adminRole }) => {
   
 
   if (isAuthenticated && adminRole === true) {
-    console.log('Navigate me to /admin');
     return <Redirect to="/admin/upload" />;
   } 
   if (isAuthenticated && adminRole === false) {
-    console.log('Navigate me to the home page /')
     return <Redirect to="/" />;
   }
   return (

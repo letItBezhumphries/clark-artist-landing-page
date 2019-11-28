@@ -6,7 +6,6 @@
 @import "base/typography";
 @import "base/utilities";
 
-@import "layout/landing";
 @import "layout/navbar";
 
 @import "admin/addImageForm";
@@ -14,14 +13,16 @@
 @import "admin/fileUpload";
 
 @import "auth/login";
-@import "auth/register";
 
 //pages
 @import "components/backgroundCarousel";
 @import "components/story";
 @import "components/portfolios";
+@import "components/portfoliosList";
 @import "components/shop";
-
+@import "components/exhibitions";
+@import "components/cart";
 
 @import "components/UI/imageCard";
 @import "components/UI/spinner";
+@import "components/UI/thumbnail";

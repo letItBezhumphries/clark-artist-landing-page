@@ -9,17 +9,11 @@ const PortfoliosList = ({ portfolios }) => {
     <ImageCard key={portfolio.title} 
                title={portfolio.title}
                image={portfolio.images[0]}
-               cardType="portfolioLink"
+               cardType="portfolioCard"
                />);
   return (
     <Fragment>
-      <div className="portfolioLinks-list">
-        <h4 className="portfolioLinks-list__heading heading-primary--main">
-          Get a closer look at the inspiration behind any of my collections by
-          clicking on any of the links below &dArr;
-        </h4>
-        <div className="portfolioLinks-list__container">{portfolioList}</div>
-      </div>
+      <div className="portfolioLinks-row">{portfolioList}</div>
     </Fragment>
   );
 };

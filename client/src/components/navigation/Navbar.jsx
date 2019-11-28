@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import DropdownList from './DropdownList';
+// import DropdownList from './DropdownList';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import Logo from './Logo';
@@ -14,7 +14,7 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, portfolio
       <Link to="/admin/bio" className="navbar__link">
         bio
       </Link>
-      <DropdownList />
+      {/* <DropdownList /> */}
       <Link to="/exhibitions" className="navbar__link">
         exhibitions
       </Link>
@@ -35,7 +35,7 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, portfolio
       <Link to="/story" className="navbar__link">
         about
       </Link>
-      <DropdownList />
+      {/* <DropdownList /> */}
       <Link to="/exhibitions" className="navbar__link">
         exhibitions
       </Link>
@@ -62,7 +62,7 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, portfolio
       <Link to="/story" className="navbar__link">
         about
       </Link>
-      <DropdownList />
+      {/* <DropdownList /> */}
       <Link to="/exhibitions" className="navbar__link">
         exhibitions
       </Link>

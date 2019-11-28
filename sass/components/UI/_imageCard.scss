@@ -1,33 +1,40 @@
 .imageCard {
-  // background-color: green;
   position: relative;
   text-align: center;
   color: white;
+  margin-right: 1rem;
   display: flex;
+  flex-direction: column;
   
-  &:hover {
-    filter: brightness(1.1);
-    color: yellow;
-  }
-}
 
-.portfolioLink {
-  display: block;
-  // height: 40rem;
-  height: 100%;
-  width: 30rem;
-  text-align: center;
+  &__portfolioCard-img {
+    padding-right: 1fr;
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    position: relative;
 
-
-  &__title {
-    @include absCenter;
-    font-size: 3rem;
-    text-transform: capitalize;
-    text-decoration: none;
-    letter-spacing: 1.7rem;
     &:hover {
       filter: brightness(1.1);
     }
   }
-
+  
+  &__portfolioCard-txt {
+    text-transform: capitalize;
+    text-decoration: none;
+    letter-spacing: .75rem;
+    font-size: 2rem;
+    // text-align: center;
+    color: black;
+    // background-color: var(--color-black-light);
+    height: 6rem;
+    margin-top: 2rem;
+    // width: 100%;
+    
+    &:hover {
+      filter: brightness(1.1);
+      color: var(--primary-color);
+    }
+  }
 }

@@ -9,7 +9,7 @@
   align-items: center;
   opacity: 1;
   top: 0;
-  // border-bottom: 1px black solid;
+  z-index: 10;
   
   &__logo {
     flex: 0 1 10%;
@@ -21,7 +21,6 @@
     justify-content: center;
     align-items: center;
     padding-bottom: 2rem;
-    // background-color: orangered;
   }
   
     &__links {
@@ -49,8 +48,8 @@
     }
 
     &__link:link,
-    &__link:visited,
-    &__dropbtn {
+    &__link:visited {
+    // &__dropbtn {
       flex: 0 0 10%;
       color: black;
       cursor: pointer;
@@ -61,71 +60,10 @@
       text-transform: uppercase;
       letter-spacing: 1.5px;
       line-height: 2;
-      
+     
+
       &:hover {
         color: blue;
-      }
-    }
-    
-    &__dropdown {
-      background-color: none;
-    }
-
-    &__dropdown &__dropbtn {
-      background-color: inherit;
-      font-family: inherit;
-      margin: 0;
-      outline: none;
-      border: none;
-      font-size: 1rem;
-      
-    }
-
-    &__dropdown:hover &__dropdown-list {
-      display: flex;
-      // box-shadow: var(--shadow-medium);
-    }
-
-    
-
-    &__dropdown-list {
-      background-color: black;
-      position: absolute;
-      display: none;
-      flex-direction: column;
-      text-transform: uppercase;
-      justify-content: space-evenly;
-      align-items: center;
-      min-width: 20rem;
-      min-height: 25rem;
-      transform: translateY(-6%) translateX(-30%);
-      clip-path: polygon(0 5%, 45% 5%, 50% 0%, 50% 0%, 55% 5%, 100% 5%, 
-        100% 85%, 100% 100%, 85% 100%, 15% 100%, 0 100%, 0% 85%);
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 2;
-
-      &:hover {
-        display: flex;
-        color: white;
-      }
-    }
-
-
-    &__portfolio-link {
-      color: white;
-      text-align: center;
-      text-decoration: none;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      padding: 1rem 3rem;
-
-      &:hover {
-        background-color: lighten(black, 15px);
-        width: 100%;
-        background-color: blueviolet;
-        color: white;
-        text-decoration: none;
       }
     }
 
@@ -144,7 +82,7 @@
   flex: 0 1 10%;
   color: black;
   font-size: 3.5rem;
-  z-index: 2;
+  z-index: 20;
   text-decoration: underline black;
 }
 
@@ -154,6 +92,70 @@
   padding-top: 3rem;
   clip-path: polygon(0% 0%, 0 100%, 25% 100%, 0 57%, 100% 57%, 100% 60%, 0 59%, 25% 100%, 100% 100%, 100% 0);
   color: black;
-  z-index: 2;
+  z-index: 20;
   transform: translateY(4px);
 }
+
+
+//removed dropdown
+    // &__dropdown {
+    //   background-color: none;
+    // }
+
+    // &__dropdown &__dropbtn {
+    //   background-color: inherit;
+    //   font-family: inherit;
+    //   margin: 0;
+    //   outline: none;
+    //   border: none;
+    //   font-size: 1rem;
+      
+    // }
+
+    // &__dropdown:hover &__dropdown-list {
+    //   display: flex;
+    //   // box-shadow: var(--shadow-medium);
+    // }
+
+    
+
+    // &__dropdown-list {
+    //   background-color: black;
+    //   position: absolute;
+    //   display: none;
+    //   flex-direction: column;
+    //   text-transform: uppercase;
+    //   justify-content: space-evenly;
+    //   align-items: center;
+    //   min-width: 20rem;
+    //   min-height: 25rem;
+    //   transform: translateY(-6%) translateX(-30%);
+    //   clip-path: polygon(0 5%, 45% 5%, 50% 0%, 50% 0%, 55% 5%, 100% 5%, 
+    //     100% 85%, 100% 100%, 85% 100%, 15% 100%, 0 100%, 0% 85%);
+    //   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    //   z-index: 2;
+
+    //   &:hover {
+    //     display: flex;
+    //     color: white;
+    //   }
+    // }
+
+
+    // &__portfolio-link {
+    //   color: white;
+    //   text-align: center;
+    //   text-decoration: none;
+    //   display: flex;
+    //   flex-direction: row;
+    //   justify-content: center;
+    //   padding: 1rem 3rem;
+
+    //   &:hover {
+    //     background-color: lighten(black, 15px);
+    //     width: 100%;
+    //     background-color: blueviolet;
+    //     color: white;
+    //     text-decoration: none;
+    //   }
+    // }

@@ -45,24 +45,3 @@
 
 
 
-.portfolioLinks-list {
-  background-color: orangered;
-  width: 100%;
-  height: 55rem;
-  grid-row: 8 / -1;
-  grid-column: 1 / -1;
-
-  
-  // &__heading {
-
-  // }
-
-
-  &__container {
-    margin-top: 4rem;
-    padding: 4rem 2rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-}

@@ -18,11 +18,19 @@ const imageSchema = new mongoose.Schema({
   },
   portfolio: {
     type: String,
-    required: true // type: mongoose.Schema.Types.ObjectId,
-    // ref: 'portfolio'
+    required: true
   },
   isGallery: {
     type: Boolean
+  }, 
+  price: {
+    type: String,
+  },
+  height: {
+    type: Number
+  },
+  width: {
+    type: Number
   }
 });
 

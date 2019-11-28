@@ -1,12 +1,13 @@
 .artist-view {
   margin-top: 3rem;
+  margin-bottom: 3rem;
   padding: 4rem 4rem;
   max-height: 80rem;
   min-width: 60rem;
   grid-row: 2 / -1;
   grid-column: 2 / 10;
   background-color: var(--color-grey-light-1);
-  box-shadow: 0 1.5rem 4rem rgba(black, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 
   display: grid;
   grid-template-areas: 
@@ -15,8 +16,7 @@
     "bio img"
     "btn img"
   ;
-  // flex-direction: column;
-  // justify-content: flex-start;
+
   .heading-1 {
     grid-area: head;
   }

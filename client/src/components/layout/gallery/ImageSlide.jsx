@@ -1,10 +1,10 @@
 import React from 'react';
 
 const ImageSlide = ({ image, prev, next, curIdx }) => {
-  const styles = { backgroundImage: `url(${image.imageUrl})`};
-
-  const { fileName, imageUrl, title, description, portfolio } = image;
+  const { imageUrl, portfolio } = image;
   const portfolioTitle = portfolio.split("_").join(" ");
+  const styles = { backgroundImage: `url(${imageUrl})` };
+
 
   return (
     <div className="bg-carousel__img-slide" style={styles}>
