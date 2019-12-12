@@ -39,10 +39,10 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, portfolio
       <Link to="/exhibitions" className="navbar__link">
         exhibitions
       </Link>
-      <Link to="/shop" className="navbar__link">
+      <Link to="/shop/inventory" className="navbar__link">
         inventory
       </Link>
-      <Link to="/cart" className="navbar__link">
+      <Link to="/shop/cart" className="navbar__link">
         <Icon
           iconType="icon-shopping-cart1"
           class="navbar__icon"
@@ -66,7 +66,7 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, portfolio
       <Link to="/exhibitions" className="navbar__link">
         exhibitions
       </Link>
-      <Link to="/shop" className="navbar__link">
+      <Link to="/shop/inventory" className="navbar__link">
         inventory
       </Link>
       <Link to="/login" className="navbar__link">
@@ -75,7 +75,7 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, portfolio
       <Link to="/register" className="navbar__link">
         sign up
       </Link>
-      <Link to="/cart" className="navbar__link">
+      <Link to="/shop/cart" className="navbar__link">
         <Icon
           iconType="icon-shopping-cart1"
           class="navbar__icon"

@@ -1,0 +1,51 @@
+.selected-view {
+  // background-color: brown;
+  display: flex;
+}
+
+// .selected-artwork {
+  
+// }
+
+.details-box {
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+
+  &__title {
+    font-size: 22px;
+
+  }
+
+  &__price {
+    font-family: sans-serif;
+    font-size: 21px;
+    color: #bcbcbc;
+  }
+
+  &__medium {
+    color: black;
+    font-size: 22px;
+  }
+
+  &__dimensions {
+    font-size: 22px;
+    color: black;
+  }
+
+  &__framed-dimensions {
+    font-size: 22px;
+    color: black;
+  }
+}
+
+.meta-details {
+  color: black;
+  font-size: 14px;
+}
+
+.icons-list {
+  background-color: purple;
+}

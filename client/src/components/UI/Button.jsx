@@ -4,6 +4,7 @@ import React from "react";
 const Button = props => (
   <button
     // className={[classes.Button, classes[props.btnType]].join(" ")}
+    className={props.class}
     onClick={props.clicked}
   >
     {props.children}

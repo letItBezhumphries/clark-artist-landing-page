@@ -56,7 +56,7 @@ const upload = multer({ storage });
 
 
 // @route GET api/images/gallery
-// @desc creates a Portfolio in db
+// @desc get all Images for image carousel and landing
 router.get("/gallery", async (req, res) => {
   try {
     const galleryList = await Image.find({ isGallery: true })
@@ -74,9 +74,8 @@ router.get("/gallery", async (req, res) => {
 // @route GET api/images/portfolios/:title
 // @desc get a portfolio by title
 router.get('/portfolios/:title', async (req, res) => {
-  // console.log('in GET PORTFOLIO api/images', req.params.title);
   try {
-    const portfolio = await Portfolio.find({ title: req.params.title })
+    const portfolio = await Portfolio.find({ title: req.params.title });
     console.log('portfolio', portfolio);
     res.status(200).json(portfolio);
 
@@ -88,7 +87,7 @@ router.get('/portfolios/:title', async (req, res) => {
 
 
 // @route GET api/images/portfolios
-// @desc get all portfolios from db
+// @desc get all portfolios
 router.get('/portfolios', async (req, res) => {
   try {
     const portfolios = await Portfolio.find();
@@ -101,14 +100,9 @@ router.get('/portfolios', async (req, res) => {
 
 
 
-
-
-
-// //in order to display the image need to use createReadStream
-// // @route GET api/images/:filename
+// // @route GET api/images/image/:filename
 // // @desc Display Image
 router.get("/image/:filename", async (req, res) => {
-  // console.log('in GET IMAGE api/images', req.params.filename);
   try {
     await gfs.files.findOne(
     {
@@ -155,6 +149,35 @@ router.get("/store", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
+// @route GET /api/images/store/artwork/:title
+// @desc Display an image in JSON
+router.get("/store/artwork/:id", async (req, res) => {
+  try {
+    const selectedImage = await Image.find({ _id: req.params.id });
+    console.log('shop selected image', selectedImage);
+    res.status(200).json(selectedImage);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+})
+
+//create a new cart
+
+//get a saved cart
+
+//remove artwork from cart
+
+//clear cart
+
+//get orders
+
+//get order by id
+
+//create a new order from cart
+
+
 
 
 module.exports = router;

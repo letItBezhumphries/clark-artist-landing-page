@@ -86,8 +86,6 @@
   }
 
   &__featured-collections {
-    // background-color: yellowgreen;
-    // min-height: 63rem;
     min-width: 110rem;
     margin-top: 5rem;
     
@@ -95,17 +93,16 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    border-bottom: 1px black solid; 
   }
 
   &__featured-artwork {
-    // background-color: red;
     // min-height: 80rem;
     min-width: 100vw;
     margin-top: 5rem;
-    // position: relative;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: flex-start;
 
 
@@ -118,6 +115,11 @@
       display: flex;
       justify-content: flex-start;
    
+
+      &--heading-sub {
+        font-size: 4rem;
+        font-style: italic;
+      }
     }
   }
 

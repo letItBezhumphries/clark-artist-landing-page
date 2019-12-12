@@ -3,7 +3,7 @@ require("dotenv").config();
 const connectDB = require("./database/index");
 const path = require("path");
 const bodyParser = require("body-parser");
-const multer = require('multer');
+// const multer = require('multer');
 const app = express();
 
 //connect the database
@@ -57,7 +57,11 @@ app.use(express.static(path.join(__dirname, "./public/uploads")));
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
 app.use('/api/images', require('./routes/api/store'));
+// app.use("/api/artwork", require("./routes/api/artwork"));
 app.use("/admin/upload", require("./routes/admin/uploads"));
+// app.use("/admin/inventory", require("./routes/admin/inventory"));
+// app.use("/api/shop", require("./routes/api/shop/"));
+app.use("/api/account", require("./routes/api/account"));
 
 
 

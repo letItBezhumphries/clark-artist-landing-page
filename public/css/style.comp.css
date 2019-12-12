@@ -243,6 +243,15 @@ body {
 .u-margin-top-huge {
   margin-top: 10rem !important; }
 
+.margin-left-bg {
+  margin-left: 6rem !important; }
+
+.margin-left-md {
+  margin-left: 4rem !important; }
+
+.margin-left-sm {
+  margin-left: 2rem !important; }
+
 .navbar {
   grid-column: 1 / -1;
   width: 100%;
@@ -509,13 +518,14 @@ button {
 
 .artist-view {
   margin-top: 3rem;
+  margin-bottom: 3rem;
   padding: 4rem 4rem;
   max-height: 80rem;
   min-width: 60rem;
   grid-row: 2 / -1;
   grid-column: 2 / 10;
   background-color: var(--color-grey-light-1);
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   display: grid;
   grid-template-areas: "head head" "bio img" "bio img" "btn img"; }
   .artist-view .heading-1 {
@@ -633,15 +643,25 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start; }
+    align-items: flex-start;
+    border-bottom: 1px black solid; }
   .shop__featured-artwork {
-    min-height: 80rem;
-    min-width: 110rem;
+    min-width: 100vw;
     margin-top: 5rem;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     align-items: flex-start; }
+    .shop__featured-artwork--heading {
+      flex: 100%;
+      font-size: 3rem;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+      display: flex;
+      justify-content: flex-start; }
+      .shop__featured-artwork--heading--heading-sub {
+        font-size: 4rem;
+        font-style: italic; }
   .shop__prints {
     background-color: bisque;
     margin-top: 5rem;
@@ -656,7 +676,39 @@ button {
 .heading {
   font-size: 3rem;
   text-transform: uppercase;
-  margin-bottom: 3rem; }
+  margin-bottom: 3rem;
+  margin-right: 20rem; }
+
+.selected-view {
+  display: flex; }
+
+.details-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start; }
+  .details-box__title {
+    font-size: 22px; }
+  .details-box__price {
+    font-family: sans-serif;
+    font-size: 21px;
+    color: #bcbcbc; }
+  .details-box__medium {
+    color: black;
+    font-size: 22px; }
+  .details-box__dimensions {
+    font-size: 22px;
+    color: black; }
+  .details-box__framed-dimensions {
+    font-size: 22px;
+    color: black; }
+
+.meta-details {
+  color: black;
+  font-size: 14px; }
+
+.icons-list {
+  background-color: purple; }
 
 .exhibitions {
   grid-row: 3 / 8;
@@ -776,12 +828,42 @@ button {
 .thumbnail {
   display: flex;
   flex-direction: column;
+  align-items: center;
   text-align: center;
-  background-color: yellowgreen; }
+  margin-top: 4rem;
+  margin-right: 6rem;
+  width: 45%; }
   .thumbnail__img {
     display: block; }
+    .thumbnail__img:hover {
+      filter: brightness(1.1); }
   .thumbnail__img-details {
+    width: 45%;
     display: flex;
     flex-direction: column; }
   .thumbnail__img-title {
-    background-color: orangered; }
+    font-size: 3rem; }
+  .thumbnail__img-price {
+    font-size: 1.9rem; }
+
+.button {
+  border: #303030 2px solid;
+  border-radius: .4rem;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  padding: .6rem 2.3rem; }
+
+.button-white {
+  background-color: white;
+  color: #1e1e1e;
+  font-size: 1.3rem; }
+  .button-white:hover {
+    background-color: black;
+    color: white; }
+
+.button-green {
+  background-color: white;
+  color: green; }
+  .button-green:hover {
+    background-color: black;
+    color: yellowgreen; }

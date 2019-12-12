@@ -31,6 +31,19 @@ const portfolioSchema = new mongoose.Schema({
       },
       isGallery: {
         type: Boolean
+      },
+      price: {
+        type: String,
+        required: true
+      },
+      height: {
+        type: Number
+      },
+      width: {
+        type: Number
+      },
+      inStock: {
+        type: Boolean
       }
     }
   ]

@@ -25,12 +25,16 @@ const imageSchema = new mongoose.Schema({
   }, 
   price: {
     type: String,
+    required: true
   },
   height: {
     type: Number
   },
   width: {
     type: Number
+  },
+  inStock: {
+    type: Boolean
   }
 });
 
