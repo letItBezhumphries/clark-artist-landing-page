@@ -37,10 +37,13 @@ export const GET_SELECTED_ARTWORK_FAILURE = "GET_SELECTED_ARTWORK_FAILURE";
 export const GET_SELECTED_PORTFOLIO = "GET_SELECTED_PORTFOLIO";
 
 //cart actions
-export const LOAD_CART = "CREATE_CART";
-export const ADD_CART_ITEM = "ADD_CART_ITEM";
-export const REMOVE_CART_ITEM = "REMOVE_CART_ITEM";
+export const LOAD_CART = "LOAD_CART";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const DELETE_CART = "DELETE_CART";
+export const CART_ERROR = "CART_ERROR";
+export const CREATE_CART = "CREATE_CART";
+
 
 
 export const REQUEST_ERROR = "REQUEST_ERROR";

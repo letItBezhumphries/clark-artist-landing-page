@@ -60,9 +60,9 @@ app.use('/api/images', require('./routes/api/store'));
 // app.use("/api/artwork", require("./routes/api/artwork"));
 app.use("/admin/upload", require("./routes/admin/uploads"));
 // app.use("/admin/inventory", require("./routes/admin/inventory"));
-// app.use("/api/shop", require("./routes/api/shop/"));
-app.use("/api/account", require("./routes/api/account"));
 
+app.use("/api/shop", require("./routes/api/account"));
+app.use("/api/shop/order", require("./routes/api/order"));
 
 
 app.get("*", (req, res) => {

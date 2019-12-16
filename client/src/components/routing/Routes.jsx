@@ -20,7 +20,7 @@ const Routes = () => {
       <Switch>
         <PrivateRoute exact path="/admin/upload" component={AdminDashboard} />
         <Route exact path="/story" component={Story} />
-        <Route exact path="/shop/artwork/:title" component={SelectedArtView} />
+        <Route exact path="/shop/artwork/:id" component={SelectedArtView} />
         <Route exact path="/shop/inventory" component={Shop} />
         <Route exact path="/exhibitions" component={Exhibitions} />
         <Route exact path="/register" component={Register} />

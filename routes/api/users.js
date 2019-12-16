@@ -8,10 +8,10 @@ const { check, validationResult } = require('express-validator');
 
 
 const User = require('../../models/User');
-
+const Account = require('../../models/Account');
 
 // @route = POST api/users
-// @desc Register a user
+// @desc Register a user & account
 // @access Public
 router.post('/', [
     check('name', 'Name is required').not().isEmpty(),
@@ -73,6 +73,12 @@ router.post('/', [
 
       //save the instance
       await user.save();
+      
+      const account = new Account({
+        user: user.id
+      });
+
+      await account.save();
 
       const payload = {
         user: {

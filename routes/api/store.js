@@ -163,11 +163,11 @@ router.get("/store/artwork/:id", async (req, res) => {
   }
 })
 
-//create a new cart
+
 
 //get a saved cart
 
-//remove artwork from cart
+
 
 //clear cart
 

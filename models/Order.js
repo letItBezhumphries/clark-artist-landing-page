@@ -1,38 +1,45 @@
 const mongoose = require('mongoose');
 
-const orderSchema = new mongoose.Schema({
+const OrderSchema = new mongoose.Schema({
   items: [
-      {
-        artworkId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'image',
-          required: true
-        },
-        quantity: {
-          type: Number,
-          required: true
-        }
+    {
+      item: {
+        type: Object,
+        required: true
+      },
+      quantity: {
+        type: Number,
+        required: true
       }
-    ],
+    }
+  ],
   totalAmount: {
     type: Number,
     required: true
   },
-  paymentMethod: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'creditCard',
-    required: true
-  },
-  shippingAddress: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'address',
-    required: true
-  },
   account: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'account',
-    required: true 
+    ref: "Account",
+    required: true
+  },
+  // coupon: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "Coupon",
+  //   required: false
+  // },
+  orderDate: {
+    type: Date,
+    default: Date.now()
   }
 });
 
-module.exports = Order = mongoose.model('Order', orderSchema);
+// orderSchema.methods.getOrderTotal = function(percentage) {
+//   const coupon = this.coupon;
+//   let updatedOrder;
+//   if (!coupon) {
+    
+//   }
+// }
+
+
+module.exports = Order = mongoose.model('Order', OrderSchema);

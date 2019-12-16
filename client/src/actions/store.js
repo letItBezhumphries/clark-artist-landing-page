@@ -4,7 +4,6 @@ import {
   GET_SELECTED_ARTWORK,
   GET_SELECTED_ARTWORK_FAILURE,
   CLEAR_SELECTED_ARTWORK,
-  GET_PORTFOLIO,
   PORTFOLIO_ERROR,
   IMAGE_ERROR,
   LOAD_IMAGES,
@@ -106,20 +105,3 @@ export const loadPortfolios = () => async dispatch => {
   }
 }
 
-export const addToCart = (id, image, history) => async dispatch => {
-  try {
-    dispatch({ type: ADD_TO_CART, payload: image });
-    history.push(`/shop/cart/${id}`);
-  } catch (err) {
-    dispatch({ type: REQUEST_ERROR, payload: err });
-  }
-}
-
-export const removeFromCart = (id, image, history) => async dispatch => {
-  try {
-    
-  } catch (err) {
-    dispatch({ type: REQUEST_ERROR, payload: err });
-
-  }
-}
