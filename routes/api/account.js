@@ -10,80 +10,13 @@ const Account = require("../../models/Account");
 const auth = require("../../middleware/auth");
 
 
-// @route    GET api/shop/my-cart
-// @desc     Get current users cart
-// @access   Private
-router.get('/my-cart', auth, async (req, res) => {
-  try {
-    const account = await Account.findOne({ user: req.user.id }).select('cart');
-    const user = await User.findById(req.user.id);
-    if (!account && user) {
-      const newAcct = new Account({ user: req.user.id, cart: { items: [], total: 0 } });
-      await newAcct.save();
-      return res.status(200).json(newAcct.getCart());
-    }
-    if (!user) {
-      return res.status(400).json({ msg: 'There is no account for this user, please sign up to make a purchase' });
-    }
 
-    res.status(200).json(account.getCart());
-    // res.status(200).json(account);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
-  }
-});
-
-
-
-// @route = POST api/shop/my-cart/:id
-// @desc add artwork item to cart 
-// @access Private
-router.post("/my-cart/:id", auth, async (req, res) => {
-
-  try {
-    const item = await Image.find({ _id: req.params.id });
-    const account = await Account.findOne({
-      user: req.user.id
-    });
-    const itemPrice = parseInt(item.price, 10);
-    console.log('inside post', itemPrice);
-    const newCart = account.addToCart(req.params.id, itemPrice);
-    //newCart.save();
-    res.status(201).json(newCart);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
-  }
-});
-
-
-// @route = DELETE api/shop/my-cart/:id
-// @desc add artwork item to cart 
-// @access Private
-router.delete("/my-cart/:id", auth, async (req, res) => {
-  const artworkId = req.params.id;
-  try {
-    const item = await Image.find({ _id: artworkId });
-    const account = await Account.findOne({
-      user: req.user.id
-    });
-    const itemPrice = parseInt(item.price, 10);
-    console.log('inside post', itemPrice);
-    const newCart = account.removeFromCart(artworkId, itemPrice);
-    
-    res.status(203).json(newCart);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
-  }
-});
 
 
 // @route = GET api/shop/my-account
 // @desc gets the json obj of the users account
 // @access Private
-router.get("/my-account", auth, async (req, res) => {
+router.get("/", auth, async (req, res) => {
   try {
     const account = await Account.findOne({ user: req.user.id });
     const user = await User.findById(req.user.id);
@@ -106,14 +39,14 @@ router.get("/my-account", auth, async (req, res) => {
 // @route = GET api/shop/my-account/primary-card
 // @desc gets the primary card for the account
 // @access Private
-router.get("/my-account/primary-card", auth, async (req, res) => {
+router.get("/primary-card", auth, async (req, res) => {
   try {
     const account = await Account.findOne({ user: req.user.id });
     const primaryCard = account.getPrimaryCard();
     if (!primaryCard) {
       res.status(500).send("Please provide a valid payment method for this transaction")
     }
-    console.log('getPrimary car', primaryCard);
+    console.log('getPrimary card', primaryCard);
     res.status(200).json(primaryCard);
 
   } catch (error) {
@@ -122,10 +55,31 @@ router.get("/my-account/primary-card", auth, async (req, res) => {
   }
 });
 
+// @route = GET api/shop/my-account/address
+// @desc gets the shipping address for account
+// @access Private
+router.get("/ship-to", auth, async (req, res) => {
+  try {
+    const account = await Account.findOne({ user: req.user.id });
+    const shipping = account.getShippingAddress();
+    if (!shipping) {
+      res.status(500).send("Please provide a shipping address for your order")
+    }
+    console.log('getShipping', shipping);
+    res.status(200).json(shipping);
+
+  } catch (error) {
+    console.error(Error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+
+
 // @route    PUT api/shop/my-account/add-card
 // @desc     Add a credit card to the account
 // @access   Private
-router.put("/my-account/add-card", [
+router.put("/add-card", [
     auth,
     [
       check("card_name", "card holder name is required")
@@ -183,7 +137,7 @@ router.put("/my-account/add-card", [
 
       await account.save();
 
-      res.status(203).json(account);
+      res.status(202).json(account);
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server Error");
@@ -194,7 +148,7 @@ router.put("/my-account/add-card", [
 // @route    DELETE api/shop/my-account/delete-card/:cardId
 // @desc     Remove a credit card from account
 // @access   Private
-router.delete("/my-account/delete-card/:cardId", auth, async (req, res) => {
+router.delete("/delete-card/:cardId", auth, async (req, res) => {
   try {
     const account = await Account.findOne({ user: req.user.id });
     const cardIds = account.creditCards.map(card => card._id.toString());
@@ -207,8 +161,9 @@ router.delete("/my-account/delete-card/:cardId", auth, async (req, res) => {
       let deletedCard = account.creditCards[removeIndex];
       account.creditCards.splice(removeIndex, 1);
       await account.save();
-      return res.status(204).json({ 
-        msg: 'your credit card information has been permanently deleted from this account'
+      return res.status(203).json({ 
+        msg: 'your credit card information has been permanently deleted from this account',
+        removed: deletedCard
       });
     }
   } catch (error) {
@@ -219,11 +174,11 @@ router.delete("/my-account/delete-card/:cardId", auth, async (req, res) => {
 
 
 //edit account
-// @route    PUT api/shop/account/address
+// @route    PUT api/shop/my-account/add-address
 // @desc     Add an address to the account
 // @access   Private
 router.put(
-  "/my-account/address",
+  "/add-address",
   [
     auth,
     [
@@ -297,7 +252,7 @@ router.put(
 // @route    DELETE api/shop/my-account/address/:addressId
 // @desc     Remove a address from the account
 // @access   Private
-router.delete("/my-account/address/:addressId", auth, async (req, res) => {
+router.delete("/delete-address/:addressId", auth, async (req, res) => {
   try {
     const account = await Account.findOne({ user: req.user.id });
     const addresses = account.addresses.map(address => address._id.toString());
@@ -316,6 +271,7 @@ router.delete("/my-account/address/:addressId", auth, async (req, res) => {
     return res.status(500).json({ msg: "Server error" });
   }
 });
+
 
 
 

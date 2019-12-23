@@ -42,17 +42,14 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, portfolio
       <Link to="/shop/inventory" className="navbar__link">
         inventory
       </Link>
-      <Link to="/shop/cart" className="navbar__link">
-        <Icon
-          iconType="icon-shopping-cart1"
-          class="navbar__icon"
-        />
-      </Link>
-      <Link to="/account" className="navbar__link">
+      <Link to="/shop/my-account" className="navbar__link">
         account
       </Link>
       <Link to="/logout" className="navbar__link" onClick={logout}>
         logout
+      </Link>
+      <Link to="/shop/my-cart" className="navbar__link">
+        <Icon iconType="icon-shopping-cart1" class="navbar__icon" />
       </Link>
     </div>
   );
@@ -74,12 +71,6 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, portfolio
       </Link>
       <Link to="/register" className="navbar__link">
         sign up
-      </Link>
-      <Link to="/shop/cart" className="navbar__link">
-        <Icon
-          iconType="icon-shopping-cart1"
-          class="navbar__icon"
-        />
       </Link>
     </div>
   );

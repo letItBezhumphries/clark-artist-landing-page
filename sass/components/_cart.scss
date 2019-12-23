@@ -1,13 +1,140 @@
 .cart {
-  grid-row: 3 / 8;
-  grid-column: 1 / -1;
+  font-family: 'Cormorant Garamond';
   margin-top: 3rem;
   padding: 4rem 4rem;
-  height: 100rem;
+  min-height: 120rem;
   width: 100%;
   grid-row: 2 / -1;
   grid-column: 1 / -1;
-  text-align: center;
-  background-color: orange;
+  display: flex;
+  flex-direction: column;
+  // text-align: center;
+  // background-color: orange;
   
+
+  &__heading {
+    font-size: 5rem;
+    text-transform: uppercase;
+    margin-bottom: 5rem;
+  }
+
+  &__notices-box {
+    // background-color: purple;
+    margin-bottom: 2.5rem;
+    padding: 2.8rem 2.1rem;
+    display: flex;
+    flex-direction: row;
+    justify-items: space-between;
+  }
+
+  &__table {
+    background: var(--light-color);
+    padding: 1rem;
+    text-align: left;
+    // border: 1px solid black;
+
+    th {
+      padding: 1.3rem 1rem;
+      font-size: 1.4rem;
+      color: black;
+      text-align: left;
+      text-transform: uppercase;
+      background: white;
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+
+    th:last-child {
+      border-right: 1px solid black;
+    }
+
+    tr:not(:last-child) {
+      border-bottom: 1px solid black;
+      border-right: 1px solid black;
+    }
+
+    td {
+      padding: .5rem 1rem;
+      text-align: left;
+      color: #888888;
+      font-size: 2.2rem;
+      background: white;
+    }
+  }
+
+  &__cart-summary {
+    display: flex;
+    align-self: flex-end;
+    padding: 2rem 2rem;
+    flex-direction: column;
+    justify-items: flex-end;
+    width: 30%;
+    margin-top: 2rem;
+    background-color: orangered;
+
+
+  }
+}
+
+.item-remove {
+  border: 1px solid black;
+  position: relative;
+  
+  .btn-remove {
+    text-align: center;
+    @include absCenter;
+    outline: none;
+    border: none;
+    color: inherit;
+    background-color: inherit;
+  }
+}
+
+
+.item-image {
+  height: 66px;
+  overflow: hidden;
+  &__thumbnail {
+    display: block;
+    height: 6rem;
+    width: 6rem;
+  }
+}
+
+.coupon-input {
+  border: none;
+  outline: none;  
+
+}
+
+.cart-summary {
+  margin-bottom: 3.1rem;
+
+  &__header {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    
+  }
+
+  &__table {
+    text-align: left;
+    vertical-align: middle;
+    font-size: 2.2rem;
+
+
+    tbody {
+      vertical-align: baseline;
+    }
+
+    th {
+      color: black;
+      padding: .5rem .7rem .5rem 0rem;
+    }
+
+    td {
+      color: #888888;
+    }
+  }
 }

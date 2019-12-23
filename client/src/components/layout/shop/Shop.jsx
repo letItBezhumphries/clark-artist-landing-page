@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Route, withRouter, Switch } from 'react-router-dom';
@@ -10,8 +10,14 @@ import SelectedArtView from './SelectedArtView';
 
 const Shop = ({ 
   auth,
-  store: { images, image, portfolio, portfolios, loading }, match, history
+  store: { images, image, portfolio, portfolios, loading }, 
+  account, 
+  cart,
+  match
 }) => {
+  // useEffect(() => {
+    
+  // });
 
   return (
     <Fragment>
@@ -31,12 +37,16 @@ const Shop = ({
 }
 
 Shop.propTypes = {
-  auth: PropTypes.object.isRequired,  
+  auth: PropTypes.object.isRequired,
+  account: PropTypes.object.isRequired,
+  cart: PropTypes.object.isRequired,  
 }
 
 const mapStateToProps = state => ({
   store: state.store,
   auth: state.auth,
+  account: state.account,
+  cart: state.cart
 });
 
 export default withRouter(connect(mapStateToProps)(Shop));

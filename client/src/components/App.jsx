@@ -5,8 +5,11 @@ import Navbar from './navigation/Navbar';
 import Landing from './layout/Landing';
 import Routes from './routing/Routes';
 import { loadUser } from '../actions/auth';
+import { loadAccount } from '../actions/account';
+import { loadCart } from '../actions/cart';
 import { loadGallery, loadImages, loadPortfolios } from '../actions/store'; 
 import setAuthToken from "../utils/setAuthToken";
+
 //Redux 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -22,7 +25,9 @@ const App = () => {
     store.dispatch(loadGallery());
     store.dispatch(loadImages());
     store.dispatch(loadPortfolios());
-  }, [loadUser, loadGallery, loadImages, loadPortfolios]);
+    store.dispatch(loadAccount());
+    store.dispatch(loadCart());
+  }, [loadUser, loadGallery, loadImages, loadPortfolios, loadAccount, loadCart]);
 
   return (
     <Provider store={store}>

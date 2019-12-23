@@ -1,4 +1,4 @@
-//for registering a user
+
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -74,8 +74,15 @@ router.post('/', [
       //save the instance
       await user.save();
       
+      //build a basic cart obj
+      const cart = {
+        items: [],
+        total: 0
+      }
+
       const account = new Account({
-        user: user.id
+        user: user.id,
+        cart: cart        
       });
 
       await account.save();

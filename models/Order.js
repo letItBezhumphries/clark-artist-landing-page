@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const OrderSchema = new mongoose.Schema({
-  items: [
+  orderedItems: [
     {
       item: {
         type: Object,
@@ -27,19 +27,21 @@ const OrderSchema = new mongoose.Schema({
   //   ref: "Coupon",
   //   required: false
   // },
+  paymentMethod: {
+    type: Object,
+    required: true
+  },
+  shippingAddress: {
+    type: Object,
+    required: true
+  },
   orderDate: {
     type: Date,
     default: Date.now()
   }
 });
 
-// orderSchema.methods.getOrderTotal = function(percentage) {
-//   const coupon = this.coupon;
-//   let updatedOrder;
-//   if (!coupon) {
-    
-//   }
-// }
+
 
 
 module.exports = Order = mongoose.model('Order', OrderSchema);

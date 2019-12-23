@@ -99,13 +99,13 @@ const AccountSchema = new mongoose.Schema({
   ]
 });
 
-AccountSchema.methods.addToCart = function(artwork, price) {
+AccountSchema.methods.addToCart = function(artwork, quantity, price) {
   const cartItemIndex = this.cart.items.findIndex(item => {
     return item.itemId.toString() === artwork._id.toString();
   });
   let newQuantity = quantity;
   const oldTotalAmnt = this.cart.total;
-  // const artworkPrice = parseInt(artwork.price, 10);
+
   let newTotalAmnt =  price + oldTotalAmnt; 
   const updatedCartItems = [...this.cart.items];
   //check if the item already exists in the cart
@@ -114,7 +114,7 @@ AccountSchema.methods.addToCart = function(artwork, price) {
     updatedCartItems[cartItemIndex].quantity = newQuantity;
   } else {
     updatedCartItems.push({
-      itemId: artworkId,
+      itemId: artwork._id,
       quantity: newQuantity
     });
   }
@@ -123,7 +123,7 @@ AccountSchema.methods.addToCart = function(artwork, price) {
     total: newTotalAmnt
   }
   this.cart = updatedCart;
-  console.log('schema return', this.cart);
+  console.log('inside addToCart method', this.cart);
   return this.save();
 }
 
@@ -144,11 +144,10 @@ AccountSchema.methods.removeFromCart = function(artworkId, price) {
   };
   this.cart = updatedCart;
   console.log("schema return", this.cart);
-  this.save();
+  return this.save();
 }
 
 AccountSchema.methods.getPrimaryCard = function() {
-  
   const primary = this.creditCards.filter(card => {
     return card.primary;
   })
@@ -156,17 +155,17 @@ AccountSchema.methods.getPrimaryCard = function() {
 }
 
 AccountSchema.methods.getShippingAddress = function() {
-  const shippingAddress = this.addresses.filter(address => {
-    return address.shipping;
+  const shipping = this.addresses.filter(address => {
+    return address.shipping_address;
   });
-  return shippingAddress;
+  return shipping;
 }
 
-// AccountSchema.methods.addOrder = function(orderId) {
-//   this.orders.push({ order: orderId });
-//   this.clearCart();
-//   this.save();
-// }
+AccountSchema.methods.addOrder = function(orderId) {
+  const newOrder = { order: orderId };
+  this.orders.unshift(newOrder);
+  this.clearCart()
+}
 
 
 AccountSchema.methods.clearCart = function() {
@@ -175,7 +174,7 @@ AccountSchema.methods.clearCart = function() {
     totalAmount: 0
   };
   this.cart = updatedCart;
-  this.save();
+  return this.save();
 }
 
 

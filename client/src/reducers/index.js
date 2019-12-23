@@ -4,6 +4,7 @@ import auth from './auth';
 import admin from './admin';
 import store from './store';
 import cart from './cart';
+import account from './account';
 import { combineReducers } from 'redux';
 
 export default combineReducers({
@@ -11,6 +12,6 @@ export default combineReducers({
   auth,
   admin,
   store,
-  cart
-  // account
+  cart,
+  account
 });

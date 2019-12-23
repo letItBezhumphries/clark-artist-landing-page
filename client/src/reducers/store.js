@@ -5,10 +5,12 @@ import {
   LOAD_IMAGES,
   LOAD_GALLERY,
   LOAD_PORTFOLIOS,
-  GET_SELECTED_PORTFOLIO,
+  GET_SELECTED_PORTFOLIO_FAIL,
+  GET_SELECTED_PORTFOLIO_SUCCESS,
+  CLEAR_SELECTED_PORTFOLIO,
   CLEAR_SELECTED_ARTWORK,
-  GET_SELECTED_ARTWORK,
-  GET_SELECTED_ARTWORK_FAILURE
+  GET_SELECTED_ARTWORK_SUCCESS,
+  GET_SELECTED_ARTWORK_FAIL
 } from "../actions/types";
 import { updateObject } from '../actions/utility';
 
@@ -45,14 +47,14 @@ export default function(state = initialState, action) {
         portfolios: payload,
         loading: false
       };
-    case GET_SELECTED_PORTFOLIO:
+    case GET_SELECTED_PORTFOLIO_SUCCESS:
       return {
         ...state,
         portfolio: payload,
         loading: false
       };
-    case GET_SELECTED_ARTWORK:
-      // console.log('in reducer', type, payload); 
+    case GET_SELECTED_ARTWORK_SUCCESS:
+      // console.log('in reducer', type, payload);
       const updatedImage = updateObject(state.image, payload);
       return {
         ...state,
@@ -60,13 +62,14 @@ export default function(state = initialState, action) {
         loading: false
       };
     case CLEAR_SELECTED_ARTWORK:
-      return { 
+      return {
         ...state,
         image: null,
         loading: false
       };
     case PORTFOLIO_ERROR:
-    case GET_SELECTED_ARTWORK_FAILURE:
+    case GET_SELECTED_ARTWORK_FAIL:
+    case GET_SELECTED_PORTFOLIO_FAIL:
     case IMAGE_ERROR:
     case REQUEST_ERROR:
       // console.log('in reducer error', payload);

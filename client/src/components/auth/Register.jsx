@@ -31,7 +31,7 @@ const Register = ({ setAlert, register, isAuthenticated, adminRole }) => {
     return <Redirect to="/admin/upload" />;
   }
   if (isAuthenticated && !adminRole) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/" />;
   }
 
   return (

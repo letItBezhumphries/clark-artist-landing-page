@@ -6,6 +6,8 @@ import Thumbnail from '../../UI/Thumbnail';
 import Icon from '../../UI/Icon';
 import PortfoliosList from '../portfolios/PortfoliosList';
 import { getSelectedArtwork, clearSelectedArtwork } from "../../../actions/store";
+import tranformNumToFormattedString from '../../../utils/transformNumToFormattedString';
+
 // import ReactPaginate from 'react-paginate';
 
 const FeaturedGallery = ({ images, image, loading, history, getSelectedArtwork, clearSelectedArtwork }) => { 
@@ -16,9 +18,7 @@ const FeaturedGallery = ({ images, image, loading, history, getSelectedArtwork, 
   // }, []);
 
   const artworkSelectedHandler = (id, image) => {
-    console.log('in handler', id);
-    getSelectedArtwork(id, image, history);
-    
+    getSelectedArtwork(id, image, history);    
   }
   
   const inventory = images.map(image => (

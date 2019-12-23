@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 require("dotenv").config();
-const fs = require("fs");
+// const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 const multer = require("multer");
@@ -137,7 +137,7 @@ router.get("/image/:filename", async (req, res) => {
 
 
 
-
+//need to change this to /api/images/shop
 // @route GET /api/images/store
 // @desc Display all images in JSON
 router.get("/store", async (req, res) => {
@@ -150,7 +150,8 @@ router.get("/store", async (req, res) => {
   }
 });
 
-// @route GET /api/images/store/artwork/:title
+//need to change this to /api/images/shop/artwork/:id
+// @route GET /api/images/store/artwork/:id
 // @desc Display an image in JSON
 router.get("/store/artwork/:id", async (req, res) => {
   try {

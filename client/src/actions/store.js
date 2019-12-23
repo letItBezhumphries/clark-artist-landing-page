@@ -1,20 +1,21 @@
 import axios from "axios";
 import {
   GET_IMAGE,
-  GET_SELECTED_ARTWORK,
-  GET_SELECTED_ARTWORK_FAILURE,
+  GET_SELECTED_ARTWORK_SUCCESS,
+  GET_SELECTED_ARTWORK_FAIL,
   CLEAR_SELECTED_ARTWORK,
   PORTFOLIO_ERROR,
   IMAGE_ERROR,
   LOAD_IMAGES,
   LOAD_GALLERY,
   LOAD_PORTFOLIOS,
-  REQUEST_ERROR,
-
+  GET_SELECTED_PORTFOLIO_SUCCESS,
+  GET_SELECTED_PORTFOLIO_FAIL,
+  REQUEST_ERROR
 } from "./types";
 
 //@route  GET /gallery 
-//@desc loads the carousel with background images 
+//@desc loads the landing page carousel of background images 
 export const loadGallery = () => async dispatch => {
   try {
     const res = await axios.get('/api/images/gallery');
@@ -60,11 +61,11 @@ export const getSelectedArtwork = (id, image, history) => async dispatch => {
     
     // dispatch({ type: GET_SELECTED_ARTWORK, payload: res.data[0] });
     
-    dispatch({ type: GET_SELECTED_ARTWORK, payload: image });
+    dispatch({ type: GET_SELECTED_ARTWORK_SUCCESS, payload: image });
     history.replace(`/shop/artwork/${id}`)
 
   } catch (err) {
-    dispatch({ type: GET_SELECTED_ARTWORK_FAILURE, payload: err  });
+    dispatch({ type: GET_SELECTED_ARTWORK_FAIL, payload: err  });
   }
 }
 
@@ -83,10 +84,10 @@ export const getPortfolio = (title) => async dispatch => {
 
     console.log('IN GET PORTFOLIO', res.data[0]);
 
-    dispatch({ type: GET_SELECTED_PORTFOLIO, payload: res.data[0] });
+    dispatch({ type: GET_SELECTED_PORTFOLIO_SUCCESS, payload: res.data[0] });
 
   } catch(err) {
-    dispatch({ type: PORTFOLIO_ERROR });
+    dispatch({ type: GET_SELECTED_PORTFOLIO_FAIL, payload: err });
   }
 }
 
@@ -95,13 +96,11 @@ export const loadPortfolios = () => async dispatch => {
     
     const res = await axios.get('/api/images/portfolios');
 
-    console.log('IN LOADPORTFOLIOS', res.data);
-
     dispatch({ type: LOAD_PORTFOLIOS, payload: res.data });
     // dispatch({ type: GET_PORTFOLIO, payload: res.data[0] });
 
   } catch (err) {
-    dispatch({ type: PORTFOLIO_ERROR });
+    dispatch({ type: PORTFOLIO_ERROR, payload: err });
   }
 }
 

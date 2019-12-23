@@ -9,6 +9,7 @@ import Exhibitions from "../layout/exhibitions/Exhibitions";
 import Cart from '../layout/cart/Cart';
 import Register from '../auth/Register';
 import Login from '../auth/Login';
+import Checkout from '../layout/checkout/Checkout';
 // import Portfolios from '../layout/portfolios/Portfolios';
 // import PortfolioList from '../layout/portfolios/PortfoliosList';
 import AdminDashboard from '../admin/AdminDashboard';  
@@ -25,8 +26,8 @@ const Routes = () => {
         <Route exact path="/exhibitions" component={Exhibitions} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/shop/cart" component={Cart} />
-
+        <Route exact path="/shop/my-cart" component={Cart} />
+        <PrivateRoute exact path="/shop/checkout" component={Checkout} />
         {/* <Route exact path="/portfolios/:title">
           <Portfolios />
         </Route>

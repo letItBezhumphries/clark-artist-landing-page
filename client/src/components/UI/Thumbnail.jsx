@@ -3,9 +3,9 @@ import { withRouter } from 'react-router-dom';
 
 
 const Thumbnail = ({ image, clicked }) => {
-  const { imageUrl, description, title, price } = image;
-  // const details = description.split('/');
-  // const year = details[details.length -1];
+  const { imageUrl, description, year, title, price } = image;
+
+  
 
   return (
     <Fragment>
@@ -17,7 +17,7 @@ const Thumbnail = ({ image, clicked }) => {
         />
         <div className="thumbnail__img-details">
           <h2 className="thumbnail__img-title">
-            <strong>{title},</strong> <strong>2012</strong>
+            <strong>{title},</strong> <strong>{year}</strong>
           </h2>
           <h3 className="thumbnail__img-price">${price}</h3>
         </div>

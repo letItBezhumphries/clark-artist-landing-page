@@ -39,6 +39,14 @@
     font-size: 22px;
     color: black;
   }
+
+  &__out-of-stock {
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+  }
 }
 
 .meta-details {

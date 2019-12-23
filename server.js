@@ -3,6 +3,7 @@ require("dotenv").config();
 const connectDB = require("./database/index");
 const path = require("path");
 const bodyParser = require("body-parser");
+const stripe = require('stripe')(process.env.STRIPE_SK_TEST)
 // const multer = require('multer');
 const app = express();
 
@@ -29,6 +30,7 @@ connectDB();
 // }
 
 app.use(bodyParser.json());
+app.use(bodyParser.text());
 // app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('file'));
 app.use(express.json({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -48,7 +50,7 @@ app.use(express.static(path.join(__dirname, "./public/uploads")));
 //   );
 //   res.setHeader(
 //     "Access-Control-Allow-Headers",
-//     "Content-Type, x-auth-token"
+//     "Origin, x-auth-token, X-Requested-With, Content-Type, Accept"
 //   );
 //   next();
 // });
@@ -56,12 +58,14 @@ app.use(express.static(path.join(__dirname, "./public/uploads")));
 //Routes
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
-app.use('/api/images', require('./routes/api/store'));
+app.use("/api/images", require("./routes/api/store"));
 // app.use("/api/artwork", require("./routes/api/artwork"));
+
 app.use("/admin/upload", require("./routes/admin/uploads"));
 // app.use("/admin/inventory", require("./routes/admin/inventory"));
 
-app.use("/api/shop", require("./routes/api/account"));
+app.use("/api/shop/my-cart", require("./routes/api/cart"));
+app.use("/api/shop/my-account", require("./routes/api/account"));
 app.use("/api/shop/order", require("./routes/api/order"));
 
 

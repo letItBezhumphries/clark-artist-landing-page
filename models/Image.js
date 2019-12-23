@@ -24,7 +24,7 @@ const ImageSchema = new mongoose.Schema({
     type: Boolean
   }, 
   price: {
-    type: String,
+    type: Number,
     required: true
   },
   height: {
