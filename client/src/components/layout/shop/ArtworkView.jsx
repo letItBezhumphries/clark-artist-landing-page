@@ -1,21 +1,32 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, Redirect } from 'react-router-dom';
 import PropTypes from "prop-types";
-import { clearSelectedArtwork } from "../../../actions/store";
+import { clearSelectedArtwork, getSelectedArtwork } from "../../../actions/shop";
 import { addToCart } from "../../../actions/cart";
 import Spinner from '../../UI/Spinner';
 import transformNumToFormattedString from '../../../utils/transformNumToFormattedString';
 
-const SelectedArtView = ({ clearSelectedArtwork, addToCart, loading, image, history }) => {
-  console.log('in SelectedArtView', image);
+const ArtworkView = ({ getSelectedArtwork, clearSelectedArtwork, addToCart, shop, history, match }) => {
+  const { image, portfolio, loading } = shop;
+  const pathsArray = match.url.split('/');
+  const param = pathsArray[pathsArray.length - 1];
   const quantity = 1;
-  const price = "$" + transformNumToFormattedString(image.price);
+
+
+  useEffect(() => {
+    getSelectedArtwork(param);
+  }, []);
+  
+  let price;
+  if (image !== null) {
+    price = "$" + transformNumToFormattedString(image.price);
+  }
   
   return (
     <Fragment>
-      {loading && image !== null ? (
-        <Spinner />
+      { image === null ? (
+       <Redirect to={match.url} />
       ) : (
         <Fragment>
           <div className="shop">
@@ -23,7 +34,7 @@ const SelectedArtView = ({ clearSelectedArtwork, addToCart, loading, image, hist
               <span>Gallery</span>
             </h1>
             <Link
-              to="/shop/inventory"
+              to="/shop/artwork"
               style={{ textDecoration: "none" }}
               className="button button-green margin-left-bg u-margin-bottom-medium"
               onClick={() => clearSelectedArtwork()}
@@ -73,23 +84,29 @@ const SelectedArtView = ({ clearSelectedArtwork, addToCart, loading, image, hist
                 <div className="details-box__icons-list">
                   Facebook, Print, Email
                 </div>
+                <hr />
+                
               </div>
             </div>
           </div>
         </Fragment>
       )}
+
+      )}
+
     </Fragment>
   );
 }
 
-SelectedArtView.propTypes = {
+ArtworkView.propTypes = {
   clearSelectedArtwork: PropTypes.func.isRequired,
+  getSelectedArtwork: PropTypes.func.isRequired,
   addToCart: PropTypes.func.isRequired,
+  shop: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
-  image: state.store.image,
-  loading: state.store.loading
+  shop: state.shop
 });
 
-export default withRouter(connect(mapStateToProps, { clearSelectedArtwork, addToCart })(SelectedArtView));
+export default connect(mapStateToProps, { clearSelectedArtwork, getSelectedArtwork, addToCart })(withRouter(ArtworkView));
