@@ -1,98 +1,77 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Route, withRouter, Switch } from 'react-router-dom';
-import Spinner from '../../UI/Spinner';
+import { Route, Switch, useRouteMatch, useLocation } from 'react-router-dom';
 import FeaturedGallery from './FeaturedGallery';
-import { loadImages } from '../../../actions/admin';
-import { getSelectedArtwork } from '../../../actions/shop';
+import CollectionGallery from './CollectionGallery';
 import ArtworkView from './ArtworkView';
-
+import Search from './Search';
+import PortfolioSearchLinks from './PortfolioSearchLinks';
+import Cart from "../cart/Cart";
+import Checkout from '../checkout/Checkout';
+import { getSelectedArtwork, clearSelectedArtwork } from '../../../actions/shop';
+import Spinner from "../../UI/Spinner";
 
 const Shop = ({
-  admin, 
-  shop: { loading, images, image, searchBy, portfolio }, 
-  match,
-  getSelectedArtwork 
+  shop: { loading, image, search, related }
 }) => {
-
+  let location = useLocation();
+  let { path, url } = useRouteMatch();
   useEffect(() => {
-    loadImages();
+    clearSelectedArtwork();
+    // console.log("[Shop.jsx] useEffect:", search);
+    return () => {
+      console.log("[Shop.jsx] cleaning up");
+    };
   }, []);
 
-  const [selectedArt, setSelectedArt] = useState({
-    title: "",
-    fileName: "",
-    imageUrl: "",
-    description: "",
-    isGallery: false,
-    portfolio: "",
-    price: 0,
-    height: 0,
-    width: 0,
-    inStock: false,
-    selected: false
-  });
-
-  const artworkSelectedHandler = (id) => {
-    getSelectedArtwork(id, history);
-  };
-
-  const handleFormData = e => {
-    e.preventDefault();
-    console.log('e target', e.target.name)
-    setSelectedArt({
-      title: image.title,
-      imageUrl: image.imageUrl,
-      description: image.description,
-      portfolio: image.portfolio,
-      price: image.price,
-      height: image.height,
-      width: image.width,
-      inStock: image.inStock,
-      selected: image.selected
-    });
-  }
-  
-  let visibleComponent;
-
-  if (!loading && image) {
-    handleFormData(image._id)
-    visibleComponent = (<ArtworkView clicked={() => artworkSelectedHandler(image._id)} image={selectedArt} portfolio={portfolio}/>)
-  } else {
-    visibleComponent = (<FeaturedGallery image={selectedArt} images={images} />)
-  }
-
-
-
+  // let gallery;
+  // if (Array.isArray(search) && search.length > 0) {
+  //   gallery = <CollectionGallery />;
+  // } 
 
   return (
     <Fragment>
-      <section className="shop outer-container">
-        {loading ? (
-          <Spinner />
-        ) : (
-          <Fragment>{visibleComponent}</Fragment>
-        )}
-      </section>
+      { loading ? (
+        <Spinner />
+      ) : (
+        <section className="shop">
+          <h1 className="shop__heading">
+            <span>Inventory</span>
+          </h1>
+
+          {image === null && search.length === 0 && (
+            <Fragment>
+              <Search />
+              <PortfolioSearchLinks />
+            </Fragment>
+          )}
+
+          <Switch>
+            <Route path={"/shop/artwork/:id"} component={ArtworkView} />
+            <Route path={"/shop/collection/:title"} component={CollectionGallery} />
+            <Route path="/shop/my-cart/:id" component={Cart} />
+            <Route exact path="/shop/checkout" component={Checkout} />
+            <Route exact path="/shop/inventory" component={FeaturedGallery} />
+          </Switch>
+        </section>
+      )}
     </Fragment>
   );
 }
 
 Shop.propTypes = {
-  // auth: PropTypes.object.isRequired,
-  // account: PropTypes.object.isRequired,
-  // cart: PropTypes.object.isRequired,
-  loadImages: PropTypes.func.isRequired,
-  getSelectedArtwork: PropTypes.func.isRequired,
+  shop: PropTypes.object.isRequired,
+  images: PropTypes.array.isRequired,
+  clearSelectedArtwork: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
-  admin: state.admin,
   shop: state.shop,
-  auth: state.auth,
-  account: state.account,
-  cart: state.cart
+  images: state.admin.images
 });
 
-export default connect(mapStateToProps, { loadImages, getSelectedArtwork })(Shop);
+export default connect(mapStateToProps, { getSelectedArtwork, clearSelectedArtwork })(Shop);
+
+
+

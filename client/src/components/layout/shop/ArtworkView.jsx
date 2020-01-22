@@ -1,32 +1,40 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Link, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import PropTypes from "prop-types";
-import { clearSelectedArtwork, getSelectedArtwork } from "../../../actions/shop";
+import { clearSelectedArtwork, getSelectedArtwork, searchByPortfolio } from "../../../actions/shop";
 import { addToCart } from "../../../actions/cart";
+import RelatedArtworkList from './RelatedArtworkList';
 import Spinner from '../../UI/Spinner';
+
 import transformNumToFormattedString from '../../../utils/transformNumToFormattedString';
 
-const ArtworkView = ({ getSelectedArtwork, clearSelectedArtwork, addToCart, shop, history, match }) => {
-  const { image, portfolio, loading } = shop;
-  const pathsArray = match.url.split('/');
-  const param = pathsArray[pathsArray.length - 1];
-  const quantity = 1;
+const ArtworkView = ({ 
+  clearSelectedArtwork,
+  getSelectedArtwork, 
+  addToCart, 
+  image, 
+  loading, 
+  related, 
+  match }) => {
+  console.log('inside ArtworkView, params:', match.params.id);
+  
+  let history = useHistory();
+  // let price = transformNumToFormattedString(image.price);
+  let quantity = 0;
 
+  // console.log('inside ArtworkView in the function body, image :', image, "loading", loading);
 
   useEffect(() => {
-    getSelectedArtwork(param);
-  }, []);
-  
-  let price;
-  if (image !== null) {
-    price = "$" + transformNumToFormattedString(image.price);
-  }
-  
+    getSelectedArtwork(match.params.id);
+    return () => {
+      console.log('cleanup [ArtworkView.jsx] related:', related)};
+  }, [match.params.id]);
+
   return (
     <Fragment>
-      { image === null ? (
-       <Redirect to={match.url} />
+      {loading || image === null ? (
+        <Spinner />
       ) : (
         <Fragment>
           <div className="shop">
@@ -34,10 +42,10 @@ const ArtworkView = ({ getSelectedArtwork, clearSelectedArtwork, addToCart, shop
               <span>Gallery</span>
             </h1>
             <Link
-              to="/shop/artwork"
+              to="/shop/inventory"
               style={{ textDecoration: "none" }}
               className="button button-green margin-left-bg u-margin-bottom-medium"
-              onClick={() => clearSelectedArtwork()}
+              onClick={clearSelectedArtwork}
             >
               Back to Inventory
             </Link>
@@ -48,11 +56,14 @@ const ArtworkView = ({ getSelectedArtwork, clearSelectedArtwork, addToCart, shop
                 alt={image.title}
                 className="selected-artwork"
               />
+
               <div className="details-box margin-left-sm">
                 <h4 className="details-box__title">
                   {image.title}, <span>{image.year}</span>
                 </h4>
-                <span className="details-box__price">{price}</span>
+                <span className="details-box__price">
+                  $ {transformNumToFormattedString(image.price)}
+                </span>
                 <span className="details-box__medium">
                   oil on stretched linen
                 </span>
@@ -78,35 +89,31 @@ const ArtworkView = ({ getSelectedArtwork, clearSelectedArtwork, addToCart, shop
                   <div className="details-box__out-of-stock">Out</div>
                 )}
 
-                <div className="details-box__meta-details">
+                <p className="details-box__meta-details">
                   SKU: <span>{image._id}</span>
-                </div>
-                <div className="details-box__icons-list">
-                  Facebook, Print, Email
-                </div>
-                <hr />
-                
+                </p>
               </div>
             </div>
+            {related && <RelatedArtworkList />}
           </div>
         </Fragment>
       )}
-
-      )}
-
     </Fragment>
   );
 }
 
 ArtworkView.propTypes = {
-  clearSelectedArtwork: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  related: PropTypes.array.isRequired,
   getSelectedArtwork: PropTypes.func.isRequired,
   addToCart: PropTypes.func.isRequired,
-  shop: PropTypes.object.isRequired,
+  clearSelectedArtwork: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
-  shop: state.shop
+  image: state.shop.image,
+  related: state.shop.related,
+  loading: state.shop.loading,
 });
 
-export default connect(mapStateToProps, { clearSelectedArtwork, getSelectedArtwork, addToCart })(withRouter(ArtworkView));
+export default connect(mapStateToProps, { clearSelectedArtwork, getSelectedArtwork, addToCart })(ArtworkView);
