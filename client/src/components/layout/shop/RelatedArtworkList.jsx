@@ -12,12 +12,12 @@ const RelatedArtworkList = ({
   related,
   match
 }) => {
-  useEffect(() => {
-    console.log('[RelatedArtworkList.jsx] related :', related);
-    return () => {
-      console.log('[RelatedArtworkList.jsx] related:', related);
-    };
-  }, [related])
+  // useEffect(() => {
+  //   // console.log('[RelatedArtworkList.jsx] related :', related);
+  //   // return () => {
+  //   //   // console.log('[RelatedArtworkList.jsx] related:', related);
+  //   // };
+  // }, [related]);
 
   let relatedArtwork = related.map(image => (
     <Link

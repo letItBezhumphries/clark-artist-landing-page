@@ -17,11 +17,11 @@ const ArtworkView = ({
   loading, 
   related, 
   match }) => {
-  console.log('inside ArtworkView, params:', match.params.id);
+  // console.log('inside ArtworkView, params:', match.params.id);
   
   let history = useHistory();
   // let price = transformNumToFormattedString(image.price);
-  let quantity = 0;
+  let quantity = 1;
 
   // console.log('inside ArtworkView in the function body, image :', image, "loading", loading);
 

@@ -50,7 +50,7 @@ const Shop = ({
           <Switch>
             <Route path={"/shop/artwork/:id"} component={ArtworkView} />
             <Route path={"/shop/collection/:title"} component={CollectionGallery} />
-            <Route path="/shop/my-cart/:id" component={Cart} />
+            <Route path="/shop/my-cart" component={Cart} />
             <Route exact path="/shop/checkout" component={Checkout} />
             <Route exact path="/shop/inventory" component={FeaturedGallery} />
           </Switch>
