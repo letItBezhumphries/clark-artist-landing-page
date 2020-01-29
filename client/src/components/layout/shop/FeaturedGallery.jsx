@@ -18,10 +18,7 @@ const FeaturedGallery = ({
   let { path, url } = useRouteMatch();
 
   useEffect(() => {
-    console.log("[FeaturedGallery.jsx] useEffect");
-    return () => {
-      console.log("[FeaturedGallery.jsx] cleaning up");
-    };
+    window.scrollTo(0, 0);
   }, []);
 
   let gallery = images.map((image) => (

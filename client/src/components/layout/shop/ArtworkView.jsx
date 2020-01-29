@@ -26,10 +26,12 @@ const ArtworkView = ({
   // console.log('inside ArtworkView in the function body, image :', image, "loading", loading);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getSelectedArtwork(match.params.id);
-    return () => {
-      console.log('cleanup [ArtworkView.jsx] related:', related)};
-  }, [match.params.id]);
+    // return () => {
+    //   console.log('cleanup [ArtworkView.jsx] related:', related)
+    // };
+  }, [match.params.id, getSelectedArtwork]);
 
   return (
     <Fragment>
@@ -94,7 +96,7 @@ const ArtworkView = ({
                 </p>
               </div>
             </div>
-            {related && <RelatedArtworkList />}
+            { related && <RelatedArtworkList /> }
           </div>
         </Fragment>
       )}

@@ -15,20 +15,12 @@ import Spinner from "../../UI/Spinner";
 const Shop = ({
   shop: { loading, image, search, related }
 }) => {
-  let location = useLocation();
-  let { path, url } = useRouteMatch();
+
   useEffect(() => {
+    window.scrollTo(0, 0);
     clearSelectedArtwork();
-    // console.log("[Shop.jsx] useEffect:", search);
-    return () => {
-      console.log("[Shop.jsx] cleaning up");
-    };
   }, []);
 
-  // let gallery;
-  // if (Array.isArray(search) && search.length > 0) {
-  //   gallery = <CollectionGallery />;
-  // } 
 
   return (
     <Fragment>

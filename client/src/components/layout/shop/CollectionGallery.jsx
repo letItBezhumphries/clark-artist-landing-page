@@ -7,13 +7,12 @@ import Thumbnail from "../../UI/Thumbnail";
 
 
 const CollectionGallery = ({ search, loading, getSelectedArtwork, searchByPortfolio, match }) => {
-  let title = match.params.title.split("_").join(" ")
+  let title = match.params.title.split("_").join(" ");
+
   useEffect(() => {
+    window.scrollTo(0, 0);
     searchByPortfolio(match.params.title);
-    // console.log('inside [CollectionGallery.jsx] match, :', match.params.title);
-    return () => {
-      console.log('in [CollectionGallery.jsx] search:', search)};
-  }, [match.params.title, search]);
+  }, [match.params.title, searchByPortfolio]);
   
   let gallery = search.map((image) => (
     <Link
