@@ -30,4 +30,5 @@ dist/
 
 
 .env
-
+.env.dev
+.env.production

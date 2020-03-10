@@ -1,10 +1,13 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getRelatedArtwork, getSelectedArtwork } from "../../../actions/shop";
-import Thumbnail from "../../UI/Thumbnail";
+// import Thumbnail from "../../UI/Thumbnail";
+import ImageLink from '../../UI/ImageLink';
 import Spinner from "../../UI/Spinner";
+import Pagination from "../../UI/Pagination";
+
 
 const RelatedArtworkList = ({
   getSelectedArtwork,
@@ -12,38 +15,58 @@ const RelatedArtworkList = ({
   related,
   match
 }) => {
-  // useEffect(() => {
-  //   // console.log('[RelatedArtworkList.jsx] related :', related);
-  //   // return () => {
-  //   //   // console.log('[RelatedArtworkList.jsx] related:', related);
-  //   // };
-  // }, [related]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [artworkPerPage, setArtworkPerPage] = useState(4);
+
+  useEffect(() => {
+    console.log('in [RelatedArtworkList.jsx] artworkPerPage:', artworkPerPage);
+  }, []);
 
   let relatedArtwork = related.map(image => (
-    <Link
+    <li
       key={image._id}
-      to={`/shop/artwork/${image._id}`}
-      style={{ textDecoration: "none" }}
-      className="related-artwork-list__item"
-      onClick={() => getSelectedArtwork(image._id, history)}
+      image={image}
+      style={{ listStyle: "none", padding: "0 0", margin: "0 0" }}
+      className="related-artwork__listitem list-group-item border-white"
     >
-      <Thumbnail
-        key={image.title}
+      <ImageLink
         image={image}
-        title={image.title}
-        imageUrl={image.imageUrl}
-        price={image.price}
-        year={image.year}
+        to={`/shop/artwork/${image._id}`}
+        clicked={() => getSelectedArtwork(image._id)}
+        type="related"
+        classType="related-artwork__item"
       />
-    </Link>
+    </li>
   ));
+
+
+  const indexOfLastArtwork = currentPage * artworkPerPage;
+  const indexOfFirstArtwork = indexOfLastArtwork - artworkPerPage;
+  const currentArtwork = relatedArtwork.slice(indexOfFirstArtwork, indexOfLastArtwork);
+  currentArtwork.map((img) => {
+    if(img.width > 700) { 
+      setArtworkPerPage(artworkPerPage - 1) 
+    }
+  });
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return loading || related === undefined ? (
     <Spinner />
   ) : (
     <Fragment>
-      <h2 className="shop__search-heading" style={{ marginTop: '10rem', marginBottom: '2rem' }}>Other Artwork Available</h2>
-      <div className="related-artwork-list">{relatedArtwork}</div>
+      <h4
+        className="shop__search-heading"
+        style={{ marginTop: "1.5rem", marginBottom: "3.4rem" }}
+      >
+        Other Artwork Available
+      </h4>
+      <ul className="related-artwork-list row card-deck border-white">{currentArtwork}</ul>
+      <Pagination
+        artworkPerPage={artworkPerPage}
+        totalArtwork={relatedArtwork.length}
+        paginate={paginate}
+      />
     </Fragment>
   );
 };

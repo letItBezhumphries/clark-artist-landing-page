@@ -8,6 +8,7 @@
 
 @import "layout/navbar";
 
+@import "admin/adminDashboard";
 @import "admin/addImageForm";
 @import "admin/addPortfolioForm";
 @import "admin/fileUpload";
@@ -20,11 +21,19 @@
 @import "components/portfolios";
 @import "components/portfoliosList";
 @import "components/shop";
-@import "components/selectedArtwork";
+@import "components/artworkView";
+@import "components/relatedArtworkList";
 @import "components/exhibitions";
 @import "components/cart";
+@import "components/checkoutForm";
 
 @import "components/UI/imageCard";
 @import "components/UI/spinner";
 @import "components/UI/thumbnail";
 @import "components/UI/button";
+@import "components/UI/pagination";
+@import "components/UI/iconList";
+@import "components/UI/header";
+@import "components/UI/modal";
+@import "components/UI/backdrop";
+

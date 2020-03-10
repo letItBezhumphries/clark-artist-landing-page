@@ -8,6 +8,7 @@ const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/User');
 const auth = require('../../middleware/auth');
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 
 

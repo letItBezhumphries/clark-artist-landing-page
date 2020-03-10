@@ -4,28 +4,39 @@ const AdminDashboard = (props) => {
   console.log('in ADMINDASHBOARD', props);
   return (
     <Fragment>
-      <h2>Welcome Administrator!</h2>
-      <h4>What would you like to do today?</h4>
+      <section className="admin-dashboard">
+        <div className="admin-dashboard__heading-box">
+          <h2 className="admin-dashboard__primary u-center-text">
+            Welcome Administrator!
+          </h2>
+          <h4 className="admin-dashboard__primary-sub">
+            What would you like to do today?
+          </h4>
+        </div>
 
-      <div className="admin__options-select">
-        <select>
-          <option>Portfolios</option>
-          <option>Images</option>
-        </select>
-      </div>
+        <div className="admin-dashboard__content">
+          <div className="adminboard__view-options-select">
+            <select>
+              <option>Portfolios</option>
+              <option>Artwork</option>
+              <option>Coupons</option>
+            </select>
+          </div>
 
-      <div className="admin-actions-group">
-        <button className="admin-actions-group__btn btn">
-          Add Artwork to shop
-        </button>
+          <div className="admin-actions-group">
+            <button className="admin-actions-group__btn btn">
+              Add Artwork to shop
+            </button>
 
-        <button className="admin-actions-group__btn btn">
-          Edit Artwork in shop
-        </button>
-        <button className="admin-actions-group__btn btn">
-          Remove Artwork from shop
-        </button>
-      </div>
+            <button className="admin-actions-group__btn btn">
+              Edit Artwork in shop
+            </button>
+            <button className="admin-actions-group__btn btn">
+              Remove Artwork from shop
+            </button>
+          </div>
+        </div>
+      </section>
     </Fragment>
   );
 }

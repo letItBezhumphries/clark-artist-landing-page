@@ -21,7 +21,7 @@ router.get("/", auth, async (req, res) => {
     const account = await Account.findOne({ user: req.user.id });
     const user = await User.findById(req.user.id);
     if (!account && user) {
-      const newAcct = new Account({ user: req.user.id, cart: { items: [], total: 0 } });
+      const newAcct = new Account({ user: req.user.id, cart: { items: [], total: 0, itemsCount: 0 } });
       await newAcct.save();
       return res.status(200).json(newAcct);
     }
@@ -178,7 +178,7 @@ router.delete("/delete-card/:cardId", auth, async (req, res) => {
 // @desc     Add an address to the account
 // @access   Private
 router.put(
-  "/add-address",
+  "/address",
   [
     auth,
     [
@@ -201,7 +201,7 @@ router.put(
       check("telephone", "country is required")
         .not()
         .isEmpty(),
-      check("shipping_address", "shipping address is required")
+      check("current", "shipping address is required")
         .isBoolean()
     ]
   ],
@@ -220,7 +220,7 @@ router.put(
       zip,
       country,
       telephone,
-      shipping_address
+      current
     } = req.body;
 
     const newAddress = {
@@ -231,7 +231,7 @@ router.put(
       zip,
       country,
       telephone,
-      shipping_address
+      current
     };
 
     try {

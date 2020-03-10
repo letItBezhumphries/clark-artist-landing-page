@@ -1,41 +1,39 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import Alert from '../UI/Alert';
 import PrivateRoute from './PrivateRoute';
+import AdminRoute from "./AdminRoute";
 import Story from '../layout/story/Story';
 import Shop from '../layout/shop/Shop';
-import SelectedArtView from '../layout/shop/SelectedArtView';
+import CollectionGallery from '../layout/shop/CollectionGallery';
 import Exhibitions from "../layout/exhibitions/Exhibitions";
 import Cart from '../layout/cart/Cart';
 import Register from '../auth/Register';
 import Login from '../auth/Login';
 import Checkout from '../layout/checkout/Checkout';
-// import Portfolios from '../layout/portfolios/Portfolios';
-// import PortfolioList from '../layout/portfolios/PortfoliosList';
 import AdminDashboard from '../admin/AdminDashboard';  
+import ArtworkView from '../layout/shop/ArtworkView';
+import PaymentSuccess from '../../components/layout/checkout/PaymentSuccess';
 
 const Routes = () => {
+  let history = useHistory();
   return (
-    <section className="container">
+    <div className="container">
       <Alert />
       <Switch>
-        <PrivateRoute exact path="/admin/upload" component={AdminDashboard} />
+        <AdminRoute exact path="/admin/upload" component={AdminDashboard} />
+        <PrivateRoute exact path="/checkout" component={Checkout} />
+        <PrivateRoute exact path="/payment-success" component={PaymentSuccess} />
         <Route exact path="/story" component={Story} />
-        <Route exact path="/shop/artwork/:id" component={SelectedArtView} />
         <Route exact path="/shop/inventory" component={Shop} />
+        <Route exact path="/shop/artwork/:id" component={ArtworkView} />
+        <Route exact path="/shop/collection/:title" component={CollectionGallery} />
         <Route exact path="/exhibitions" component={Exhibitions} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/shop/my-cart" component={Cart} />
-        <PrivateRoute exact path="/shop/checkout" component={Checkout} />
-        {/* <Route exact path="/portfolios/:title">
-          <Portfolios />
-        </Route>
-        <Route exact path="/portfolios">
-          <PortfolioList portfolios={loadPortfolios()} />
-        </Route> */}
       </Switch>
-    </section>
+    </div>
   );
 }
 

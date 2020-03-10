@@ -1,5 +1,3 @@
-import { PAYMENT_SERVER_URL, CURRENCY, STRIPE_PUBLISHABLE } from '../utils/stripeConstants';
-import axios from 'axios';
 import { setAlert } from './alert';
 
 
@@ -18,20 +16,25 @@ export const processPayment = data => dispatch => {
   }
 }
 
-export const successPayment = data => {
-  alert('Payment Successful');
-}
 
-export const errorPayment = data => {
-  alert('Payment Error');
-}
+export const useDynamicFontSize = () => {
+  const [fontSize, setFontSize] = useState(
+    window.innerWidth < 450 ? "14px" : "18px"
+  );
 
-export const onToken = (totalAmt, items, description) => token => 
-  axios.post(PAYMENT_SERVER_URL, {
-        description,
-        source: token.id,
-        currency: CURRENCY,
-        amount: totalAmt * 100
-      })
-  .then(successPayment)
-  .catch(errorPayment);
+  useEffect(() => {
+    const onResize = () => {
+      setFontSize(window.innerWidth < 450 ? "14px" : "18px");
+    };
+
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+
+  return fontSize;
+};
+
+

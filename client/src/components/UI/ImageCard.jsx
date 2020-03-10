@@ -1,14 +1,17 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { searchByPortfolio } from '../../actions/shop';
 
-const ImageCard = (props) => {
+const ImageCard = ({ searchByPortfolio, ...props }) => {
   const { cardType } = props;
   const portfolioTitle = props.title.split("_").join(" ");
+  
 
   const dimension = cardType === "portfolioCard" ? '25rem': '16.95';
 
   return (
-    <div className="imageCard">
+    <div className="imageCard" onClick={() => searchByPortfolio(props.title)}>
       <img
         style={{ height: dimension, width: dimension, zIndex: 'inherit' }}
         src={props.image.imageUrl}
@@ -20,5 +23,8 @@ const ImageCard = (props) => {
   );
 }
 
+ImageCard.propTypes = {
+  searchByPortfolio: PropTypes.func.isRequired,
+}
 
-export default withRouter(ImageCard);
+export default connect(null, {searchByPortfolio})(ImageCard);

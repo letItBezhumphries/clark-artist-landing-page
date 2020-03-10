@@ -31,6 +31,40 @@
 }
 
 
+.check-login-form {
+  background-color: violet;
+
+  &__entrance-text {
+    background-color: wheat;
+  }
+
+}
+
+.form-row {
+  background-color: #3b5998;
+  &__col-1 {
+    background-color: #c4302b;
+  }
+
+  &__col-2 {
+    background-color: #888;
+  }
+
+  &__col-1-of-1 {
+    background-color: #38a1f3;
+  }
+
+  &__label-for-checkbox {
+    background-color: green;
+  }
+}
+
+.btn-lost-password {
+  background-color: black;
+  color: white;
+}
+
+
 .form .form-group {
   margin: 1.2rem 0;
 }

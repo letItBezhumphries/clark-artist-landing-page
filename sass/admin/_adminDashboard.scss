@@ -1,0 +1,33 @@
+.admin-dashboard {
+  grid-row: 2 / -1;
+  grid-column: 1 / -1;
+  margin: 5rem 5rem;
+
+
+  &__heading-box {
+    padding: 2rem 2rem;
+    margin-bottom: 6rem;
+  }
+
+
+  &__primary {
+    // background-color: pink;
+    color: var(--color-dark-blue-primary);
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: .8rem;
+    margin-bottom: 4rem;
+
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+  }
+
+  &__primary-sub {
+    background-color: purple;
+    animation: moveInRight 1s ease-out;
+  }
+
+
+}

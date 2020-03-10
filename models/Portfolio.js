@@ -33,8 +33,11 @@ const PortfolioSchema = new mongoose.Schema({
         type: Boolean
       },
       price: {
-        type: String,
+        type: Number,
         required: true
+      },
+      year: {
+        type: Number,
       },
       height: {
         type: Number
@@ -49,4 +52,4 @@ const PortfolioSchema = new mongoose.Schema({
   ]
 });
 
-module.exports = Portfolio = mongoose.model("Portfolio", PortfolioSchema);
+module.exports = Portfolio = mongoose.model("portfolio", PortfolioSchema);

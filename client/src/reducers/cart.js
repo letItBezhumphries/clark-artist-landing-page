@@ -14,11 +14,12 @@ import {
 const initialState = {
   items: [],
   total: 0,
+  itemsCount: 0,
   discount: 0,
   coupon: null,
   loading: true,
-  added: false,
-  removed: false,
+  added: null,
+  removed: null,
   error: {}
 };
 
@@ -27,58 +28,66 @@ export default function(state = initialState, action) {
 
   switch (type) {
     case LOAD_CART:
+      // console.log('in loadCart() reducer payload:', payload);
       return {
         ...state,
         items: payload.items,
+        itemsCount: payload.itemsCount,
         total: payload.total,
         loading: false,
-        added: false,
-        removed: false
-      }
+      };
     case ADD_TO_CART_SUCCESS:
-      console.log('in addToCart reducer', payload); 
+      let { item, cart } = payload;
+      console.log('in addToCart() Reducer, cart.items:', cart.items);
       return {
         ...state,
-        items: [{...payload}, ...state.items],
-        total: state.total + payload.price,
+        items: [...cart.items],
+        total: cart.total,
+        itemsCount: cart.itemsCount,
         loading: false,
-        added: true,
-        removed: false
+        added: item,
+        removed: null
       };
     case REMOVE_FROM_CART_SUCCESS:
+      console.log("in removeFromCart reducer, payload:", payload);
+      let newCart = payload.cart;
+      let removedItem = payload.item;
       return {
         ...state,
-        items: state.items.filter(item => item.itemId !== payload._id),
-        total: state.total - payload.price,
+        items: [...newCart.items],
+        total: newCart.total,
+        itemsCount: newCart.itemsCount,
         loading: false,
-        added: false,
-        removed: true
+        added: null,
+        removed: removedItem
       };
-    case CLEAR_CART: 
+    case CLEAR_CART:
       return {
         ...state,
         items: [],
         total: 0,
+        itemsCount: 0,
         loading: false,
-        added: false,
-        removed: false
+        added: null,
+        removed: null
       };
-    case APPLY_DISCOUNT_SUCCESS:
-      return {
-        ...state,
-        total: state.total - discount,
-        loading: false
-      };
+    // case APPLY_DISCOUNT_SUCCESS:
+    //   return {
+    //     ...state,
+    //     total: state.total - discount,
+    //     loading: false
+    //   };
     case ADD_TO_CART_FAIL:
-    case APPLY_DISCOUNT_FAIL:
+    // case APPLY_DISCOUNT_FAIL:
     case REMOVE_FROM_CART_FAIL:
-    case CART_ERROR: 
+    case CART_ERROR:
+      console.log('cart error reducer:', payload);
       return {
         ...state,
         loading: false,
         error: payload
       };
-    default: 
+    default:
       return state;
   }
 };

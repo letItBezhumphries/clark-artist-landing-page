@@ -19,13 +19,9 @@ import {
 export const loadGallery = () => async dispatch => {
   try {
     const res = await axios.get('/api/images/gallery');
-    // const portfolios = await axios.get('/portfolios');
-    // const images = await axios.get('/images');
    
-
     dispatch({ type: LOAD_GALLERY, payload: res.data });
     
-
   } catch (err) {
     dispatch({ type: REQUEST_ERROR });
   }
@@ -33,9 +29,9 @@ export const loadGallery = () => async dispatch => {
 
 export const loadImages = () => async dispatch => {
   try {
-    const res = await axios.get('/api/images/store');
+    const res = await axios.get('/api/images/shop');
 
-    console.log('loadImages in admin.js', res.data);
+    // console.log('loadImages in admin.js', res.data);
 
     dispatch({ type: LOAD_IMAGES, payload: res.data });
 
@@ -43,6 +39,18 @@ export const loadImages = () => async dispatch => {
     dispatch({ type: REQUEST_ERROR });
   }
 }
+
+
+export const loadPortfolios = () => async dispatch => {
+  try {
+    const res = await axios.get("/api/images/portfolios");
+
+    dispatch({ type: LOAD_PORTFOLIOS, payload: res.data });
+    // dispatch({ type: GET_PORTFOLIO, payload: res.data[0] });
+  } catch (err) {
+    dispatch({ type: PORTFOLIO_ERROR, payload: err });
+  }
+};
 
 
 
@@ -151,3 +159,46 @@ export const addPortfolio = ({ title, description }) => async dispatch => {
 
 
 //export const deleteImage, deleteStore, deletePortfolio, deleteImages, deleteGallery, 
+// Creates a collection of Stripe Products and SKUs to use in your storefront
+export const createStoreProducts = (products) => async dispatch => {
+  try {
+    const config = { 
+      headers: {
+        'Content-Type': 'application/json'
+      } 
+    }
+    
+    const body = JSON.stringify({ products });
+    
+    const res = await axios.post("/api/stripe/products", config, body);
+
+      // products.map(async product => {
+      //   const stripeProduct = await stripe.products.create({
+      //     id: product.id,
+      //     name: product.name,
+      //     type: "good",
+      //     attributes: Object.keys(product.attributes),
+      //     metadata: product.metadata
+      //   });
+
+      //   const stripeSku = await stripe.skus.create({
+      //     product: stripeProduct.id,
+      //     price: product.price,
+      //     currency: config.currency,
+      //     attributes: product.attributes,
+      //     inventory: { type: "infinite" }
+      //   });
+
+      //   return { stripeProduct, stripeSku };
+      // })
+
+
+    // console.log(
+    //   `🛍️  Successfully created ${stripeProducts.length} products on your Stripe account.`
+    // );
+  } catch (error) {
+    console.log(`⚠️  Error: ${error.message}`);
+  }
+};
+
+

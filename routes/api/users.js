@@ -58,13 +58,7 @@ router.post('/', [
           isAdmin: false
         })
       }
-        //create new instance of User model
-        // user = new User({
-        //   name,
-        //   email,
-        //   password,
-        //   isAdmin
-        // });
+
 
       //ecrypt password
       const salt = await bcrypt.genSalt(10);
@@ -77,7 +71,8 @@ router.post('/', [
       //build a basic cart obj
       const cart = {
         items: [],
-        total: 0
+        total: 0,
+        itemsCount: 0
       }
 
       const account = new Account({
@@ -87,10 +82,12 @@ router.post('/', [
 
       await account.save();
 
+      //could add the cart to the token
       const payload = {
         user: {
           id: user.id,
-          isAdmin: user.isAdmin
+          isAdmin: user.isAdmin,
+          // cart: cart
         }
       };
 

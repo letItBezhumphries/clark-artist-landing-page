@@ -1,0 +1,41 @@
+
+.container--pagination {
+  width: 100%;
+  // padding: 1rem 0;
+  background-color: wheat;
+}
+
+
+// .pagination {
+//   background-color: yellow;
+//   // @include absCenter();
+// }
+
+.pagination-lg {
+  background-color: violet;
+  // @include absCenter();
+  margin: 2rem 20rem;
+  display: flex;
+  width: 100%;
+  height: auto;
+}
+
+// .page-item {
+//   @include absCenter();
+// }
+
+// .page-ctrl-item {
+//   background-color: olivedrab;
+// }
+
+.page-link {
+// @include absCenter();
+  // background-color: green;
+  height: 5rem;
+  width: 5rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}

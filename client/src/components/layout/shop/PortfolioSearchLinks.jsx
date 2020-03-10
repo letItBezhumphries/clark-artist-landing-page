@@ -8,16 +8,24 @@ import { searchByPortfolio } from '../../../actions/shop';
 const PorfolioSearchLinks = ({ portfolios, searchByPortfolio }) => {
   let history = useHistory();
 
-  let portfolioList = portfolios.map(portfolio => 
-    <Link to={`/shop/collection/${portfolio.title}`} key={portfolio.title} onClick={() => searchByPortfolio(portfolio, portfolio.images[0]._id)}>
-      <ImageCard portfolio={portfolio} 
-                title={portfolio.title}
-                image={portfolio.images[0]}
-                cardType="portfolioCard"
-                /></Link>);
+  let portfolioList = portfolios.map(portfolio => (
+    <Link
+      to={`/shop/collection/${portfolio.title}`}
+      key={portfolio.title}
+      onClick={() => searchByPortfolio(portfolio, portfolio.images[0]._id)}
+      style={{ textDecoration: "none" }}
+    >
+      <ImageCard
+        portfolio={portfolio}
+        title={portfolio.title}
+        image={portfolio.images[0]}
+        cardType="portfolioCard"
+      />
+    </Link>
+  ));
   return (
     <Fragment>
-      <h2 className="shop__search-heading" style={{ marginTop: '10rem', marginBottom: '2rem' }}>FEATURED COLLECTIONS</h2>
+      <h2 className="shop__search-heading" style={{ marginTop: '8rem', marginBottom: '2rem' }}>FEATURED COLLECTIONS</h2>
       <div className="portfolioLinks-row">{portfolioList}</div>
     </Fragment>
   );

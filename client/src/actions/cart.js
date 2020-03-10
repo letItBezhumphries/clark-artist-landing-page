@@ -9,6 +9,7 @@ import {
   REMOVE_FROM_CART_SUCCESS,
   ADD_TO_CART_FAIL,
   ADD_TO_CART_SUCCESS,
+  UPDATE_CART,
 } from "./types";
 
 
@@ -23,12 +24,10 @@ export const loadCart = () => async dispatch => {
   }
 }
 
-
-
 export const clearCart = () => async dispatch => {
   try {
     const res = await axios.delete('api/shop/my-cart');
-    dispatch({ type: CLEAR_CART });
+    dispatch({ type: CLEAR_CART, payload: res.data });
   } catch (err) {
     dispatch({ type: CART_ERROR, payload: err});
   }
@@ -47,10 +46,11 @@ export const addToCart = (id, quantity, history) => async dispatch => {
 
     const res = await axios.post(`/api/shop/my-cart/${id}`, body, config);
 
-    console.log("addToCart action", res.data);
+    // console.log("action addToCart response from server:", res.data);
 
     dispatch({ type: ADD_TO_CART_SUCCESS, payload: res.data });
-    history.push(`/shop/my-cart`);
+    
+    // history.push(`/shop/my-cart`);
   
   } catch (err) {
     dispatch({ type: ADD_TO_CART_FAIL, payload: err });
@@ -60,18 +60,29 @@ export const addToCart = (id, quantity, history) => async dispatch => {
 
 
 
-export const removeFromCart = (id, history) => async dispatch => {
+export const removeFromCart = (id, quantity, history) => async dispatch => {
   try {
-    const res = await axios.delete( `/api/shop/my-cart/${id}`);
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
 
-    console.log('remove from cart action', res.data);
+    const body = JSON.stringify({ quantity: quantity });
+
+    const res = await axios.delete(`/api/shop/my-cart/${id}`, body, config);
+
+    console.log("removeFromCart action to api/shop/my-cart, res.data:", res.data);
 
     dispatch({ type: REMOVE_FROM_CART_SUCCESS, payload: res.data });
-    history.push('/shop/my-cart');
+    
+    // history.push("/shop/my-cart");
 
   } catch (err) {
-
+    
     dispatch({ type: REMOVE_FROM_CART_FAIL, payload: err });
-
   }
 };
+
+
+

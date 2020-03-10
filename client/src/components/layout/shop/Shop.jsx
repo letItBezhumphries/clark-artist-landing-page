@@ -11,6 +11,7 @@ import Cart from "../cart/Cart";
 import Checkout from '../checkout/Checkout';
 import { getSelectedArtwork, clearSelectedArtwork } from '../../../actions/shop';
 import Spinner from "../../UI/Spinner";
+import PrivateRoute from '../../routing/PrivateRoute';
 
 const Shop = ({
   shop: { loading, image, search, related }
@@ -18,34 +19,34 @@ const Shop = ({
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    clearSelectedArtwork();
+    clearSelectedArtwork();    
   }, []);
 
-
+  
   return (
     <Fragment>
-      { loading ? (
+      {loading ? (
         <Spinner />
       ) : (
         <section className="shop">
-          <h1 className="shop__heading">
-            <span>Inventory</span>
-          </h1>
+            <h1 className="shop__heading">
+              <span>Inventory</span>
+            </h1>
 
-          {image === null && search.length === 0 && (
-            <Fragment>
-              <Search />
-              <PortfolioSearchLinks />
-            </Fragment>
-          )}
+            {image === null && search.length === 0 && (
+              <Fragment>
+                <Search />
+                <PortfolioSearchLinks />
+              </Fragment>
+            )}
 
-          <Switch>
-            <Route path={"/shop/artwork/:id"} component={ArtworkView} />
-            <Route path={"/shop/collection/:title"} component={CollectionGallery} />
-            <Route path="/shop/my-cart" component={Cart} />
-            <Route exact path="/shop/checkout" component={Checkout} />
-            <Route exact path="/shop/inventory" component={FeaturedGallery} />
-          </Switch>
+            <Switch>
+              <PrivateRoute exact path="/checkout" component={Checkout}/>
+              <Route path={"/shop/artwork/:id"} component={ArtworkView} />
+              <Route path={"/shop/collection/:title"} component={CollectionGallery}/>
+              <Route path="/shop/my-cart" component={Cart} />
+              <Route exact path="/shop/inventory" component={FeaturedGallery} />
+            </Switch>
         </section>
       )}
     </Fragment>

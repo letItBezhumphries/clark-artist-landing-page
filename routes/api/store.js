@@ -57,11 +57,11 @@ const upload = multer({ storage });
 
 // @route GET api/images/gallery
 // @desc get all Images for image carousel and landing
+// @access Public
 router.get("/gallery", async (req, res) => {
   try {
     const galleryList = await Image.find({ isGallery: true })
-    
-    console.log("List of Gallery images:", galleryList);
+    // console.log("List of Gallery images:", galleryList);
 
     res.status(200).json(galleryList);
   } catch (err) {
@@ -73,10 +73,11 @@ router.get("/gallery", async (req, res) => {
 
 // @route GET api/images/portfolios/:title
 // @desc get a portfolio by title
+// @access Public
 router.get('/portfolios/:title', async (req, res) => {
   try {
-    const portfolio = await Portfolio.find({ title: req.params.title });
-    console.log('portfolio', portfolio);
+    const portfolio = await Portfolio.find({ title: req.params.title }).select('-description');
+    // console.log('portfolio', portfolio);
     res.status(200).json(portfolio);
 
   } catch (err) {
@@ -88,6 +89,7 @@ router.get('/portfolios/:title', async (req, res) => {
 
 // @route GET api/images/portfolios
 // @desc get all portfolios
+// @access Public
 router.get('/portfolios', async (req, res) => {
   try {
     const portfolios = await Portfolio.find();
@@ -98,10 +100,9 @@ router.get('/portfolios', async (req, res) => {
   }
 })
 
-
-
-// // @route GET api/images/image/:filename
-// // @desc Display Image
+// @route GET api/images/image/:filename
+// @desc Display Image
+// @access Private admin 
 router.get("/image/:filename", async (req, res) => {
   try {
     await gfs.files.findOne(
@@ -137,12 +138,13 @@ router.get("/image/:filename", async (req, res) => {
 
 
 
-//need to change this to /api/images/shop
-// @route GET /api/images/store
-// @desc Display all images in JSON
-router.get("/store", async (req, res) => {
+// @route GET /api/images/shop
+// @desc get json data for all images available
+// @access Public
+router.get("/shop", async (req, res) => {
   try {
     const images = await Image.find();
+    // console.log("shop getImages", images);
     res.status(200).json(images);
   } catch (err) {
     console.error(err.message);
@@ -150,35 +152,87 @@ router.get("/store", async (req, res) => {
   }
 });
 
-//need to change this to /api/images/shop/artwork/:id
-// @route GET /api/images/store/artwork/:id
-// @desc Display an image in JSON
-router.get("/store/artwork/:id", async (req, res) => {
+
+
+// @route GET /api/images/shop/artwork/:id
+// @desc gets json data for single image by id
+// @access public
+router.get("/shop/artwork/:id", async (req, res) => {
   try {
-    const selectedImage = await Image.find({ _id: req.params.id });
-    console.log('shop selected image', selectedImage);
+    const selectedImage = await Image.findOne({ _id: req.params.id }).select('-isGallery');
+
+    console.log('selected image', 'getSelectedImage is being hit', selectedImage);
     res.status(200).json(selectedImage);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
   }
-})
+});
+
+
+// @route GET /api/images/shop/artwork/:?title   ??? forget what to put here for a search term
+// @desc gets single image data by search title
+// @access public
+router.get("/shop/artwork/s/:title", async (req, res) => {
+  try {
+    const searchedImage = await Image.findOne({ title: req.params.title }).select('-isGallery');
+
+    console.log("shop search results image", searchedImage);
+    res.status(200).json(searchedImage);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
 
 
 
-//get a saved cart
+// @route GET /api/images/shop/artwork/s/:portfolio
+// @desc gets all images/artwork from search by portfolio title received in param
+// @access public
+router.get("/shop/artwork/s/:portfolio", async (req, res) => {
+  try {
+    console.log('inside routes/api/store.js, params:', req.params.portfolio);
+    const images = await Image.find({ portfolio: req.params.portfolio });
+
+    console.log('shop selected image', images);
+    res.status(200).json(images);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
 
 
+// @route GET /api/images/shop/artwork/:type eg photograph, painting, montage, aerial
+// @desc gets all images/artwork from search by the medium type
+// @access public
+// router.get("/shop/artwork/s/:type", async (req, res) => {
+//   try {
+//     const selectedType = await Image.find({ medium: req.params.type });
 
-//clear cart
+//     console.log("shop selected image", selectedType);
+//     res.status(200).json(selectedType);
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send("Server error");
+//   }
+// });
 
-//get orders
 
-//get order by id
+// @route GET /api/images/shop/artwork/:price  set up for a range search
+// @desc gets all images/artwork from search by price range
+// @access public
+router.get("/shop/artwork/s/:price", async (req, res) => {
+  try {
+    const selectedPrice = await Image.find({ price: req.params.price });
 
-//create a new order from cart
-
-
-
+    console.log("shop selected image", selectedPrice);
+    res.status(200).json(selectedPrice);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
 
 module.exports = router;

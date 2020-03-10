@@ -7,6 +7,7 @@ const multer = require("multer");
 const mongoose = require("mongoose");
 const GridFsStorage = require("multer-gridfs-storage");
 const Grid = require("gridfs-stream");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // models
 const Image = require("../.././models/Image");
@@ -57,7 +58,17 @@ const upload = multer({ storage });
 // @desc Uploads image file to db
 router.post("/image", [upload.single("file"), auth], async (req, res) => {
   try {
-    const { title, description, portfolio, isGallery } = req.body;
+    const {
+      title,
+      description,
+      portfolio,
+      isGallery,
+      year,
+      price,
+      height,
+      width,
+      inStock
+    } = req.body;
     const image = req.file;
     if (!image) {
       console.log("THERE WAS NO IMAGE SELECTED");
@@ -72,8 +83,17 @@ router.post("/image", [upload.single("file"), auth], async (req, res) => {
       imageUrl: imageUrl,
       description: description,
       portfolio: portfolio,
-      isGallery: isGallery
+      isGallery: isGallery,
+      year: year,
+      price: price,
+      height: height,
+      width: width,
+      inStock: inStock
     });
+
+    
+
+    console.log("in creating new artwork, [uploads.js] product:", product);
 
     await newImage
       .save()
@@ -112,7 +132,6 @@ router.post("/image", [upload.single("file"), auth], async (req, res) => {
 //   });
 // });
 
-
 // @route POST /upload/portfolio
 // @desc creates a Portfolio collection
 router.post("/portfolio", auth, async (req, res) => {
@@ -133,7 +152,9 @@ router.post("/portfolio", auth, async (req, res) => {
     .save()
     .then(response => {
       console.log("this is the new portfolio", response);
-      res.status(201).json({ msg: "Successfully created a new portfolio", data: response });
+      res
+        .status(201)
+        .json({ msg: "Successfully created a new portfolio", data: response });
     })
     .catch(err => {
       console.error(err.message);
@@ -141,13 +162,23 @@ router.post("/portfolio", auth, async (req, res) => {
     });
 });
 
-
-
 // @route PUT admin/upload/image/:filename
 // @desc updates an Image by filename
 router.put("/image/:filename", auth, async (req, res) => {
   try {
-    const { title, imageUrl, fileName, description, portfolio, isGallery } = req.body;
+    const {
+      title,
+      imageUrl,
+      fileName,
+      description,
+      portfolio,
+      isGallery,
+      year,
+      price,
+      height,
+      width,
+      inStock
+    } = req.body;
 
     await Image.findOne({ fileName: req.params.filename })
       .then(image => {
@@ -157,42 +188,53 @@ router.put("/image/:filename", auth, async (req, res) => {
         image.description = description;
         image.portfolio = portfolio;
         image.isGallery = isGallery;
+        image.year = year;
+        image.price = price;
+        image.height = height;
+        image.width = width;
+        image.inStock = inStock;
+
         return image.save();
       })
       .then(result => {
-        res.status(202).json({ msg: 'You have successfully updated your image!', image: result });
+        res
+          .status(202)
+          .json({
+            msg: "You have successfully updated your image!",
+            image: result
+          });
       })
-      .catch(error => console.log(error))
-    
+      .catch(error => console.log(error));
   } catch (err) {
     res.status(500).send("Server error");
   }
 });
 
-
 // @route PUT admin/upload/portfolio/:title
-// @desc updates details for a Portfolio
+// @desc updates description for a Portfolio
 router.put("/portfolio/:title", auth, async (req, res) => {
   const { description } = req.body;
 
+  const images = Image.find({ portfolio: req.params.title });
+
   try {
     await Portfolio.findOne({ title: req.params.title })
-      .then(updatedProfile => {
-        updatedProfile.description = description;
-        return updatedProfile.save();
+      .then(updatedPortfolio => {
+        updatedPortfolio.description = description;
+        updatedPortfolio.images = images;
+        return updatedPortfolio.save();
       })
       .then(result => {
         res.status(202).json({
-          msg: 'You successfully updated the portfolio',
+          msg: "You successfully updated the portfolio",
           portfolio: result
         });
       })
-      .catch(error => console.log(error))
+      .catch(error => console.log(error));
   } catch (err) {
     res.status(500).send("Server error");
   }
 });
-
 
 // @route DELETE admin/upload/image/:filename
 // @desc deletes an Image by filename
@@ -200,14 +242,19 @@ router.delete("/image/:filename", auth, async (req, res) => {
   try {
     const image = await Image.find({ fileName: req.params.filename });
     const id = image._id;
-    
+
     await Image.findByIdAndRemove(id);
 
-    await gfs.remove({ _id: id, root: "uploads"}, (err, gridStore) => {
+    await gfs.remove({ _id: id, root: "uploads" }, (err, gridStore) => {
       if (err) {
         return res.status(404).json({ err: err });
       } else {
-        res.status(204).json({ msg: 'You successfully removed that image!', deleted: image });
+        res
+          .status(204)
+          .json({
+            msg: "You successfully removed that image!",
+            deleted: image
+          });
       }
     });
   } catch (err) {
@@ -224,10 +271,17 @@ router.delete("/portfolio/:title", auth, async (req, res) => {
 
     await Portfolio.findByIdAndRemove(id);
 
-    res.status(204).json({ msg: 'You successfully removed the portfolio', portfolio: deletedPortfolio });
+    res
+      .status(204)
+      .json({
+        msg: "You successfully removed the portfolio",
+        portfolio: deletedPortfolio
+      });
   } catch (err) {
     res.status(500).send("Server error");
   }
 });
+
+
 
 module.exports = router;

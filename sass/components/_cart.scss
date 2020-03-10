@@ -70,7 +70,7 @@
     justify-items: flex-end;
     width: 30%;
     margin-top: 2rem;
-    background-color: orangered;
+
 
 
   }
@@ -131,10 +131,21 @@
     th {
       color: black;
       padding: .5rem .7rem .5rem 0rem;
+      font-size: 2rem;
     }
 
     td {
       color: #888888;
+      font-size: 2rem;
+
+      & span {
+        font-size: 2rem;
+      }
     }
+
+  }
+
+  &__cart-total {
+    font-size: 2.7rem;
   }
 }

@@ -1,6 +1,5 @@
 
 const transformNumToFormattedString = num => {
-  num.toString();
   let amount = parseFloat(num).toFixed(2);
   const formattedString = amount
     .toString()

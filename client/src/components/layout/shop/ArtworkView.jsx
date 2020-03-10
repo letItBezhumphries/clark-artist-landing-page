@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import PropTypes from "prop-types";
@@ -6,6 +6,8 @@ import { clearSelectedArtwork, getSelectedArtwork, searchByPortfolio } from "../
 import { addToCart } from "../../../actions/cart";
 import RelatedArtworkList from './RelatedArtworkList';
 import Spinner from '../../UI/Spinner';
+import IconList from '../../UI/IconList';
+import ImageLink from '../../UI/ImageLink';
 
 import transformNumToFormattedString from '../../../utils/transformNumToFormattedString';
 
@@ -22,7 +24,7 @@ const ArtworkView = ({
   let history = useHistory();
   // let price = transformNumToFormattedString(image.price);
   let quantity = 1;
-
+  const [showImageModal, setShowImageModal] = useState(false);
   // console.log('inside ArtworkView in the function body, image :', image, "loading", loading);
 
   useEffect(() => {
@@ -32,6 +34,12 @@ const ArtworkView = ({
     //   console.log('cleanup [ArtworkView.jsx] related:', related)
     // };
   }, [match.params.id, getSelectedArtwork]);
+
+  const handleImageClick = (showImageModal) => {
+    setShowImageModal(!showImageModal);
+  }
+
+
 
   return (
     <Fragment>
@@ -51,52 +59,65 @@ const ArtworkView = ({
             >
               Back to Inventory
             </Link>
-
-            <div className="selected-view">
-              <img
-                src={image.imageUrl}
-                alt={image.title}
-                className="selected-artwork"
-              />
+            {/* { showImageModal && (<Backdrop image={image}></Backdrop>)} */}
+            {/* need to import ImageLink
+          Modal and clickHandler func that would 
+          show the image when clicked in the */}
+            <div className="artwork-view">
+                <ImageLink
+                  to={`/shop/artwork/${image._id}`}
+                  image={image}
+                  clicked={() => handleImageClick(showImageModal)}
+                  type="inventory"
+                  classType="artwork-view__left-side"
+                />
+    
 
               <div className="details-box margin-left-sm">
-                <h4 className="details-box__title">
-                  {image.title}, <span>{image.year}</span>
-                </h4>
-                <span className="details-box__price">
-                  $ {transformNumToFormattedString(image.price)}
-                </span>
-                <span className="details-box__medium">
-                  oil on stretched linen
-                </span>
-                <span className="details-box__dimensions">
-                  10 x 8″ (25.4 x 20.32 cm)
-                </span>
-                <span className="details-box__framed-dimensions">
-                  framed: 14 x 12″ (35.56 x 30.48 cm)
-                </span>
+                <h1 className="details-box__title">
+                  {image.title}, {image.year}
+                  {/* <span className="details-box__year">{image.year}</span> */}
+                  <span className="details-box__out-of-stock-flag"></span>
+                </h1>
+                <p className="details-box__price">
+                  <span>$ {transformNumToFormattedString(image.price)}</span>
+                </p>
+                <div className="details-box__description">
+                  <p className="details-box__medium">oil on stretched linen</p>
+                  <p className="details-box__dimensions">
+                    10 x 8″ (25.4 x 20.32 cm)
+                  </p>
+                  <p className="details-box__framed-dimensions">
+                    framed: 14 x 12″ (35.56 x 30.48 cm)
+                  </p>
+                </div>
+
                 {image.inStock ? (
                   <Fragment>
-                    <span className="details-box__availability">In Stock</span>
+                    <p className="details-box__available">In Stock</p>
                     <Link
                       to="/shop/my-cart"
-                      style={{ textDecoration: "none" }}
+                      style={{ textDecoration: "none", marginLeft: "1rem" }}
                       onClick={() => addToCart(image._id, quantity, history)}
-                      className="details-box__button button button-white margin-left-md"
+                      className="details-box__button button button-white"
                     >
                       add to cart
                     </Link>
                   </Fragment>
                 ) : (
-                  <div className="details-box__out-of-stock">Out</div>
+                  <div className="details-box__out-of-stock-message">
+                    Out of stock
+                  </div>
                 )}
-
-                <p className="details-box__meta-details">
-                  SKU: <span>{image._id}</span>
-                </p>
+                <div className="details-box__artwork-details-meta">
+                  <p>SKU: {image._id}</p>
+                  <p>CATEGORIES: </p>
+                  <p>TAGS: </p>
+                </div>
+                <IconList location="artwork" />
               </div>
             </div>
-            { related && <RelatedArtworkList /> }
+            {related && <RelatedArtworkList />}
           </div>
         </Fragment>
       )}

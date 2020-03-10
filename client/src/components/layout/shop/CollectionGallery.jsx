@@ -14,11 +14,12 @@ const CollectionGallery = ({ search, loading, getSelectedArtwork, searchByPortfo
     searchByPortfolio(match.params.title);
   }, [match.params.title, searchByPortfolio]);
   
-  let gallery = search.map((image) => (
+  let gallery = search.map(image => (
     <Link
       to={`/shop/artwork/${image._id}`}
       key={image._id}
       onClick={() => getSelectedArtwork(image._id, history)}
+      style={{ textDecoration: "none" }}
     >
       <Thumbnail
         image={image}

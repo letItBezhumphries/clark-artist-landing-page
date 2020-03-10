@@ -5,12 +5,14 @@ import {
   DELETE_ACCOUNT,
   CLEAR_ACCOUNT,
   ACCOUNT_ERROR,
-  ADD_PAYMENT_METHOD_SUCCESS,
-  ADD_PAYMENT_METHOD_FAIL,
+  // ADD_PAYMENT_METHOD_SUCCESS,
+  // ADD_PAYMENT_METHOD_FAIL,
   ADD_ADDRESS_SUCCESS,
-  ADD_ADDRESS_FAIL
+  ADD_ADDRESS_FAIL,
 } from "./types";
 import { setAlert } from "./alert";
+
+import { addShipping } from './order';
 
 
 export const loadAccount = () => async dispatch => {
@@ -26,13 +28,6 @@ export const loadAccount = () => async dispatch => {
     dispatch({ type: ACCOUNT_ERROR, payload: err })
   }
 }
-
-
-// export const updateAccount = (formData) => async dispatch => {
-
-// }
-
-
 
 
 //to add or update an address for a users account
@@ -55,7 +50,7 @@ export const addAddress = (formData, history) => async dispatch => {
 
     dispatch(setAlert("Address Added", "success"));
 
-    history.push("/");
+    // history.push("/");
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -73,39 +68,29 @@ export const addAddress = (formData, history) => async dispatch => {
   }
 }
 
-export const addPaymentMethod = (formData, history) => async dispatch => {
-  try {
-    const config = {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    };
-    const res = await axios.put("/api/shop/my-account/add-card", formData, config);
 
-    //SHOULD DISPATCH updateAccount action instead below
-    console.log('inside account action addPayment', res.data);
 
-    dispatch({
-      type: ADD_PAYMENT_METHOD_SUCCESS,
-      payload: res.data
-    });
 
-    dispatch(setAlert("Credit card added as a Payment method", "success"));
 
-    history.push("/");
-  } catch (err) {
-    const errors = err.response.data.errors;
 
-    if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
-    }
 
-    dispatch({
-      type: ADD_PAYMENT_METHOD_FAIL,
-      payload: {
-        msg: err.response.statusText,
-        status: err.response.status
-      }
-    });
-  }
-}
+
+// export const createCustomer = (email) => async dispatch => { 
+//   try {
+//     const config = {
+//       headers: {
+//         "Content-Type": "application/json"
+//       }
+//     };
+
+//     const body = JSON.stringify({
+
+//     });
+
+//     const res = await axios.post("/api/stripe/new_customer", body, config);
+
+//     dispatch({ type: CREATE_CUSTOMER_SUCCESS, payload: res.data });
+//   } catch (err) {
+    
+//   }
+// }

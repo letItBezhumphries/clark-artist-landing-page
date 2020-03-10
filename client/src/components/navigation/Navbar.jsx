@@ -1,20 +1,28 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-// import DropdownList from './DropdownList';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import Logo from './Logo';
 import { logout } from '../../actions/auth';
+import { clearSelectedArtwork } from '../../actions/shop';
 import Icon from '../UI/Icon';
+import Dropdown from './Dropdown';
 
-const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, portfolios }) => {
+const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, clearSelectedArtwork, total }) => {
+  const [showCartItemsCount, setShowCartItemsCount] = useState(false);
+  useEffect(() => {
+    if (total > 0) {
+      setShowCartItemsCount(true)
+    } else {
+      setShowCartItemsCount(false);
+    }
+  }, [total])
 
   const adminLinks = (
     <div className="navbar__links">
       <Link to="/admin/bio" className="navbar__link">
         bio
       </Link>
-      {/* <DropdownList /> */}
       <Link to="/exhibitions" className="navbar__link">
         exhibitions
       </Link>
@@ -35,22 +43,39 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, portfolio
       <Link to="/story" className="navbar__link">
         about
       </Link>
-      {/* <DropdownList /> */}
       <Link to="/exhibitions" className="navbar__link">
         exhibitions
       </Link>
-      <Link to="/shop/inventory" className="navbar__link">
+      <Link
+        to="/shop/inventory"
+        className="navbar__link"
+        onClick={clearSelectedArtwork}
+      >
         inventory
       </Link>
       <Link to="/shop/my-account" className="navbar__link">
         account
       </Link>
-      <Link to="/logout" className="navbar__link" onClick={logout}>
+      <Link to="/" className="navbar__link" onClick={logout}>
         logout
       </Link>
-      <Link to="/shop/my-cart" className="navbar__link">
-        <Icon iconType="icon-shopping-cart1" class="navbar__icon" />
-      </Link>
+        {/* <Link to="/shop/my-cart" className="navbar__link navbar__link-cart-dropdown">
+          <Icon iconType="icon-add_shopping_cart" class="navbar__icon">
+            <span className="navbar__cart-items-span" show={showCartItemsCount}>
+              {total}
+            </span>
+          </Icon>
+        </Link> */}
+        <Dropdown />
+
+      {/* <Link to="/shop/my-cart" className="navbar__link">
+        <Icon iconType="icon-add_shopping_cart" class="navbar__icon">
+          <span className="navbar__cart-items-span" show={showCartItemsCount}>
+            {total}
+          </span>
+        </Icon>
+      </Link> */}
+      
     </div>
   );
 
@@ -63,7 +88,11 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, portfolio
       <Link to="/exhibitions" className="navbar__link">
         exhibitions
       </Link>
-      <Link to="/shop/inventory" className="navbar__link">
+      <Link
+        to="/shop/inventory"
+        className="navbar__link"
+        onClick={clearSelectedArtwork}
+      >
         inventory
       </Link>
       <Link to="/login" className="navbar__link">
@@ -72,33 +101,54 @@ const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, portfolio
       <Link to="/register" className="navbar__link">
         sign up
       </Link>
+      <Dropdown />
+      {/* <div className="navbar__dropdown">
+        <Link to="/shop/my-cart" className="navbar__link">
+          <Icon iconType="icon-add_shopping_cart" class="navbar__icon">
+            <span className="navbar__cart-items-span" show={showCartItemsCount}>
+              {total}
+            </span>
+          </Icon>
+        </Link>
+      </div> */}
+      {/* <Link to="/shop/my-cart" className="navbar__link">
+        <Icon iconType="icon-add_shopping_cart" class="navbar__icon">
+          <span className="navbar__cart-items-span" show={showCartItemsCount}>
+            {total}
+          </span>
+        </Icon>
+      </Link> */}
     </div>
   );
   
   return (
-    <nav className="navbar">    
-      <Logo/>
-        { !loading && isAdmin ? (<Fragment>{adminLinks}</Fragment>): 
-          !loading && isAuthenticated ? (<Fragment>{shopAuthLinks}</Fragment>):
-          (<Fragment>{unAuthorizedLinks}</Fragment>)
-        }
+    <nav className="navbar">
+      <Logo />
+      {!loading && isAdmin ? (
+        <Fragment>{adminLinks}</Fragment>
+      ) : !loading && isAuthenticated ? (
+        <Fragment>{shopAuthLinks}</Fragment>
+      ) : (
+        <Fragment>{unAuthorizedLinks}</Fragment>
+      )}
     </nav>
-  )
+  );
 }
 
 
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
+  clearSelectedArtwork: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  portfolios: PropTypes.array.isRequired,
+  total: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  portfolios: state.store.portfolios
+  total: state.cart.itemsCount
 });
 
 export default connect(
   mapStateToProps,
-  { logout }
+  { logout, clearSelectedArtwork }
 )(Navbar);

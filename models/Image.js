@@ -35,7 +35,16 @@ const ImageSchema = new mongoose.Schema({
   },
   inStock: {
     type: Boolean
+  },
+  year: {
+    type: Number
+  },
+  medium: {
+    type: String
+  },
+  materials: {
+    type: String
   }
 });
 
-module.exports = Image = mongoose.model("Image", ImageSchema);
+module.exports = Image = mongoose.model("image", ImageSchema);

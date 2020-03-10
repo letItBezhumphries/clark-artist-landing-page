@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { setAlert } from "../../actions/alert";
@@ -12,6 +12,10 @@ const Register = ({ setAlert, register, isAuthenticated, adminRole }) => {
     password: "",
     password2: ""
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { name, email, password, password2 } = formData;
 

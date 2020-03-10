@@ -1,36 +1,104 @@
-// import React, { Fragment, useEffect } from 'react';
-// import StripeCheckout from 'react-stripe-checkout';
-// import { connect } from 'react-redux';
-// import { withRouter } from 'react-router-dom';
-// import PropTypes from 'prop-types';
-// // import { STRIPE_PUBLISHABLE, CURRENCY } from '../../../utils/stripeConstants';
-// // import { onToken } from '../../../actions/utility';
+import React, { Fragment, useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { useLocation, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import CheckoutForm from "./CheckoutForm";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CouponInput from "../cart/CouponInput";
+import Spinner from "../../UI/Spinner";
+import Login from '../../auth/Login';
+import BillingDetailsForm from './BillingDetailsForm';
+import CheckoutSummary from "./CheckoutSummary";
+import { CARD_OPTIONS, ELEMENTS_OPTIONS } from '../../../utils/stripeConstants';
+import { createOrder } from '../../../actions/order';
 
-// export const Checkout = ({ match, order, loadOrder, paymentSuccess, paymentFail, onToken, account: { cart }, ...props }) => {
-//   // useEffect(() => {
-//   //   loadOrder(match.params.orderId)
-//   // }, [])
-  
-//   return (
-//     <Fragment>
-//       <StripeCheckout>
 
-//       </StripeCheckout>
-//     </Fragment>
-//   )
-// }
 
-// Checkout.propTypes = { 
-//   loadOrder: PropTypes.func.isRequired,
-//   order: PropTypes.object.isRequired,
-//   paymentSuccess: PropTypes.func.isRequired,
-//   paymentFail: PropTypes.func.isRequired,
-//   onToken: PropTypes.func.isRequired,
-//  };
 
-// const mapStateToProps = state => ({
-//   order: state.order,
-//   account: state.account
-// });
+const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE);
 
-// export default withRouter(connect(mapStateToProps, { loadOrder })(Checkout));
+const Checkout = ({ cart, order, user, shipping, loading, paymentMethod, createOrder }) => {
+  let location = useLocation();
+  const [showCoupon, setShowCoupon] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+
+  useEffect(() => {
+    if (cart.items.length > 0) {
+      createOrder(cart.items, paymentMethod);
+    }
+  }, []);
+
+  const toggleShowCouponClick = (showCoupon) => setShowCoupon(!showCoupon);
+
+  const toggleShowLoginClick = (showLogin) => setShowLogin(!showLogin);
+
+  // console.log("[Checkout.jsx] order", order);
+
+  return (
+    <Fragment>
+      { loading && order === null ? (
+        <Spinner />
+        ) : (
+        <section className="checkout AppWrapper">
+          <h2 className="cart__heading checkout__heading">Checkout</h2>
+          <div className="checkout__options">
+            <div className="checkout__option">RETURNING CUSTOMER?{" "}
+              <span className="checkout__login-toggle" onClick={() => toggleShowLoginClick(showLogin)}>CLICK HERE TO LOGIN</span>
+            </div>
+            <div className="checkout__option">
+              <div className="checkout__coupon-option">
+                <label htmlFor="btn-toggle-coupon">HAVE A COUPON? </label>
+                <span
+                  className="btn-toggle-coupon"
+                  onClick={() => toggleShowCouponClick(showCoupon)}
+                >
+                  CLICK HERE TO ENTER YOUR CODE
+                </span>
+              </div>
+            </div>
+            { showCoupon && (
+              <div className="checkout__coupon-input-panel">
+                <CouponInput />
+              </div>
+            )}
+            { showLogin && (
+              <div className="checkout__collapsible-panel">
+                <Login check_login={showLogin} location={location} />
+              </div>
+            )}
+            { !shipping && (
+              <BillingDetailsForm />
+            )}
+          </div>
+
+          <CheckoutSummary />
+          <Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
+            <CheckoutForm />
+          </Elements>
+        </section>
+      )}
+      </Fragment>
+  );
+};
+
+Checkout.propTypes = {
+  order: PropTypes.object.isRequired,
+  cart: PropTypes.object.isRequired,
+  user: PropTypes.object,
+  paymentMethod: PropTypes.string,
+  createOrder: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+  order: state.order,
+  cart: state.cart,
+  user: state.auth.user,
+  paymentMethod: state.account.paymentMethod,
+  loading: state.cart.loading
+});
+
+export default connect(mapStateToProps, { createOrder })(withRouter(Checkout));
+// // //There’s also a useEffect call that scrolls the document to the top when 
+// // //the page mounts for the first time. This is necessary because react-router-dom 
+// // //preserves the previous scroll state when you switch routes.

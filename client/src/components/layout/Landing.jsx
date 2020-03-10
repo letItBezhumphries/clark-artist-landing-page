@@ -1,12 +1,10 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import { Redirect } from 'react-router-dom';
 import AdminDashboard from '../admin/AdminDashboard';
-import BackgroundCarousel from './gallery/BackgroundCarousel';
-import { loadGallery } from '../../actions/store';
-
-
+import BackgroundCarousel from './imageCarousel/BackgroundCarousel';
+import { loadGallery } from '../../actions/admin';
 
 const Landing = ({ 
   auth: { isAdmin, loading }, 
@@ -17,10 +15,8 @@ const Landing = ({
   }
   
   useEffect(() => {
-    console.log('[Landing.jsx], useEffect');
     loadGallery();
- 
-  }, [loadGallery]);
+  }, []);
 
   return (
     <Fragment>
@@ -40,7 +36,7 @@ Landing.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  gallery: state.store.gallery
+  gallery: state.admin.gallery
 });
 
 export default connect(mapStateToProps, { loadGallery })(Landing);
