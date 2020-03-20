@@ -85,5 +85,10 @@
     color: #9E9E9E;
     padding-top: .5rem;
   }
-
+  
+  &:hover { 
+    img {
+      filter: brightness(1.1);
+    }
+  }
 }

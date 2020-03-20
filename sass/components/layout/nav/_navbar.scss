@@ -32,9 +32,8 @@
       justify-content: space-evenly;
       padding: 0 0;
       border-bottom: 1px black solid;
-      background-color: var(--primary-color);
+      background: var(--primary-color, .7);
       box-shadow: var(--shadow-dark);
-      opacity: .7;
     }
   
     &__link {
@@ -62,7 +61,7 @@
       background-color: none;
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      line-height: 2;
+      line-height: 2rem;
      
 
       &:hover {
@@ -80,8 +79,9 @@
     }
 
     &__dropdown &__dropbtn {
-      // background-color: inherit;
-      font-family: inherit;
+      background-color: inherit;
+
+      // font-family: inherit;
       margin: 0;
       outline: none;
       border: none;
@@ -93,29 +93,30 @@
       display: flex;
       background-color: rgb(26,26,26);
       box-shadow: var(--shadow-medium);
+      z-index: 1001;
     }
 
 
     &__dropdown-container {
       background-color: #000000;
-    /* need to set up a breakpoint so that if the image is too wide it will add some margin right to the container */
-
+      /* need to set up a breakpoint so that if the image is too wide it will add some margin right to the container */
       position: absolute;
       display: none;
-      // flex-direction: column;
       text-transform: uppercase;
       justify-content: space-evenly;
       align-items: center;
       min-width: 28rem;
       min-height: 15rem;
-      transform: translateY(1%) translateX(-75%);
+      transform: translateY(.50%) translateX(-70%);
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
       z-index: 1000;
       -webkit-transitions: opacity .2s ease-in-out;
 
       &:hover {
         display: flex;
-        color: white;
+        color: #e5e5e5
+        // z-index: 1100;
+        // opacity: 1;
       }
     }
 
@@ -129,11 +130,42 @@
       font-weight: 400;
       width: 100%;
       line-height: 2.6rem;
-      // background-color: powderblue;
+      // background-color: purple;
     }
 
+    &__dropdown-cart-listItem {
+      list-style: none;
+      max-width: 100%;
+      max-height: 20rem;
+      // background-color: plum;
+    }
 
-    &__dropdown-cartlist-item {
+    &__dropdown-item-link {
+      width: 100%;
+      height: 100%;
+      // background-color: peru;
+      display: inline-flex;
+      flex-direction: row;
+      list-style: none;        
+      align-self: start;
+      
+      &:hover {
+        color: lighten(#9d9d9d, 15px);
+        // color: white;
+        text-decoration: none;
+
+        img {
+          filter: brightness(1.1)
+        }
+
+        p {
+          color: #e5e5e5
+        }
+      }
+    }
+
+    &__dropdown-item {
+      font-family: 'Open sans';
       color: #9d9d9d;
       text-decoration: none;
       display: flex;
@@ -143,65 +175,44 @@
       margin-bottom: 1.5rem;
       border-bottom: 1px solid #3d3d3d;
       line-height: 2rem;
-      // list-style: none;
-    }
-
-
-
-    &__dropdown-cart-item {
-      // background-color: indigo;
-      font-family: 'Open sans';
-      display: flex;
-      text-align: left;
-      width: 100%;
+      margin-bottom: 1.5rem;
+      // background-color: sandybrown;
       align-items: center;
       font-size: 1.1rem;
       letter-spacing: 1px;
-      &:hover {
-        color: lighten(#9d9d9d, 15px);
-        color: white;
-        text-decoration: none;
-      }
     }
 
-    &__dropdown-cart-item-img {
-      flex: 60%;
-    }
-
-
-    &__dropdown-cart-item-details {
-      flex: 40%;
-      display: flex;
+    &__dropdown-item-details {
+      flex: 30%;
+      height: 100%;
       width: 100%;
-      // flex-direction: column;
-      justify-content: center;
-      flex-wrap: wrap
-      // white-space: nowrap;
- 
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      align-content: space-between;
     }
 
-    &__dropdown-cart-item-details p {
-      margin-bottom: 0;
+    &__dropdown-item-details p {
+      display: inline-block;
     }
 
-
-    // &__dropdown-cart-item-title {
-      
-    // }
-
-    &__dropdown-cart-item-year {
-      padding-left: .1rem;
+    &__dropdown-item-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: .5px;
     }
 
-    // &__dropdown-cart-item-price {
-
-    // }
-
-
-
+    &__dropdown-item-price {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color:#e5e5e5
+    }
 
     &__dropdown-cart-icon {
-      fill: #fff;
+      fill: #e5e5e5
       height: 1.5rem;
       width: 1.5rem;
       margin-top: 6px;
@@ -209,12 +220,23 @@
     }
 
     &__dropdown-cart-total {
-      font-size: larger;
+      // font-size: larger;
+      font-family: "Comorant Garamond";
+      font-size: 1.1rem;
+      color: #e5e5e5
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-align: center;
+      padding-top: .4rem;
+      color: #9d9d9d;
+      span {
+        color:#e5e5e5;
+      }
     }
 
     &__dropdown-cart-btn {
       border-color: #000000;
-      color: white;
+      color: #e5e5e5;
       background-color: #000000;
       text-decoration: none;
       text-align: left;
@@ -235,6 +257,10 @@
 
       &:hover {
         text-decoration: none;
+
+        svg {
+          fill: black;
+        }
       }
     }
 }
@@ -262,7 +288,6 @@
   &--header {
     display: flex;
     justify-content: space-evenly;
-    // background-color: purple;
     margin-bottom: 0;
   }
 }

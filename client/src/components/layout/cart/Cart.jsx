@@ -2,16 +2,16 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'; 
-import CartItemList from './CartItemList';
-import CartTotalSummary from './CartTotalSummary';
+import CartItemsList from './CartItemsList';
+import CartSummary from './CartSummary';
 import Heading from '../../UI/Heading';
 import Spinner from '../../UI/Spinner';
 import { loadCart } from "../../../actions/cart";
 import { clearSelectedArtwork } from "../../../actions/shop";
 
 
-const Cart = ({ auth, image, cart, loadCart, clearSelectedArtwork, match }) => {
-  const { items, total, loading, added, removed } = cart;
+const Cart = ({ cart, loadCart, clearSelectedArtwork }) => {
+  const { items, loading, added, removed } = cart;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -41,15 +41,8 @@ const Cart = ({ auth, image, cart, loadCart, clearSelectedArtwork, match }) => {
                     Continue Shopping
                   </Link>
                 </div>
-                <CartItemList cartItems={items} />
-                <div className="cart__cart-summary cart-summary">
-                  <h2 className="cart-summary__header">Cart Totals</h2>
-                  <table className="cart-summary__table" cellSpacing="0">
-                    <tbody>
-                      <CartTotalSummary />
-                    </tbody>
-                  </table>
-                </div>
+                <CartItemsList cartItems={items} />
+                <CartSummary />
               </Fragment>
             ) : (
               <Fragment>

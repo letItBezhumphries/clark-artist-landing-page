@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CheckoutSummaryItem from './CheckoutSummaryItem';
-import CartTotalSummary from '../cart/CartTotalSummary';
+import CartSummary from '../cart/CartSummary';
 import Spinner from '../../UI/Spinner';
 
 const CheckoutSummary = ({ order }) => {
@@ -41,7 +41,7 @@ const CheckoutSummary = ({ order }) => {
               }
             </tbody>
             <tfoot>
-              <CartTotalSummary />
+              <CartSummary />
             </tfoot>
           </table>
         </div>

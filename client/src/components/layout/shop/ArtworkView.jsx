@@ -7,8 +7,6 @@ import { addToCart } from "../../../actions/cart";
 import RelatedArtworkList from './RelatedArtworkList';
 import Spinner from '../../UI/Spinner';
 import IconList from '../../UI/IconList';
-import ImageLink from '../../UI/ImageLink';
-
 import transformNumToFormattedString from '../../../utils/transformNumToFormattedString';
 
 const ArtworkView = ({ 
@@ -19,7 +17,6 @@ const ArtworkView = ({
   loading, 
   related, 
   match }) => {
-  // console.log('inside ArtworkView, params:', match.params.id);
   
   let history = useHistory();
   // let price = transformNumToFormattedString(image.price);
@@ -30,16 +27,19 @@ const ArtworkView = ({
   useEffect(() => {
     window.scrollTo(0, 0);
     getSelectedArtwork(match.params.id);
-    // return () => {
-    //   console.log('cleanup [ArtworkView.jsx] related:', related)
-    // };
+    console.log('[ArtworkView.jsx] image:', image, "related:", related);
+
   }, [match.params.id, getSelectedArtwork]);
 
   const handleImageClick = (showImageModal) => {
     setShowImageModal(!showImageModal);
   }
 
-
+  let imgStyle = {
+    display: "block",
+    height: "auto",
+    width: "100%"
+  }
 
   return (
     <Fragment>
@@ -64,19 +64,16 @@ const ArtworkView = ({
           Modal and clickHandler func that would 
           show the image when clicked in the */}
             <div className="artwork-view">
-                <ImageLink
-                  to={`/shop/artwork/${image._id}`}
-                  image={image}
-                  clicked={() => handleImageClick(showImageModal)}
-                  type="inventory"
-                  classType="artwork-view__left-side"
-                />
-    
+              <div className="artwork-view__left-side" style={{ position: "relative" }}>
+                <img src={image.imageUrl}
+                     alt={image.title}
+                     style={imgStyle}
+                     className="artwork-view__left-side-img" />
+              </div>
 
               <div className="details-box margin-left-sm">
                 <h1 className="details-box__title">
                   {image.title}, {image.year}
-                  {/* <span className="details-box__year">{image.year}</span> */}
                   <span className="details-box__out-of-stock-flag"></span>
                 </h1>
                 <p className="details-box__price">

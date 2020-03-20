@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
 import CouponInput from "./CouponInput";
-import { createOrder } from '../../../actions/order';
+
 
 const CartActions = ({ cart, checkout, order }) => {
   const [couponCode, setCouponCode] = useState("");
@@ -16,42 +16,44 @@ const CartActions = ({ cart, checkout, order }) => {
 
   return (
     <Fragment>
-      <td
-        colSpan="6"
-        style={{ padding: "2.4rem 0rem", width: "100%" }}
-        className="cart__actions"
-      >
-        <CouponInput click={handleApplyCoupon} />
-        <button
-          style={{ marginLeft: "20rem" }}
-          className="details-box__button button button-white"
-          type="button"
+      <tr>
+        <td
+          colSpan="6"
+          style={{ padding: "2.4rem 0rem", width: "100%", borderBottomColor: "white" }}
+          className="actions-row"
         >
-          Update Cart
-        </button>
-
-        <Link
-          to={{ pathname: "/checkout", state: { fromCart: true } }}
-          style={{
-            textDecoration: "none",
-            height: "3.8rem",
-            marginLeft: "2rem"
-          }}
-        >
+          <CouponInput click={handleApplyCoupon} />
           <button
+            style={{ marginLeft: "20rem" }}
             className="details-box__button button button-white"
+            type="button"
+          >
+            Update Cart
+          </button>
+
+          <Link
+            to={{ pathname: "/checkout", state: { fromCart: true } }}
             style={{
               textDecoration: "none",
               height: "3.8rem",
               marginLeft: "2rem"
             }}
-            type="button"
-            // onClick={() => handleCheckoutClick()}
           >
-            Proceed To Checkout
-          </button>
-        </Link>
-      </td>
+            <button
+              className="details-box__button button button-white"
+              style={{
+                textDecoration: "none",
+                height: "3.8rem",
+                marginLeft: "2rem"
+              }}
+              type="button"
+              // onClick={() => handleCheckoutClick()}
+            >
+              Proceed To Checkout
+            </button>
+          </Link>
+        </td>
+        </tr>
     </Fragment>
   );
 }

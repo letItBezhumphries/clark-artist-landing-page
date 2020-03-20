@@ -37,14 +37,14 @@ export default function(state = initialState, action) {
         loading: false
       };
     case GET_RELATED_ARTWORK_SUCCESS:
-      // console.log("in reducer, GET_RELATED", payload);
+      console.log("in reducer, GET_RELATED", payload);
       return {
         ...state,
         related: payload,
         loading: false
       };
     case GET_SELECTED_ARTWORK_SUCCESS:
-      // console.log("in reducer, GET_SELECTED", payload);
+      console.log("in reducer, GET_SELECTED", payload);
       // const updatedImage = updateObject(state.image, payload);
       return {
         ...state,
@@ -65,14 +65,14 @@ export default function(state = initialState, action) {
         loading: false
       };
     case GET_ARTWORK_BY_PORTFOLIO_SEARCH:
-      console.log("in reducer, PORTFOLIO_SEARCH", payload);
+      // console.log("in reducer, PORTFOLIO_SEARCH", payload);
       return {
         ...state,
         search: payload,
         loading: false
       };
     case GET_ARTWORK_BY_TITLE_SEARCH:
-      console.log("in reducers, TITLE_SEARCH", payload);
+      // console.log("in reducers, TITLE_SEARCH", payload);
       return {
         ...state,
         search: payload,

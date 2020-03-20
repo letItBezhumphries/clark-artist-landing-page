@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import transformNumToFormattedString from "../../utils/transformNumToFormattedString";
-import setCardTypeStyle from "../../utils/setCardTypeStyle";
+import setCardTypeStyle from "../../utils/setImageLinkStyles";
 
 const ImageLink = ({ to, image, type, clicked, classType }) => {
   const imgRef = useRef(null);
@@ -33,7 +33,8 @@ const ImageLink = ({ to, image, type, clicked, classType }) => {
       >
         <img
           ref={imgRef}
-          style={{ width: "100%", height: "auto" }}
+          style={styles}
+          // style={{ width: "100%", height: "auto" }}
           src={imageUrl}
           className={classType + "-img card-img-top"}
         />

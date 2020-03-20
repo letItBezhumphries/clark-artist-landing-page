@@ -1,7 +1,7 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import Pagination from "../../UI/Pagination";
 import { getSelectedArtwork, searchByPortfolio } from '../../../actions/shop';
 import Thumbnail from "../../UI/Thumbnail";
 
@@ -9,42 +9,55 @@ import Thumbnail from "../../UI/Thumbnail";
 const CollectionGallery = ({ search, loading, getSelectedArtwork, searchByPortfolio, match }) => {
   let title = match.params.title.split("_").join(" ");
 
+  let gallery = search.map(image => (
+    <Thumbnail
+      key={image._id}
+      image={image}
+      to={`/shop/artwork/${image._id}`}
+      clicked={() => getSelectedArtwork(image._id, history)}
+      type="artworkCard"
+    />
+  ));
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [artworkPerPage] = useState(8);
+  const indexOfLastArtwork = currentPage * artworkPerPage; //
+  const indexOfFirstArtwork = indexOfLastArtwork - artworkPerPage;
+  const currentArtwork = gallery.slice(
+    indexOfFirstArtwork,
+    indexOfLastArtwork
+  );
+
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     searchByPortfolio(match.params.title);
   }, [match.params.title, searchByPortfolio]);
   
-  let gallery = search.map(image => (
-    <Link
-      to={`/shop/artwork/${image._id}`}
-      key={image._id}
-      onClick={() => getSelectedArtwork(image._id, history)}
-      style={{ textDecoration: "none" }}
-    >
-      <Thumbnail
-        image={image}
-        title={image.title}
-        imageUrl={image.imageUrl}
-        details={image.description}
-        price={image.price}
-      />
-    </Link>
-  ));
-  
   return (
     <Fragment>
-      { loading && search === undefined ? (
+      {loading && search === undefined ? (
         <Spinner />
       ) : (
         <div className="shop">
           <h1 className="shop__heading">
             <span>{title}</span>
           </h1>
-          { gallery }
+          <div className="container-fluid">
+            <div className="row row-cols-md-1 row-cols-md-3 u-margin-top-big">
+              {currentArtwork}
+            </div>
+          </div>
+          <Pagination
+            artworkPerPage={artworkPerPage}
+            totalArtwork={gallery.length}
+            paginate={paginate}
+          />
         </div>
       )}
     </Fragment>
-  )
+  );
 }
 
 CollectionGallery.propTypes = {

@@ -1,10 +1,9 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getRelatedArtwork, getSelectedArtwork } from "../../../actions/shop";
-// import Thumbnail from "../../UI/Thumbnail";
-import ImageLink from '../../UI/ImageLink';
+import ArtworkLink from '../../UI/ArtworkLink';
+import Thumbnail from '../../UI/Thumbnail';
 import Spinner from "../../UI/Spinner";
 import Pagination from "../../UI/Pagination";
 
@@ -19,35 +18,30 @@ const RelatedArtworkList = ({
   const [artworkPerPage, setArtworkPerPage] = useState(4);
 
   useEffect(() => {
-    console.log('in [RelatedArtworkList.jsx] artworkPerPage:', artworkPerPage);
-  }, []);
+    console.log('in [RelatedArtworkList.jsx] useEffect => artworkPerPage:', artworkPerPage, 
+    "related:", related, );
+  }, [related]);
 
   let relatedArtwork = related.map(image => (
     <li
       key={image._id}
-      image={image}
-      style={{ listStyle: "none", padding: "0 0", margin: "0 0" }}
-      className="related-artwork__listitem list-group-item border-white"
+      style={{ listStyle: "none", padding: "0 0", margin: "0 0", width: "25rem" }}
+      className="related-artwork__listitem card border-white"
     >
-      <ImageLink
+      <Thumbnail
         image={image}
         to={`/shop/artwork/${image._id}`}
         clicked={() => getSelectedArtwork(image._id)}
         type="related"
-        classType="related-artwork__item"
+        classes="related-artwork__item"
       />
     </li>
   ));
 
-
   const indexOfLastArtwork = currentPage * artworkPerPage;
   const indexOfFirstArtwork = indexOfLastArtwork - artworkPerPage;
   const currentArtwork = relatedArtwork.slice(indexOfFirstArtwork, indexOfLastArtwork);
-  currentArtwork.map((img) => {
-    if(img.width > 700) { 
-      setArtworkPerPage(artworkPerPage - 1) 
-    }
-  });
+
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -61,7 +55,7 @@ const RelatedArtworkList = ({
       >
         Other Artwork Available
       </h4>
-      <ul className="related-artwork-list row card-deck border-white">{currentArtwork}</ul>
+      <ul className={`related-artwork__list row row-cols-${artworkPerPage} border-white`}>{currentArtwork}</ul>
       <Pagination
         artworkPerPage={artworkPerPage}
         totalArtwork={relatedArtwork.length}

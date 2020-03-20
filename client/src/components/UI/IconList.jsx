@@ -2,14 +2,14 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from './Icon';
 
-const IconList = ({ location }) => (
+const IconList = ({ location, landing }) => (
   <Fragment>
     {location === "artwork" ? (
       <ul
         className="details-box__media-links-list"
         style={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "center"
           // padding: "1rem 2.4rem"
         }}
       >
@@ -17,6 +17,7 @@ const IconList = ({ location }) => (
           <Icon
             iconType="icon-pinterest"
             class="details-box__media-item-icon"
+            landing={landing}
           />
         </li>
         <li className="details-box__media-list-item">
@@ -39,13 +40,25 @@ const IconList = ({ location }) => (
         }}
       >
         <li className="media-links-list__item">
-          <Icon iconType="icon-facebook" class="media-links-list__icon" />
+          <Icon
+            iconType="icon-facebook"
+            class="media-links-list__icon"
+            landing={landing}
+          />
         </li>
         <li className="media-links-list__item">
-          <Icon iconType="icon-instagram" class="media-links-list__icon" />
+          <Icon
+            iconType="icon-instagram"
+            class="media-links-list__icon"
+            landing={landing}
+          />
         </li>
         <li className="media-links-list__item">
-          <Icon iconType="icon-twitter" class="media-links-list__icon" />
+          <Icon
+            iconType="icon-twitter"
+            class="media-links-list__icon"
+            landing={landing}
+          />
         </li>
       </ul>
     )}

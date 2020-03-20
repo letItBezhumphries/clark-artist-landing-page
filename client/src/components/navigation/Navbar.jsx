@@ -5,18 +5,24 @@ import PropTypes from "prop-types";
 import Logo from './Logo';
 import { logout } from '../../actions/auth';
 import { clearSelectedArtwork } from '../../actions/shop';
-import Icon from '../UI/Icon';
+import { loadCart } from '../../actions/cart';
+// import Icon from '../UI/Icon';
 import Dropdown from './Dropdown';
 
-const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, clearSelectedArtwork, total }) => {
+const Navbar = ({ auth: { isAuthenticated, isAdmin, loading }, logout, clearSelectedArtwork, cart }) => {
+  const { itemsCount } = cart; 
   const [showCartItemsCount, setShowCartItemsCount] = useState(false);
   useEffect(() => {
-    if (total > 0) {
-      setShowCartItemsCount(true)
-    } else {
-      setShowCartItemsCount(false);
+    if (isAuthenticated) {
+      loadCart()
     }
-  }, [total])
+
+    if (itemsCount > 0) {
+      setShowCartItemsCount(!showCartItemsCount)
+    } else {
+      setShowCartItemsCount(showCartItemsCount);
+    }
+  }, [itemsCount]);
 
   const adminLinks = (
     <div className="navbar__links">
@@ -140,12 +146,11 @@ Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
   clearSelectedArtwork: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  total: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  total: state.cart.itemsCount
+  cart: state.cart
 });
 
 export default connect(

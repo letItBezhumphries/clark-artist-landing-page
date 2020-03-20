@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link, useHistory } from "react-router-dom";
-import { removeFromCart } from "../../../actions/cart";
+// import { removeFromCart } from "../../../../actions/cart";
 import CartItem from "./CartItem";
 import CartActions from "./CartActions";
 import Spinner from '../../UI/Spinner';
@@ -12,33 +12,31 @@ const CartItemList = ({ cartItems, items, loading }) => {
 
   let history = useHistory();
 
-  let cart = cartItems.map((item, index) => (
+  let itemsList = cartItems.map((item, index) => (
     <CartItem key={item.itemId._id + index} item={item} quantity={item.itemId.quantity} />
   ));
 
   return (
     <Fragment>
-      { loading ? (
+      {loading ? (
         <Spinner />
       ) : (
         <Fragment>
-          { items.length > 0 ? (
-            <table className="cart__table">
+          {items.length > 0 ? (
+            <table className="cart__items-table items-table">
               <thead>
                 <tr>
-                  <th className="item-remove"> </th>
-                  <th className="item-img"> </th>
-                  <th className="item-name">product</th>
-                  <th className="item-price">price</th>
-                  <th className="item-quantity">quantity</th>
-                  <th className="item-subtotal">subtotal</th>
+                  <th className="items-table__item-remove"> </th>
+                  <th className="items-table__item-img"> </th>
+                  <th className="items-table__item-name">product</th>
+                  <th className="items-table__item-price">price</th>
+                  <th className="items-table__item-quantity">quantity</th>
+                  <th className="items-table__item-subtotal">subtotal</th>
                 </tr>
               </thead>
               <tbody>
-                {cart}
-                <tr>
-                  <CartActions checkout={() => handleCheckout(showCheckout)} />
-                </tr>
+                { itemsList }
+                <CartActions checkout={() => handleCheckout(showCheckout)} />
               </tbody>
             </table>
           ) : (
@@ -59,7 +57,7 @@ const CartItemList = ({ cartItems, items, loading }) => {
         </Fragment>
       )}
     </Fragment>
-  )
+  );
 };
 
 CartItemList.propTypes = {

@@ -6,28 +6,20 @@
 @import "base/typography";
 @import "base/utilities";
 
-@import "layout/navbar";
-
 @import "admin/adminDashboard";
 @import "admin/addImageForm";
 @import "admin/addPortfolioForm";
 @import "admin/fileUpload";
 
 @import "auth/login";
+// @import "auth/register";
 
 //pages
-@import "components/backgroundCarousel";
-@import "components/story";
-@import "components/portfolios";
-@import "components/portfoliosList";
-@import "components/shop";
-@import "components/artworkView";
-@import "components/relatedArtworkList";
-@import "components/exhibitions";
-@import "components/cart";
-@import "components/checkoutForm";
+@import "components/landing";
+@import "components/footer";
 
-@import "components/UI/imageCard";
+
+@import "components/UI/portfolioLink";
 @import "components/UI/spinner";
 @import "components/UI/thumbnail";
 @import "components/UI/button";
@@ -36,4 +28,28 @@
 @import "components/UI/header";
 @import "components/UI/modal";
 @import "components/UI/backdrop";
+@import "components/UI/artworkLink";
+
+@import "components/layout/nav/navbar";
+@import "components/layout/cart/cart";
+@import "components/layout/cart/cartItemsList";
+@import "components/layout/cart/cartItem";
+@import "components/layout/cart/cartActions";
+@import "components/layout/cart/cartSummary";
+@import "components/layout/cart/couponInput";
+
+
+
+@import "components/layout/checkout/checkoutForm";
+
+//shop page
+@import "components/layout/shop/artworkView";
+@import "components/layout/shop/portfolios";
+@import "components/layout/shop/portfoliosList";
+@import "components/layout/shop/relatedArtworkList";
+@import "components/layout/shop/shop";
+
+@import "components/layout/story/story";
+@import "components/layout/exhibitions/exhibitions";
+
 

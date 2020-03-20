@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { setAlert } from './alert';
+import { loadCart } from "./cart";
+import { loadAccount } from './account';
 import { 
   REGISTER_SUCCESS, 
   REGISTER_FAIL, 
@@ -8,11 +10,13 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  GET_ACCOUNT,
   CLEAR_ACCOUNT,
+  CLEAR_CART,
   LOGOUT
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
+
+
 
 
 //Load User 
@@ -96,6 +100,8 @@ export const login = (email, password, location) => async dispatch => {
     });
     
     dispatch(loadUser());
+    dispatch(loadAccount());
+    dispatch(loadCart());
 
   } catch (err) {
     const errors = err.response.data.errors;
@@ -111,7 +117,7 @@ export const login = (email, password, location) => async dispatch => {
 //Logout User / Clear profile
 
 export const logout = () => dispatch => {
+  dispatch({ type: CLEAR_CART });
   dispatch({ type: CLEAR_ACCOUNT });
   dispatch({ type: LOGOUT });
-  
 }

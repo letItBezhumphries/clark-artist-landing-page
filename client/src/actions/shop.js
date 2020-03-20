@@ -79,8 +79,8 @@ export const getRelatedArtwork = (portfolio, imageId) => async dispatch => {
     const portfolioRelated = images.filter(img => img._id !== imageId);
 
     // console.log(
-    //   "IN action/ getRelatedArtwork, res.data:",
-    //   portfolioRelated
+    //   "IN action/ getRelatedArtwork, res.data:", res.data,
+    //   "portfolioRelated:", portfolioRelated
     // );
 
     dispatch({

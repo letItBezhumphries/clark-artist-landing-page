@@ -57,6 +57,7 @@ app.use(express.json({ extended: false,
     }
   }
 }));
+
 app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(multer().single('file'));
 const DIR = __dirname;

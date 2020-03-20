@@ -10,10 +10,10 @@ const Footer = () => {
         width: "100%",
         backgroundColor: "black",
         color: "white",
-        marginTop: "5rem"
+        // marginTop: "5rem"
       }}
     >
-      <div className="footer-top" style={{ backgroundColor: 'white', width: '100%' }}>
+      <div className="footer-top" style={{ backgroundColor: 'black', width: '100%' }}>
         <IconList />
       </div>
     </footer>
